@@ -11,6 +11,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
+import { Link } from "react-router-dom/cjs/react-router-dom.min";
 
 const Header = () => {
   return (
@@ -56,9 +57,11 @@ const Header = () => {
           </a>
           <nav className="flex items-center gap-[3rem] justify-between w-[100%]">
             <div className="flex gap-[2rem]">
-              <a href="" className="font-[500]">
-                Home
-              </a>
+              <Link to="/">
+                <a href="" className="font-[500]">
+                  Home
+                </a>
+              </Link>
               <a href="" className="font-[500]">
                 Shop
               </a>
