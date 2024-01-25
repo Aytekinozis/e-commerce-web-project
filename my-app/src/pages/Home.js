@@ -6,6 +6,7 @@ import CategoryCard from "../components/CategoryCard";
 import ProductCardSection from "../layout/ProductCardSection";
 import SecondCarousel from "../components/SecondCarousel";
 import HomeComp from "../components/HomeComp";
+import FeaturedPosts from "../layout/FeaturedPosts";
 
 const Home = () => {
   return (
@@ -15,7 +16,7 @@ const Home = () => {
       <ProductCardSection />
       <SecondCarousel />
       <HomeComp />
-      <div>Home</div>
+      <FeaturedPosts />
       <Footer />
     </>
   );
