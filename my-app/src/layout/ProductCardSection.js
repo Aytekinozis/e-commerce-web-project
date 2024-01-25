@@ -1,7 +1,7 @@
 import ProductCard from "../components/ProductCard";
 
 const ProductCardSection = () => {
-  const tempArr = [1, 2, 3, 4, 5, 6, 7, 8];
+  const tempArr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
   return (
     <div>
       <div className="font-montserrat flex flex-col justify-center items-center gap-[0.62rem]">

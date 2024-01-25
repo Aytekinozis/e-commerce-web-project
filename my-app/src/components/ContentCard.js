@@ -2,7 +2,7 @@ const ContentCard = (props) => {
   const { item } = props;
 
   return (
-    <div className="max-w-[359px] object-cover object-center flex flex-col gap-4 items-center font-montserrat shadow hover:scale-105 hover:shadow-2xl">
+    <div className="max-w-[359px] object-cover object-center flex flex-col gap-4 items-center font-montserrat shadow hover:scale-105 hover:shadow-2xl my-4">
       <img className="object-cover object-center size-[350px]" src={item} />
       <div className="flex flex-col gap-4 w-10/12 py-4">
         <div className="flex gap-4 text-xs font-normal">
