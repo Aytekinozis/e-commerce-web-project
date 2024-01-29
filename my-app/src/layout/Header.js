@@ -50,7 +50,7 @@ const Header = () => {
           </div>
         </div>
       </div>
-      <div className="container mx-auto py-[1rem] flex flex-wrap">
+      <div className="container mx-auto py-[1rem] flex flex-wrap w-11/12">
         <div className="flex justify-between items-center gap-[3rem] w-[100%]">
           <a href="#" className="text-[2.4rem] font-[700]">
             BrandName
