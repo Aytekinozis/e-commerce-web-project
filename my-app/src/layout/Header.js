@@ -76,9 +76,12 @@ const Header = () => {
               <a href="" className="font-[500]">
                 Blog
               </a>
-              <a href="" className="font-[500]">
-                Contact
-              </a>
+              <Link to="/Contact">
+                <a href="" className="font-[500]">
+                  Contact
+                </a>
+              </Link>
+
               <a href="" className="font-[500]">
                 Pages
               </a>

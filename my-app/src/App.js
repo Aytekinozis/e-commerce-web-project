@@ -5,6 +5,7 @@ import "react-toastify/dist/ReactToastify.css";
 import Home from "./pages/Home";
 import ProductPage from "./pages/ProductList";
 import About from "./pages/About";
+import Contact from "./pages/Contact";
 
 function App() {
   return (
@@ -19,6 +20,9 @@ function App() {
         </Route>
         <Route path="/About" exact>
           <About />
+        </Route>
+        <Route path="/Contact" exact>
+          <Contact />
         </Route>
       </Switch>
     </div>
