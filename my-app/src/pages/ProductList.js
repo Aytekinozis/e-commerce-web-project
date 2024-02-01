@@ -2,6 +2,7 @@ import React from "react";
 import Header from "../layout/Header";
 import Footer from "../layout/Footer";
 import ProductCard from "../components/ProductCard";
+import Companies from "../components/Companies";
 
 const ProductPage = () => {
   const tempArr = [
@@ -18,7 +19,7 @@ const ProductPage = () => {
           ))}
         </div>
       </div>
-
+      <Companies />
       <Footer />
     </>
   );

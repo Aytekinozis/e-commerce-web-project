@@ -1,6 +1,6 @@
 const Companies = () => {
   return (
-    <div className="flex my-4 gap-8 py-8 flex-wrap">
+    <div className="flex my-4 gap-8 py-8 flex-wrap justify-center">
       <img src="/assets/brands/fa-brands-1.svg" />
       <img src="/assets/brands/Vector.svg" />
       <img src="/assets/brands/col-md-2.svg" />
