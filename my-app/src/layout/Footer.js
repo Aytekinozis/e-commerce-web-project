@@ -114,7 +114,7 @@ const Footer = () => {
         <div className="bg-[#FAFAFA] w-full flex justify-center items-center">
           <div className="w-9/12">
             <p className="font-[500] text-[#737373] py-[2rem]">
-              Made With Love By Finland All Right Reserved
+              Made With Love By Aytekin All Right Reserved
             </p>
           </div>
         </div>

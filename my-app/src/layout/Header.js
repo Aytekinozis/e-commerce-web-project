@@ -62,12 +62,17 @@ const Header = () => {
                   Home
                 </a>
               </Link>
-              <a href="" className="font-[500]">
-                Shop
-              </a>
-              <a href="" className="font-[500]">
-                About
-              </a>
+              <Link to="/ProductListPage">
+                <a href="" className="font-[500]">
+                  Shop
+                </a>
+              </Link>
+              <Link to="/About">
+                <a href="" className="font-[500]">
+                  About
+                </a>
+              </Link>
+
               <a href="" className="font-[500]">
                 Blog
               </a>
