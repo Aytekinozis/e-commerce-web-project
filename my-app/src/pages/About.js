@@ -51,6 +51,20 @@ const About = () => {
         </p>
         <Companies />
       </div>
+      <div className="relative flex bg-[#2A7CC7] text-white justify-end font-montserrat">
+        <div className=" absolute left-32 top-40 flex flex-col gap-8 pr-8 max-w-2xl">
+          <h5>WORK WITH US</h5>
+          <h2 className="text-5xl">Now Let’s grow Yours</h2>
+          <p className="text-[#FFFFFF] font-extralight">
+            The gradual accumulation of information about atomic and small-scale
+            behavior during the first quarter of the 20th{" "}
+          </p>
+          <Button className="w-32" color="white" variant="outlined">
+            Button
+          </Button>
+        </div>
+        <img src="/assets/unsplash.png"></img>
+      </div>
       <Footer />
     </div>
   );
