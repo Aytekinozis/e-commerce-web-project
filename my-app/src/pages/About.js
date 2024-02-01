@@ -3,6 +3,7 @@ import Footer from "../layout/Footer";
 import Header from "../layout/Header";
 import Stats from "../components/Stats";
 import MeetOurTeam from "../components/MeetOurTeam";
+import Companies from "../components/Companies";
 
 const About = () => {
   return (
@@ -42,6 +43,14 @@ const About = () => {
         <img src="/assets/videocard.svg"></img>
       </div>
       <MeetOurTeam />
+      <div className="flex flex-col my-8 font-montserrat items-center pt-4 bg-[#FAFAFA]">
+        <h2 className="text-[2.5rem]">Big Companies Are Here</h2>
+        <p className="text-sm text-[#737373] max-w-[30rem] text-center">
+          Problems trying to resolve the conflict between the two major realms
+          of Classical physics: Newtonian mechanics{" "}
+        </p>
+        <Companies />
+      </div>
       <Footer />
     </div>
   );
