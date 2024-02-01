@@ -23,10 +23,18 @@ const Contact = () => {
           <p className="text-xl">Phone ; +451 215 215 </p>
           <p className="text-xl">Fax : +451 215 215</p>
           <div className="text-4xl flex gap-8">
-            <FontAwesomeIcon icon={faTwitter} />
-            <FontAwesomeIcon icon={faFacebook} />
-            <FontAwesomeIcon icon={faInstagram} />
-            <FontAwesomeIcon icon={faLinkedin} />
+            <a href="#" className="hover:scale-110">
+              <FontAwesomeIcon icon={faTwitter} />
+            </a>
+            <a href="#" className="hover:scale-110">
+              <FontAwesomeIcon icon={faFacebook} />
+            </a>
+            <a href="#" className="hover:scale-110">
+              <FontAwesomeIcon icon={faInstagram} />
+            </a>
+            <a href="#" className="hover:scale-110">
+              <FontAwesomeIcon icon={faLinkedin} />
+            </a>
           </div>
         </div>
         <img src="assets/contactfamily.png" />
