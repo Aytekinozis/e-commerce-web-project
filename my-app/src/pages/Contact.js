@@ -98,6 +98,18 @@ const Contact = () => {
           </Button>
         </div>
       </div>
+      <div className="flex flex-col gap-10 items-center px-[15%] py-20 font-montserrat">
+        <img src="assets/Arrow.svg" />
+        <p className=" text-center text-slate-800 text-lg font-bold">
+          WE Can't WAIT TO MEET YOU
+        </p>
+        <p className="text-center text-slate-800 text-6xl font-bold leading-[58px] max-w-md">
+          Let’s Talk
+        </p>
+        <Button className="w-25 h-12" color="blue">
+          Try it free now
+        </Button>
+      </div>
       <Footer />
     </div>
   );
