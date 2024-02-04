@@ -81,10 +81,11 @@ const Header = () => {
                   Contact
                 </a>
               </Link>
-
-              <a href="" className="font-[500]">
-                Pages
-              </a>
+              <Link to="/Team">
+                <a href="" className="font-[500]">
+                  Team
+                </a>
+              </Link>
             </div>
             <div className="text-sm pr-4">
               <ul className="flex gap-[2rem] text-[#23A6F0]">
