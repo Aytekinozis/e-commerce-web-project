@@ -78,7 +78,10 @@ const ProductPage = () => {
                 className="h-full w-full object-cover"
               />
             </Carousel>
-            <img className="h-32 w-32" src="/assets/bigproduct.jpg" />
+            <img
+              className="h-32 w-32 pb-5 hover:scale-110 hover:cursor-pointer"
+              src="/assets/bigproduct.jpg"
+            />
           </div>
           <div className="flex flex-col font-montserrat w-1/2 justify-between pb-32">
             <h3 className="text-xl">Floating Phone</h3>
@@ -102,11 +105,11 @@ const ProductPage = () => {
               venial consequent sent nostrum met.
             </p>
             <hr className="w-full border border-stone-300 my-5"></hr>
-            <div className="flex items-center gap-1 pb-3">
-              <div class="w-6 h-6 hover:scale-110 bg-blue-500 rounded-full"></div>
-              <div class="w-6 h-6 hover:scale-110 bg-teal-700 rounded-full"></div>
-              <div class="w-6 h-6 hover:scale-110 bg-orange-400 rounded-full"></div>
-              <div class="w-6 h-6 hover:scale-110 bg-black rounded-full"></div>
+            <div className="flex items-center gap-2 pb-3">
+              <div class="w-7 h-7 hover:scale-110 bg-blue-500 rounded-full"></div>
+              <div class="w-7 h-7 hover:scale-110 bg-teal-700 rounded-full"></div>
+              <div class="w-7 h-7 hover:scale-110 bg-orange-400 rounded-full"></div>
+              <div class="w-7 h-7 hover:scale-110 bg-black rounded-full"></div>
             </div>
             <div className="flex gap-3">
               <Button className="" color="blue">
