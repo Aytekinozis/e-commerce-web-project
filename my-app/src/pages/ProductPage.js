@@ -53,8 +53,8 @@ const ProductPage = () => {
         </Link>
       </div>
       <div className="bg-[#FAFAFA] flex justify-center">
-        <div className="w-9/12 flex gap-12">
-          <div className="w-1/2 flex flex-col gap-4">
+        <div className="w-9/12 flex gap-12 sm:flex-wrap">
+          <div className="w-1/2 sm:w-11/12 flex flex-col gap-4">
             <Carousel
               transition={{ duration: 1 }}
               className=""
@@ -83,7 +83,7 @@ const ProductPage = () => {
               src="/assets/bigproduct.jpg"
             />
           </div>
-          <div className="flex flex-col font-montserrat w-1/2 justify-between pb-32">
+          <div className="flex flex-col font-montserrat w-1/2 sm:w-11/12 justify-between pb-32">
             <h3 className="text-xl">Floating Phone</h3>
             <div className="flex gap-2">
               {starsArr[0]}
@@ -137,14 +137,14 @@ const ProductPage = () => {
               Reviews <span className="text-[#23856D]">(0)</span>
             </p>
           </div>
-          <div className="flex gap-10 py-4">
-            <div className="w-4/12">
+          <div className="flex gap-10 py-4 sm:flex-wrap">
+            <div className="w-4/12 sm:w-11/12">
               <img
                 className=" w-full h-full rounded-lg object-cover object-center"
                 src="/assets/ppdescription.png"
               />
             </div>
-            <div className="w-4/12 gap-4 flex flex-wrap">
+            <div className="w-4/12 sm:w-11/12 gap-4 flex flex-wrap">
               <h5 className="text-2xl">the quick fox jumps over</h5>
               <p className=" text-[#737373]">
                 Met minim Mollie non desert Alamo est sit cliquey dolor do met
@@ -162,7 +162,7 @@ const ProductPage = () => {
                 Excitation venial consequent sent nostrum met.
               </p>
             </div>
-            <div className="w-4/12 flex flex-wrap gap-3">
+            <div className="w-4/12 sm:w-11/12 flex flex-wrap gap-3">
               <h5 className="text-2xl">the quick fox jumps over</h5>
               <div className="flex gap-5 text-[#737373]">
                 <FontAwesomeIcon icon={faChevronRight} />
@@ -202,7 +202,7 @@ const ProductPage = () => {
           <div className="py-[2rem] border-b-[#ECECEC] border-b-4">
             <h3 className="text-2xl">BESTSELLER PRODUCTS</h3>
           </div>
-          <div className="flex flex-wrap gap-4 justify-between py-8">
+          <div className="flex flex-wrap gap-4 items-center justify-between py-8">
             {bestSellerArr.map(() => (
               <ProductCard />
             ))}

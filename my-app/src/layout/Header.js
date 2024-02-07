@@ -17,7 +17,7 @@ const Header = () => {
   return (
     <>
       <div className="bg-[#252B42] font-montserrat">
-        <div className="max-md:hidden mx-6 py-[1rem] flex justify-between text-white items-center flex-wrap">
+        <div className="sm:hidden mx-6 py-[1rem] flex justify-between text-white items-center flex-wrap">
           <div className="flex gap-x-[3rem]">
             <button className="flex items-center gap-x-[0.5rem]">
               <i className="fa-solid fa-phone decoration-white"></i>

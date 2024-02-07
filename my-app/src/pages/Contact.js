@@ -13,7 +13,7 @@ const Contact = () => {
   return (
     <div>
       <Header />
-      <div className="flex justify-around items-center font-montserrat">
+      <div className="flex sm:flex-col sm:text-center justify-around items-center font-montserrat">
         <div className="flex flex-col gap-8 max-w-96 pl-8">
           <h5>CONTACT US</h5>
           <h1 className="text-5xl leading-[4rem]">Get in touch today!</h1>
@@ -39,7 +39,7 @@ const Contact = () => {
         </div>
         <img src="assets/contactfamily.png" />
       </div>
-      <div className="flex flex-col items-center gap-10 px-5 my-4 py-8">
+      <div className="flex flex-col items-center gap-10 px-5 my-4 py-8 ">
         <p className="text-center text-slate-800 text-base font-bold font-['Montserrat']  tracking-tight">
           VISIT OUR OFFICE
         </p>
@@ -47,7 +47,7 @@ const Contact = () => {
           We help small businesses with big ideas
         </h3>
       </div>
-      <div className="flex flex-wrap justify-center  gap-10 pt-32 pb-20 font-montserrat">
+      <div className="flex flex-wrap justify-center  gap-10 pt-32 pb-20 font-montserrat sm:bg-[#FAFAFA]">
         <div className="py-20 flex flex-col items-center gap-2 p-14 bg-white  ">
           <img src="assets/telephone.svg"></img>
           <p className="text-center text-slate-800 text-base font-bold font-['Montserrat']  tracking-tight">

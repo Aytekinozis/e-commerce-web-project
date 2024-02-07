@@ -15,7 +15,7 @@ const Footer = () => {
             <a href="#" className="text-[2.4rem] font-[700] text-[#252B42]">
               BrandName
             </a>
-            <div className="flex gap-x-[1.5rem] w-[30rem] justify-end text-[#23A6F0]">
+            <div className="flex gap-x-[1.5rem] w-[30rem] justify-end sm:justify-start text-[#23A6F0]">
               <a href="#" className="text-[2.4rem]">
                 <FontAwesomeIcon icon={faFacebook} />
               </a>
@@ -29,7 +29,10 @@ const Footer = () => {
           </div>
         </div>
         <div className="flex flex-col justify-center w-9/12 py-[2rem] min-h-96 flex-wrap">
-          <div id="footer-links" className="flex justify-between flex-wrap">
+          <div
+            id="footer-links"
+            className="flex sm:flex-col sm:gap-8 justify-between flex-wrap"
+          >
             <div className="flex flex-col gap-[1rem] flex-1 min-w-44">
               <h5>Company Info</h5>
               <a className="text-[#737373]" href="#">
