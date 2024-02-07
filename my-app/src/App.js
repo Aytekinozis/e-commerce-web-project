@@ -3,10 +3,11 @@ import "./App.css";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Home from "./pages/Home";
-import ProductPage from "./pages/ProductList";
+import ProductPage from "./pages/ProductPage";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
 import Team from "./pages/Team";
+import ProductListPage from "./pages/ProductList";
 
 function App() {
   return (
@@ -17,7 +18,7 @@ function App() {
           <Home />
         </Route>
         <Route path="/ProductListPage" exact>
-          <ProductPage />
+          <ProductListPage />
         </Route>
         <Route path="/About" exact>
           <About />
@@ -27,6 +28,9 @@ function App() {
         </Route>
         <Route path="/Team" exact>
           <Team />
+        </Route>
+        <Route path="/ProductPage" exact>
+          <ProductPage />
         </Route>
       </Switch>
     </div>

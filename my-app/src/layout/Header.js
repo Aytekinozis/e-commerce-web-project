@@ -73,9 +73,6 @@ const Header = () => {
                 </a>
               </Link>
 
-              <a href="" className="font-[500]">
-                Blog
-              </a>
               <Link to="/Contact">
                 <a href="" className="font-[500]">
                   Contact

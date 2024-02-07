@@ -21,7 +21,7 @@ const SecondCarousel = () => {
     >
       <div className="relative h-full w-full bg-[#23856D]">
         <img
-          src="https://s3-alpha-sig.figma.com/img/c7a1/9f43/aa4437b65bb40c3e3edb92e61a4d6184?Expires=1707091200&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=iHTNXW~zSb5ZnhIdIQneoKP4r0KG0e0D2p5MP3ovjFYoPeYz8D-L4Nun~LRCAaHJ0kljq72jJU1~wxoZekDAEYbpGOwTzVCsXyfyZhGSHNJYMIn1qTBNIaVNIkj2cy8neMlZJgYrYIghUQaukHmZPAot6Bk0uCvcOLovmeMEpqpLJpNjvD-UD5stw47Dnoz~1cC4TRh4Y8ijtLWYgCvGNVnjVL0i9w6UCgcyN6ep-uySCf~7NmB7tmyG9j0CAtWn8hut4QBl7YA011sXCkYwhuvFXca8vdJfRHSe1wmkzEekQDN9uT4JwK~Weac0waWwkSRwjUz1uA8ryrqA0lNiWw__"
+          src="/assets/home/hero-slide2.png"
           alt="image 1"
           className="absolute right-24 bottom-0 object-fill max-h-[43rem]"
         />
@@ -47,7 +47,7 @@ const SecondCarousel = () => {
       </div>
       <div className="relative h-full w-full bg-[#23856D]">
         <img
-          src="https://s3-alpha-sig.figma.com/img/c7a1/9f43/aa4437b65bb40c3e3edb92e61a4d6184?Expires=1707091200&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=iHTNXW~zSb5ZnhIdIQneoKP4r0KG0e0D2p5MP3ovjFYoPeYz8D-L4Nun~LRCAaHJ0kljq72jJU1~wxoZekDAEYbpGOwTzVCsXyfyZhGSHNJYMIn1qTBNIaVNIkj2cy8neMlZJgYrYIghUQaukHmZPAot6Bk0uCvcOLovmeMEpqpLJpNjvD-UD5stw47Dnoz~1cC4TRh4Y8ijtLWYgCvGNVnjVL0i9w6UCgcyN6ep-uySCf~7NmB7tmyG9j0CAtWn8hut4QBl7YA011sXCkYwhuvFXca8vdJfRHSe1wmkzEekQDN9uT4JwK~Weac0waWwkSRwjUz1uA8ryrqA0lNiWw__"
+          src="/assets/home/hero-slide2.png"
           alt="image 1"
           className="absolute right-24 bottom-0 object-fill max-h-[43rem]"
         />
@@ -73,7 +73,7 @@ const SecondCarousel = () => {
       </div>
       <div className="relative h-full w-full bg-[#23856D]">
         <img
-          src="https://s3-alpha-sig.figma.com/img/c7a1/9f43/aa4437b65bb40c3e3edb92e61a4d6184?Expires=1707091200&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=iHTNXW~zSb5ZnhIdIQneoKP4r0KG0e0D2p5MP3ovjFYoPeYz8D-L4Nun~LRCAaHJ0kljq72jJU1~wxoZekDAEYbpGOwTzVCsXyfyZhGSHNJYMIn1qTBNIaVNIkj2cy8neMlZJgYrYIghUQaukHmZPAot6Bk0uCvcOLovmeMEpqpLJpNjvD-UD5stw47Dnoz~1cC4TRh4Y8ijtLWYgCvGNVnjVL0i9w6UCgcyN6ep-uySCf~7NmB7tmyG9j0CAtWn8hut4QBl7YA011sXCkYwhuvFXca8vdJfRHSe1wmkzEekQDN9uT4JwK~Weac0waWwkSRwjUz1uA8ryrqA0lNiWw__"
+          src="/assets/home/hero-slide2.png"
           alt="image 1"
           className="absolute right-24 bottom-0 object-fill max-h-[43rem]"
         />
