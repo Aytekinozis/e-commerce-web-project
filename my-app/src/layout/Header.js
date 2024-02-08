@@ -16,9 +16,9 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
 
 const Header = () => {
-  const [showMenu, setShowMenu] = useState(true);
+  const [menu, setMenu] = useState(true);
   const menuToggle = () => {
-    setShowMenu(!showMenu);
+    setMenu(!menu);
   };
   return (
     <>
@@ -67,7 +67,7 @@ const Header = () => {
             </div>
 
             <div className="cursor-pointer" onClick={menuToggle}>
-              {showMenu ? (
+              {menu ? (
                 <FontAwesomeIcon icon={faXmark} />
               ) : (
                 <FontAwesomeIcon icon={faBars} />
@@ -77,9 +77,9 @@ const Header = () => {
           <nav className="flex sm:flex-col items-center gap-[3rem] justify-between w-[100%]">
             <div
               className={
-                showMenu
+                menu
                   ? "flex sm:flex-col gap-[2rem] sm:text-[#737373] sm:text-2xl"
-                  : "hidden"
+                  : "sm:hidden flex sm:flex-col gap-[2rem] sm:text-[#737373] sm:text-2xl"
               }
             >
               <Link to="/">

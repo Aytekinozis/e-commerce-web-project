@@ -57,7 +57,7 @@ const Team = () => {
           Met minim Mollie non desert Alamo est sit cliquey dolor do met sent.
           RELIT official consequent.
         </h6>
-        <button className="bg-[#23A6F0] text-white w-[13%] sm:w-[50%] mx-auto py-[1rem] rounded-[0.5rem]">
+        <button className="bg-[#23A6F0] text-white w-[23%] sm:w-[50%] mx-auto py-[1rem] rounded-[0.5rem]">
           Try it free now
         </button>
         <div className="flex gap-[2rem] justify-center items-center text-[2.4rem] text-[#23A6f0]">
