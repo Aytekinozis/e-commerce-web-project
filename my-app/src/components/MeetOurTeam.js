@@ -7,14 +7,14 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 const MeetOurTeam = () => {
   return (
     <div className="flex flex-col my-8 font-montserrat items-center">
-      <div className="flex flex-col gap-4 items-center my-10">
+      <div className="flex flex-col gap-4 items-center my-10 sm:w-10/12">
         <h2 className="text-[2.5rem]">Meet Our Team</h2>
         <p className="text-sm text-[#737373] max-w-[30rem] text-center">
           Problems trying to resolve the conflict between the two major realms
           of Classical physics: Newtonian mechanics{" "}
         </p>
       </div>
-      <div className="flex gap-8 justify-center items-center">
+      <div className="flex gap-8 justify-center items-center sm:flex-wrap">
         <div className="flex flex-col justify-center items-center gap-4 shadow hover:scale-110 hover:shadow-2xl">
           <img src="/assets/team-1-user-1.png" />
           <h5>Username</h5>

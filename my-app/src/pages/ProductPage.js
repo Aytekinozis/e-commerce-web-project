@@ -37,7 +37,7 @@ const ProductPage = () => {
     <>
       <Header />
 
-      <div className="flex font-montserrat gap-[1rem] pl-48 py-[2rem] items-center bg-[#FAFAFA]">
+      <div className="flex font-montserrat gap-[1rem] pl-48 sm:pl-0 sm:justify-center py-[2rem] items-center bg-[#FAFAFA]">
         <Link className="font-[500] text-[1.6rem]" to="/">
           Home
         </Link>

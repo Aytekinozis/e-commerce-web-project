@@ -14,7 +14,7 @@ const Contact = () => {
     <div>
       <Header />
       <div className="flex sm:flex-col sm:text-center justify-around items-center font-montserrat">
-        <div className="flex flex-col gap-8 max-w-96 pl-8">
+        <div className="flex flex-col gap-8 max-w-96 pl-8 sm:pl-0">
           <h5>CONTACT US</h5>
           <h1 className="text-5xl leading-[4rem]">Get in touch today!</h1>
           <h4 className="text-[#737373]">
@@ -22,7 +22,7 @@ const Contact = () => {
           </h4>
           <p className="text-xl">Phone ; +451 215 215 </p>
           <p className="text-xl">Fax : +451 215 215</p>
-          <div className="text-4xl flex gap-8">
+          <div className="text-4xl flex sm:justify-center gap-8">
             <a href="#" className="hover:scale-110">
               <FontAwesomeIcon icon={faTwitter} />
             </a>

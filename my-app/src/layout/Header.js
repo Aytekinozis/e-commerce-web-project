@@ -51,11 +51,11 @@ const Header = () => {
         </div>
       </div>
       <div className="container mx-auto py-[1rem] flex flex-wrap w-11/12">
-        <div className="flex justify-between items-center gap-[3rem] w-[100%]">
+        <div className="flex sm:flex-wrap justify-between items-center gap-[3rem] w-[100%]">
           <a href="#" className="text-[2.4rem] font-[700]">
             BrandName
           </a>
-          <nav className="flex items-center gap-[3rem] justify-between w-[100%]">
+          <nav className="flex sm:flex-wrap items-center gap-[3rem] justify-between w-[100%]">
             <div className="flex gap-[2rem]">
               <Link to="/">
                 <a href="" className="font-[500]">
@@ -85,7 +85,7 @@ const Header = () => {
               </Link>
             </div>
             <div className="text-sm pr-4">
-              <ul className="flex gap-[2rem] text-[#23A6F0]">
+              <ul className="flex sm:flex-wrap gap-[2rem] text-[#23A6F0]">
                 <li className="text-sm font-bold cursor-pointer flex gap-[1rem] items-center">
                   <FontAwesomeIcon icon={faUser} />
                   <div>Login / Register</div>

@@ -9,9 +9,9 @@ const About = () => {
   return (
     <div>
       <Header />
-      <div className="flex font-montserrat max-w-9/12 justify-center items-center my-4 flex-wrap">
-        <div className="flex flex-col max-w-sm mr-48 gap-8">
-          <h5 className="text-[#252B42]">ABOUT COMPANY</h5>
+      <div className="flex sm:flex-col sm:gap-8 font-montserrat max-w-9/12 justify-center items-center my-4 flex-wrap">
+        <div className="flex flex-col sm:justify-center sm:gap-12 sm:text-center max-w-sm mr-48 sm:mr-0 sm:py-8 gap-8">
+          <h5 className="text-[#252B42] sm:hidden">ABOUT COMPANY</h5>
           <h1 className="text-6xl">ABOUT US</h1>
           <h4 className="text-xl text-[#737373] font-normal">
             We know how large objects will act, but things on a small scale
@@ -24,7 +24,7 @@ const About = () => {
           <img src="/assets/none.svg" />
         </div>
       </div>
-      <div className="font-montserrat flex justify-center gap-12 my-4 flex-wrap">
+      <div className="font-montserrat sm:text-center sm:py-8 flex justify-center gap-12 my-4 flex-wrap">
         <div className="flex flex-col max-w-sm gap-4">
           <p className="text-[#E74040] text-sm">Problems trying</p>
           <h2 className="text-2xl">
@@ -40,19 +40,19 @@ const About = () => {
       </div>
       <Stats />
       <div className="flex justify-center my-4">
-        <img src="/assets/videocard.svg"></img>
+        <img className=" sm:w-10/12" src="/assets/videocard.svg"></img>
       </div>
       <MeetOurTeam />
-      <div className="flex flex-col my-8 font-montserrat items-center pt-4 bg-[#FAFAFA]">
-        <h2 className="text-[2.5rem]">Big Companies Are Here</h2>
-        <p className="text-sm text-[#737373] max-w-[30rem] text-center">
+      <div className="flex flex-col my-8 sm:text-center font-montserrat items-center pt-4 bg-[#FAFAFA]">
+        <h2 className="text-[2.5rem] sm:w-10/12">Big Companies Are Here</h2>
+        <p className="text-sm text-[#737373] max-w-[30rem] text-center sm:w-10/12">
           Problems trying to resolve the conflict between the two major realms
           of Classical physics: Newtonian mechanics{" "}
         </p>
         <Companies />
       </div>
-      <div className="relative flex bg-[#2A7CC7] text-white justify-end font-montserrat">
-        <div className=" absolute left-32 top-40 flex flex-col gap-8 pr-8 max-w-2xl">
+      <div className="relative sm:static flex sm:flex-col sm:justify-center sm:py-10  bg-[#2A7CC7] text-white justify-end font-montserrat">
+        <div className=" absolute sm:static sm:text-center left-32 top-40 flex flex-col sm:items-center gap-8 pr-8 max-w-2xl">
           <h5>WORK WITH US</h5>
           <h2 className="text-5xl">Now Let’s grow Yours</h2>
           <p className="text-[#FFFFFF] font-extralight">
@@ -63,7 +63,7 @@ const About = () => {
             Button
           </Button>
         </div>
-        <img src="/assets/unsplash.png"></img>
+        <img className="sm:hidden" src="/assets/unsplash.png"></img>
       </div>
       <Footer />
     </div>
