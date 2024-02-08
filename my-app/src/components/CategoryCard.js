@@ -10,8 +10,8 @@ const CategoryCard = () => {
             Problems trying to resolve the conflict between{" "}
           </p>
         </div>
-        <div className="flex gap-7 justify-between flex-wrap">
-          <div className="relative w-[32rem] h-[32rem] hover:shadow-lg object-fill">
+        <div className="flex gap-7 justify-between sm:justify-center flex-wrap sm:w-10/12">
+          <div className="relative sm:w-10/12 sm:h-10/12 hover:shadow-lg object-fill">
             <img
               className="w-full h-full object-fill"
               src="/assets/home/editor-men.png"
@@ -20,7 +20,7 @@ const CategoryCard = () => {
               MEN
             </button>
           </div>
-          <div className="max-w-[15rem] relative hover:shadow-lg">
+          <div className="w-[15rem] sm:w-10/12 sm:h-10/12 relative hover:shadow-lg">
             <img
               className="w-full h-full object-cover"
               src="/assets/home/editor-women.png"
@@ -31,18 +31,18 @@ const CategoryCard = () => {
           </div>
 
           <div className="flex flex-col gap-5 justify-between">
-            <div className="relative hover:shadow-lg">
+            <div className="relative hover:shadow-lg sm:size-[20rem]">
               <img
-                className="max-w-[15rem] max-h-[15rem] object-cover"
+                className="sm:w-[20rem] sm:h-[20rem] w-[15rem] h-[15rem] object-cover sm:object-fill"
                 src="/assets/home/editor-access.png"
               />
               <button className="absolute left-3 bottom-0 mb-4 px-6 py-3 font-bold tracking-normal bg-white text-black shadow-xl   hover:opacity-75 ">
                 ACCESSORIES
               </button>
             </div>
-            <div className="relative hover:shadow-lg">
+            <div className="relative hover:shadow-lg sm:size-[20rem]">
               <img
-                className="max-w-[15rem] max-h-[15rem] object-cover"
+                className="sm:w-[20rem] sm:h-[20rem] w-[15rem] h-[15rem] object-cover sm:object-fill"
                 src="/assets/home/editor-kids.png"
               />
               <button className="absolute left-3 bottom-0 mb-4 px-6 py-3 font-bold tracking-normal bg-white text-black shadow-xl   hover:opacity-75 ">

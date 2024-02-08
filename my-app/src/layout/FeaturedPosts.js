@@ -16,7 +16,7 @@ const FeaturedPosts = () => {
           of Classical physics: Newtonian mechanics
         </p>
       </div>
-      <div className="flex flex-wrap gap-4">
+      <div className="flex flex-wrap gap-4 sm:items-center sm:justify-center">
         {tempArr.map((item) => (
           <ContentCard item={item} />
         ))}

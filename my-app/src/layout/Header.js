@@ -6,14 +6,20 @@ import {
 } from "@fortawesome/free-brands-svg-icons";
 import { faHeart, faUser } from "@fortawesome/free-regular-svg-icons";
 import {
+  faBars,
   faCartShopping,
   faMagnifyingGlass,
+  faXmark,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
 
 const Header = () => {
+  const [showMenu, setShowMenu] = useState(true);
+  const menuToggle = () => {
+    setShowMenu(!showMenu);
+  };
   return (
     <>
       <div className="bg-[#252B42] font-montserrat">
@@ -50,13 +56,32 @@ const Header = () => {
           </div>
         </div>
       </div>
-      <div className="container mx-auto py-[1rem] flex flex-wrap w-11/12">
-        <div className="flex sm:flex-wrap justify-between items-center gap-[3rem] w-[100%]">
+      <div className=" py-[1rem] flex justify-between items-center flex-wrap w-11/12">
+        <div className="flex sm:flex-wrap justify-between items-center gap-[3rem] w-full pl-10 sm:pl-4">
           <a href="#" className="text-[2.4rem] font-[700]">
             BrandName
           </a>
-          <nav className="flex sm:flex-wrap items-center gap-[3rem] justify-between w-[100%]">
-            <div className="flex gap-[2rem]">
+          <div className="md:hidden gap-4 flex">
+            <div>
+              <FontAwesomeIcon icon={faCartShopping} />
+            </div>
+
+            <div className="cursor-pointer" onClick={menuToggle}>
+              {showMenu ? (
+                <FontAwesomeIcon icon={faXmark} />
+              ) : (
+                <FontAwesomeIcon icon={faBars} />
+              )}
+            </div>
+          </div>
+          <nav className="flex sm:flex-col items-center gap-[3rem] justify-between w-[100%]">
+            <div
+              className={
+                showMenu
+                  ? "flex sm:flex-col gap-[2rem] sm:text-[#737373] sm:text-2xl"
+                  : "hidden"
+              }
+            >
               <Link to="/">
                 <a href="" className="font-[500]">
                   Home
@@ -85,7 +110,7 @@ const Header = () => {
               </Link>
             </div>
             <div className="text-sm pr-4">
-              <ul className="flex sm:flex-wrap gap-[2rem] text-[#23A6F0]">
+              <ul className="flex sm:hidden sm:flex-wrap gap-[2rem] text-[#23A6F0]">
                 <li className="text-sm font-bold cursor-pointer flex gap-[1rem] items-center">
                   <FontAwesomeIcon icon={faUser} />
                   <div>Login / Register</div>

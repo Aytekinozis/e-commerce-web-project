@@ -7,7 +7,7 @@ const Hero = () => {
       <Header />
       <Carousel
         transition={{ duration: 1 }}
-        className="h-[60rem]"
+        className="h-[60rem] sm:h-[40rem]"
         navigation={({ setActiveIndex, activeIndex, length }) => (
           <div className="absolute bottom-4 left-2/4 z-50 flex -translate-x-2/4 gap-2">
             {new Array(length).fill("").map((_, i) => (
@@ -26,17 +26,17 @@ const Hero = () => {
           <img
             src="/assets/home/hero-slide.jpg"
             alt="image 1"
-            className="h-full w-full object-cover"
+            className="h-full w-full object-cover sm:object-none"
           />
-          <div className="absolute inset-0 grid h-full w-full items-center">
-            <div className="w-3/4 pl-36">
+          <div className="absolute inset-0 grid h-full w-full sm:flex sm:flex-col sm:justify-center sm:text-center items-center">
+            <div className="w-3/4 pl-36 sm:pl-0 sm:flex sm:flex-col sm:justify-center sm:items-center">
               <p className="text-white font-montserrat mb-20 text-2xl">
                 Summer 2020
               </p>
               <Typography
                 variant="h1"
                 color="white"
-                className="mb-20 text-[3.62rem]"
+                className="mb-20 text-[3.62rem] sm:text-[3rem]"
               >
                 NEW COLLECTION
               </Typography>
@@ -59,17 +59,17 @@ const Hero = () => {
           <img
             src="/assets/home/hero-slide.jpg"
             alt="image 1"
-            className="h-full w-full object-cover"
+            className="h-full w-full object-cover sm:object-none"
           />
-          <div className="absolute inset-0 grid h-full w-full items-center">
-            <div className="w-3/4 pl-36">
+          <div className="absolute inset-0 grid h-full w-full sm:flex sm:flex-col sm:justify-center sm:text-center items-center">
+            <div className="w-3/4 pl-36 sm:pl-0 sm:flex sm:flex-col sm:justify-center sm:items-center">
               <p className="text-white font-montserrat mb-20 text-2xl">
                 Summer 2020
               </p>
               <Typography
                 variant="h1"
                 color="white"
-                className="mb-20 text-[3.62rem]"
+                className="mb-20 text-[3.62rem] sm:text-[3rem]"
               >
                 NEW COLLECTION
               </Typography>
@@ -92,17 +92,17 @@ const Hero = () => {
           <img
             src="/assets/home/hero-slide.jpg"
             alt="image 1"
-            className="h-full w-full object-cover"
+            className="h-full w-full object-cover sm:object-none"
           />
-          <div className="absolute inset-0 grid h-full w-full items-center">
-            <div className="w-3/4 pl-36">
+          <div className="absolute inset-0 grid h-full w-full sm:flex sm:flex-col sm:justify-center sm:text-center items-center">
+            <div className="w-3/4 pl-36 sm:pl-0 sm:flex sm:flex-col sm:justify-center sm:items-center">
               <p className="text-white font-montserrat mb-20 text-2xl">
                 Summer 2020
               </p>
               <Typography
                 variant="h1"
                 color="white"
-                className="mb-20 text-[3.62rem]"
+                className="mb-20 text-[3.62rem] sm:text-[3rem]"
               >
                 NEW COLLECTION
               </Typography>
