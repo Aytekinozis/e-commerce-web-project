@@ -16,7 +16,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
 
 const Header = () => {
-  const [menu, setMenu] = useState(true);
+  const [menu, setMenu] = useState(false);
   const menuToggle = () => {
     setMenu(!menu);
   };
@@ -83,28 +83,28 @@ const Header = () => {
               }
             >
               <Link to="/">
-                <a href="" className="font-[500]">
+                <a href="" className="font-[500] hover:underline">
                   Home
                 </a>
               </Link>
               <Link to="/ProductListPage">
-                <a href="" className="font-[500]">
+                <a href="" className="font-[500] hover:underline">
                   Shop
                 </a>
               </Link>
               <Link to="/About">
-                <a href="" className="font-[500]">
+                <a href="" className="font-[500] hover:underline">
                   About
                 </a>
               </Link>
 
               <Link to="/Contact">
-                <a href="" className="font-[500]">
+                <a href="" className="font-[500] hover:underline">
                   Contact
                 </a>
               </Link>
               <Link to="/Team">
-                <a href="" className="font-[500]">
+                <a href="" className="font-[500] hover:underline">
                   Team
                 </a>
               </Link>
