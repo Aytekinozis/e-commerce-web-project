@@ -116,7 +116,7 @@ const Header = () => {
                   <div>
                     Login /{" "}
                     <Link to="/signup">
-                      <a>Register</a>
+                      <a className="hover:underline">Register</a>
                     </Link>
                   </div>
                 </li>
