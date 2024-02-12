@@ -59,7 +59,7 @@ const SignUp = () => {
     <div>
       <Header></Header>
       <div className="flex justify-center py-8">
-        <Card color="transparent" shadow={false}>
+        <Card className="px-8 py-8" color="transparent" shadow={true}>
           <Typography variant="h4" color="blue-gray">
             Sign Up
           </Typography>
