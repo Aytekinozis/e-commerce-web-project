@@ -113,7 +113,12 @@ const Header = () => {
               <ul className="flex sm:hidden sm:flex-wrap gap-[2rem] text-[#23A6F0]">
                 <li className="text-sm font-bold cursor-pointer flex gap-[1rem] items-center">
                   <FontAwesomeIcon icon={faUser} />
-                  <div>Login / Register</div>
+                  <div>
+                    Login /{" "}
+                    <Link to="/signup">
+                      <a>Register</a>
+                    </Link>
+                  </div>
                 </li>
                 <li className="text-sm font-bold cursor-pointer">
                   <FontAwesomeIcon icon={faMagnifyingGlass} />

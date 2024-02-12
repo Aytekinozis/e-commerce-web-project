@@ -8,6 +8,7 @@ import About from "./pages/About";
 import Contact from "./pages/Contact";
 import Team from "./pages/Team";
 import ProductListPage from "./pages/ProductList";
+import SignUp from "./pages/SignUp";
 
 function App() {
   return (
@@ -31,6 +32,9 @@ function App() {
         </Route>
         <Route path="/ProductPage" exact>
           <ProductPage />
+        </Route>
+        <Route path="/signup" exact>
+          <SignUp />
         </Route>
       </Switch>
     </div>
