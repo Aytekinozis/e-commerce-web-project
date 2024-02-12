@@ -171,6 +171,7 @@ const SignUp = () => {
                     dark:focus:border-black"
                   {...register("role_id", { required: "aman" })}
                   label="Role"
+                  value={watch("role_id")}
                 >
                   <option selected index={3} value={roles && roles[2].id}>
                     {roles && roles[2].name}
