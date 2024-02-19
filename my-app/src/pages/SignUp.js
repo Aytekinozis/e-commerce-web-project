@@ -13,6 +13,9 @@ import {
 } from "@material-tailwind/react";
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
+import { faCircleNotch } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useHistory } from "react-router";
 
 const SignUp = () => {
   const {
@@ -20,7 +23,7 @@ const SignUp = () => {
     handleSubmit,
     getValues,
     watch,
-    formState: { errors, isValid },
+    formState: { errors, isValid, isSubmitting },
   } = useForm({
     mode: "all",
     defaultValues: {
@@ -29,12 +32,21 @@ const SignUp = () => {
   });
   const [roles, setRoles] = useState();
   const [optvalue, setOptValue] = useState("Müşteri");
+  const history = useHistory();
 
   const onSubmit = (data) => {
     const { passconfirm, ...postdata } = data;
+    API.post("/signup", postdata)
+      .then((res) => {
+        toast.success(res.data.message);
+        history.push("/");
+      })
+      .catch((err) => {
+        toast.error(err.message);
+      });
+
     console.log(postdata);
     //console.log(roles);
-    toast.success("uye olundu!");
   };
 
   useEffect(() => {
@@ -70,7 +82,7 @@ const SignUp = () => {
             onSubmit={handleSubmit(onSubmit)}
             className="mt-8 mb-2 w-80 max-w-screen-lg sm:w-96"
           >
-            <div className="mb-1 flex flex-col gap-6">
+            <div className="mb-1 flex flex-col gap-4">
               <Typography variant="h6" color="blue-gray" className="-mb-3">
                 Your Name
               </Typography>
@@ -87,7 +99,7 @@ const SignUp = () => {
                 }}
               />
               {errors.name && (
-                <p className="text-red-500">{errors.name.message}</p>
+                <p className="text-red-500">{errors.name?.message}</p>
               )}
               <Typography variant="h6" color="blue-gray" className="-mb-3">
                 Your Email
@@ -108,7 +120,7 @@ const SignUp = () => {
                 }}
               />
               {errors.email && (
-                <p className="text-red-500">{errors.email.message}</p>
+                <p className="text-red-500">{errors.email?.message}</p>
               )}
               <Typography variant="h6" color="blue-gray" className="-mb-3">
                 Password
@@ -131,7 +143,7 @@ const SignUp = () => {
                 }}
               />
               {errors.password && (
-                <p className="text-red-500">{errors.password.message}</p>
+                <p className="text-red-500">{errors.password?.message}</p>
               )}
               <Typography variant="h6" color="blue-gray" className="-mb-3">
                 Confirm Password
@@ -158,7 +170,7 @@ const SignUp = () => {
                 }}
               />
               {errors.passconfirm && (
-                <p className="text-red-500">{errors.passconfirm.message}</p>
+                <p className="text-red-500">{errors.passconfirm?.message}</p>
               )}
               <div className="w-76">
                 <Typography variant="h6" color="blue-gray" className="mb-3">
@@ -274,7 +286,7 @@ const SignUp = () => {
                   />
                   {errors.store?.bank_account && (
                     <p className="text-red-500">
-                      {errors.store?.banka_ccount?.message}
+                      {errors.store?.bank_account?.message}
                     </p>
                   )}
                 </div>
@@ -282,11 +294,14 @@ const SignUp = () => {
             </div>
 
             <Button
-              disabled={!isValid}
+              disabled={!isValid || isSubmitting}
               type="submit"
               className="mt-6"
               fullWidth
             >
+              {isSubmitting && (
+                <FontAwesomeIcon className="mr-2" icon={faCircleNotch} spin />
+              )}
               sign up
             </Button>
             <Typography color="gray" className="mt-4 text-center font-normal">
