@@ -16,6 +16,9 @@ import { toast } from "react-toastify";
 import { faCircleNotch } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useHistory } from "react-router";
+import { getRoles } from "../store/actions/globalActions";
+import { useDispatch, useSelector } from "react-redux";
+import axios, { Axios } from "axios";
 
 const SignUp = () => {
   const {
@@ -31,11 +34,24 @@ const SignUp = () => {
     },
   });
   const [roles, setRoles] = useState();
+  const roles1 = useSelector((store) => store.global.roles);
   const [optvalue, setOptValue] = useState("Müşteri");
   const history = useHistory();
+  const dispatch = useDispatch();
 
   const onSubmit = (data) => {
     const { passconfirm, ...postdata } = data;
+
+    /* axios
+      .post("http://localhost:9000/workintech/signup/register", postdata)
+      .then((res) => {
+        toast.success(res.data.message);
+        history.push("/");
+      })
+      .catch((err) => {
+        toast.error(err.message);
+      }); */
+
     API.post("/signup", postdata)
       .then((res) => {
         toast.success(res.data.message);
@@ -50,19 +66,29 @@ const SignUp = () => {
   };
 
   useEffect(() => {
+    if (roles1.length == 0) {
+      dispatch(getRoles());
+    }
+  }, []);
+
+  useEffect(() => {
     API.get("/roles")
       .then((res) => {
         setRoles(res.data);
-        console.log(res.data);
+        //console.log(res.data);
       })
       .catch((err) => {
         toast.error(
           "Roles yüklenirken bir hata ile karşılaşıldı: " + err.message
         );
       });
+
+    getRoles();
     setTimeout(() => {
       console.log(roles);
-    }, 1000);
+      console.log("---------");
+      console.log(roles1);
+    }, 2000);
   }, []);
 
   const role = watch("role_id");
@@ -186,13 +212,13 @@ const SignUp = () => {
                   value={watch("role_id")}
                 >
                   <option selected index={3} value={roles && roles[2].id}>
-                    {roles && roles[2].name}
+                    {roles && roles[2].code}
                   </option>
                   <option index={1} value={roles && roles[0].id}>
-                    {roles && roles[0].name}
+                    {roles && roles[0].code}
                   </option>
                   <option index={2} value={roles && roles[1].id}>
-                    {roles && roles[1].name}
+                    {roles && roles[1].code}
                   </option>
                 </select>
               </div>

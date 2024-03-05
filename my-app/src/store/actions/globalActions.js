@@ -1,9 +1,22 @@
+import { useDispatch } from "react-redux";
+import { API } from "../../api/api";
 import {
   SET_CATEGORIES,
   SET_LANGUAGE,
   SET_ROLES,
   SET_THEME,
 } from "../reducers/globalReducer";
+
+export const getRoles = () => (dispatch) => {
+  API.get("/roles")
+    .then((res) => {
+      console.log(res.data);
+      dispatch(setRoles(res.data));
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
 
 export const setRoles = (roles) => {
   return {
