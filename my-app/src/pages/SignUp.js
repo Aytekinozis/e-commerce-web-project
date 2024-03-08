@@ -211,14 +211,14 @@ const SignUp = () => {
                   label="Role"
                   value={watch("role_id")}
                 >
-                  <option selected index={3} value={roles && roles[2].id}>
-                    {roles && roles[2].code}
+                  <option selected index={3} value={roles1 && roles1[2]?.id}>
+                    {roles1 && roles1[2]?.name}
                   </option>
-                  <option index={1} value={roles && roles[0].id}>
-                    {roles && roles[0].code}
+                  <option index={1} value={roles1 && roles1[0]?.id}>
+                    {roles1 && roles1[0]?.name}
                   </option>
-                  <option index={2} value={roles && roles[1].id}>
-                    {roles && roles[1].code}
+                  <option index={2} value={roles1 && roles1[1]?.id}>
+                    {roles1 && roles1[1]?.name}
                   </option>
                 </select>
               </div>

@@ -10,7 +10,7 @@ import {
 export const getRoles = () => (dispatch) => {
   API.get("/roles")
     .then((res) => {
-      console.log(res.data);
+      //console.log(res.data);
       dispatch(setRoles(res.data));
     })
     .catch((err) => {
