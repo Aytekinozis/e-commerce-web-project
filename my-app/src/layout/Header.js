@@ -114,7 +114,10 @@ const Header = () => {
                 <li className="text-sm font-bold cursor-pointer flex gap-[1rem] items-center">
                   <FontAwesomeIcon icon={faUser} />
                   <div>
-                    Login /{" "}
+                    <Link to="/signIn">
+                      <a className="hover:underline">Login</a>
+                    </Link>
+                    /{" "}
                     <Link to="/signup">
                       <a className="hover:underline">Register</a>
                     </Link>

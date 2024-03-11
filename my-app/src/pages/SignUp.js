@@ -328,7 +328,7 @@ const SignUp = () => {
               {isSubmitting && (
                 <FontAwesomeIcon className="mr-2" icon={faCircleNotch} spin />
               )}
-              sign up
+              Sign Up
             </Button>
             <Typography color="gray" className="mt-4 text-center font-normal">
               Already have an account?{" "}
