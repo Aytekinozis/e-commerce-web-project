@@ -10,6 +10,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useHistory } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
 import axios, { Axios } from "axios";
+import { login } from "../store/actions/userActions";
 
 const SignIn = () => {
   const {
@@ -25,7 +26,8 @@ const SignIn = () => {
   const history = useHistory();
 
   const onSubmit = (data) => {
-    API.post("/login", data)
+    dispatch(login(data, history));
+    /*  API.post("/login", data)
       .then((res) => {
         toast.success(res.data.message);
         history.push("/");
@@ -34,7 +36,7 @@ const SignIn = () => {
         toast.error(err.message);
       });
 
-    console.log(data);
+    console.log(data); */
   };
   return (
     <div>

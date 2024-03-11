@@ -14,9 +14,13 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useState } from "react";
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
+import { FETCH_STATES } from "../store/reducers/productReducer";
+import { useSelector } from "react-redux";
 
 const Header = () => {
   const [menu, setMenu] = useState(false);
+  const fetchState = useSelector((store) => store.userData.fetchState);
+  const userData = useSelector((store) => store.userData.user);
   const menuToggle = () => {
     setMenu(!menu);
   };
@@ -113,15 +117,21 @@ const Header = () => {
               <ul className="flex sm:hidden sm:flex-wrap gap-[2rem] text-[#23A6F0]">
                 <li className="text-sm font-bold cursor-pointer flex gap-[1rem] items-center">
                   <FontAwesomeIcon icon={faUser} />
-                  <div>
-                    <Link to="/signIn">
-                      <a className="hover:underline">Login</a>
-                    </Link>
-                    /{" "}
-                    <Link to="/signup">
-                      <a className="hover:underline">Register</a>
-                    </Link>
-                  </div>
+                  {fetchState == FETCH_STATES.FETCHED ? (
+                    <div>
+                      <a>{userData.name}</a>
+                    </div>
+                  ) : (
+                    <div>
+                      <Link to="/signIn">
+                        <a className="hover:underline">Login</a>
+                      </Link>
+                      /{" "}
+                      <Link to="/signup">
+                        <a className="hover:underline">Register</a>
+                      </Link>
+                    </div>
+                  )}
                 </li>
                 <li className="text-sm font-bold cursor-pointer">
                   <FontAwesomeIcon icon={faMagnifyingGlass} />
