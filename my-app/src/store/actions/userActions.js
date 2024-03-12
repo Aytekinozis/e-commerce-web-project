@@ -21,6 +21,21 @@ export const login = (data, history) => (dispatch) => {
     });
 };
 
+export const verify = () => (dispatch) => {
+  API.get("/verify")
+    .then((res) => {
+      console.log(res);
+      dispatch(setUser(res.data));
+      dispatch(setFetchState(FETCH_STATES.FETCHED));
+      localStorage.setItem("token", res.data.token);
+      toast.success("Welcome Back!");
+    })
+    .catch((err) => {
+      toast.error(err.response.data.message);
+      localStorage.removeItem("token");
+    });
+};
+
 export const setUser = (data) => {
   return {
     type: SET_USER,

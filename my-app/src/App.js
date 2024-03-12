@@ -10,8 +10,23 @@ import Team from "./pages/Team";
 import ProductListPage from "./pages/ProductList";
 import SignUp from "./pages/SignUp";
 import SignIn from "./pages/SignIn";
+import { useDispatch } from "react-redux";
+import { setUser, verify } from "./store/actions/userActions";
+import { setFetchState } from "./store/actions/productActions";
+import { FETCH_STATES } from "./store/reducers/productReducer";
+import { API } from "./api/api";
+import { useEffect } from "react";
 
 function App() {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      dispatch(verify());
+    }
+  }, []);
+
   return (
     <div>
       <ToastContainer />
