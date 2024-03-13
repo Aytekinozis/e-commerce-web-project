@@ -12,7 +12,7 @@ import SignUp from "./pages/SignUp";
 import SignIn from "./pages/SignIn";
 import { useDispatch } from "react-redux";
 import { setUser, verify } from "./store/actions/userActions";
-import { setFetchState } from "./store/actions/productActions";
+
 import { FETCH_STATES } from "./store/reducers/productReducer";
 import { API } from "./api/api";
 import { useEffect } from "react";

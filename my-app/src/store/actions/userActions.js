@@ -6,10 +6,9 @@ import {
   SET_USER,
   SET_USER_FETCH_STATE,
 } from "../reducers/userReducer";
-import { setFetchState } from "./productActions";
 
 export const login = (data, history) => (dispatch) => {
-  dispatch(setFetchState(FETCH_STATES.FETCHING));
+  dispatch(setUserFetchState(FETCH_STATES.FETCHING));
   API.post("/login", data)
     .then((res) => {
       dispatch(setUser(res.data));
@@ -21,7 +20,7 @@ export const login = (data, history) => (dispatch) => {
     .catch((err) => {
       toast.error(err.response.data.message);
       //console.log(err);
-      dispatch(setFetchState(FETCH_STATES.FETCH_FAILED));
+      dispatch(setUserFetchState(FETCH_STATES.FETCH_FAILED));
     });
 };
 
