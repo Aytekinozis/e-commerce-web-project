@@ -18,18 +18,30 @@ import { Link } from "react-router-dom/cjs/react-router-dom.min";
 import { FETCH_STATES } from "../store/reducers/productReducer";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../store/actions/userActions";
+import {
+  Button,
+  Dialog,
+  DialogBody,
+  DialogFooter,
+  DialogHeader,
+  Typography,
+} from "@material-tailwind/react";
 
 const Header = () => {
   const dispatch = useDispatch();
   const [menu, setMenu] = useState(false);
   const fetchState = useSelector((store) => store.userData.fetchState);
   const userData = useSelector((store) => store.userData.user);
+  const [open, setOpen] = useState(false);
+
+  const handleOpen = () => setOpen(!open);
   const menuToggle = () => {
     setMenu(!menu);
   };
 
   const logOutHandler = () => {
     dispatch(logout());
+    handleOpen();
   };
   return (
     <>
@@ -128,11 +140,38 @@ const Header = () => {
                     <div>
                       <a>{userData.name}</a>
                       <button
-                        onClick={logOutHandler}
+                        onClick={handleOpen}
                         className="ml-2 hover:text-red-600"
                       >
                         <FontAwesomeIcon icon={faRightFromBracket} />
                       </button>
+                      <Dialog open={open} size="xs" handler={handleOpen}>
+                        <DialogHeader>
+                          <Typography variant="h5" color="blue-gray">
+                            You Are Logging Out!
+                          </Typography>
+                        </DialogHeader>
+                        <DialogBody
+                          divider
+                          className="grid place-items-center gap-4"
+                        >
+                          <Typography className="text-center font-normal">
+                            Are You Sure You Want To Log Out!
+                          </Typography>
+                        </DialogBody>
+                        <DialogFooter className="space-x-2">
+                          <Button
+                            variant="text"
+                            color="blue-gray"
+                            onClick={handleOpen}
+                          >
+                            close
+                          </Button>
+                          <Button variant="gradient" onClick={logOutHandler}>
+                            Yes, Log Out!
+                          </Button>
+                        </DialogFooter>
+                      </Dialog>
                     </div>
                   ) : (
                     <div>
