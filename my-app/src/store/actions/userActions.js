@@ -1,7 +1,11 @@
 import { toast } from "react-toastify";
 import { API } from "../../api/api";
 import { FETCH_STATES } from "../reducers/productReducer";
-import { SET_USER } from "../reducers/userReducer";
+import {
+  LOG_OUT,
+  SET_USER,
+  SET_USER_FETCH_STATE,
+} from "../reducers/userReducer";
 import { setFetchState } from "./productActions";
 
 export const login = (data, history) => (dispatch) => {
@@ -9,7 +13,7 @@ export const login = (data, history) => (dispatch) => {
   API.post("/login", data)
     .then((res) => {
       dispatch(setUser(res.data));
-      dispatch(setFetchState(FETCH_STATES.FETCHED));
+      dispatch(setUserFetchState(FETCH_STATES.FETCHED));
       localStorage.setItem("token", res.data.token);
       toast.success("Login successful!");
       history.push("/");
@@ -24,9 +28,9 @@ export const login = (data, history) => (dispatch) => {
 export const verify = () => (dispatch) => {
   API.get("/verify")
     .then((res) => {
-      console.log(res);
+      //console.log(res);
       dispatch(setUser(res.data));
-      dispatch(setFetchState(FETCH_STATES.FETCHED));
+      dispatch(setUserFetchState(FETCH_STATES.FETCHED));
       localStorage.setItem("token", res.data.token);
       toast.success("Welcome Back!");
     })
@@ -36,9 +40,28 @@ export const verify = () => (dispatch) => {
     });
 };
 
+export const logout = () => (dispatch) => {
+  dispatch(setLogOut());
+  localStorage.removeItem("token");
+  toast.info("Succesfully Logged Out!");
+};
+
 export const setUser = (data) => {
   return {
     type: SET_USER,
     payload: data,
+  };
+};
+
+export const setUserFetchState = (fetchState) => {
+  return {
+    type: SET_USER_FETCH_STATE,
+    payload: fetchState,
+  };
+};
+
+export const setLogOut = () => {
+  return {
+    type: LOG_OUT,
   };
 };

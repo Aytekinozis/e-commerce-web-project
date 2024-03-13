@@ -9,20 +9,27 @@ import {
   faBars,
   faCartShopping,
   faMagnifyingGlass,
+  faRightFromBracket,
   faXmark,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useState } from "react";
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
 import { FETCH_STATES } from "../store/reducers/productReducer";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { logout } from "../store/actions/userActions";
 
 const Header = () => {
+  const dispatch = useDispatch();
   const [menu, setMenu] = useState(false);
   const fetchState = useSelector((store) => store.userData.fetchState);
   const userData = useSelector((store) => store.userData.user);
   const menuToggle = () => {
     setMenu(!menu);
+  };
+
+  const logOutHandler = () => {
+    dispatch(logout());
   };
   return (
     <>
@@ -120,6 +127,12 @@ const Header = () => {
                   {fetchState == FETCH_STATES.FETCHED ? (
                     <div>
                       <a>{userData.name}</a>
+                      <button
+                        onClick={logOutHandler}
+                        className="ml-2 hover:text-red-600"
+                      >
+                        <FontAwesomeIcon icon={faRightFromBracket} />
+                      </button>
                     </div>
                   ) : (
                     <div>
