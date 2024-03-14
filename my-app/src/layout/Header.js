@@ -32,7 +32,15 @@ const Header = () => {
   const [menu, setMenu] = useState(false);
   const fetchState = useSelector((store) => store.userData.fetchState);
   const userData = useSelector((store) => store.userData.user);
+  const categories = useSelector((store) => store.global.categories);
   const [open, setOpen] = useState(false);
+
+  const eCategories = categories.filter((cat) => {
+    return cat.gender == "e";
+  });
+  const kCategories = categories.filter((cat) => {
+    return cat.gender == "k";
+  });
 
   const handleOpen = () => setOpen(!open);
   const menuToggle = () => {
@@ -110,7 +118,7 @@ const Header = () => {
                   Home
                 </a>
               </Link>
-              <Link to="/ProductListPage">
+              <Link to="/shopping">
                 <a href="" className="font-[500] hover:underline">
                   Shop
                 </a>
@@ -145,16 +153,22 @@ const Header = () => {
                       >
                         <FontAwesomeIcon icon={faRightFromBracket} />
                       </button>
-                      <Dialog open={open} size="xs" handler={handleOpen}>
-                        <DialogHeader>
-                          <Typography variant="h5" color="blue-gray">
+                      <Dialog
+                        open={open}
+                        className="w-sm"
+                        size="xs"
+                        handler={handleOpen}
+                      >
+                        <DialogHeader className="grid place-items-center">
+                          <Typography
+                            className="text-center"
+                            variant="h5"
+                            color="blue-gray"
+                          >
                             You Are Logging Out!
                           </Typography>
                         </DialogHeader>
-                        <DialogBody
-                          divider
-                          className="grid place-items-center gap-4"
-                        >
+                        <DialogBody className="grid place-items-center gap-4">
                           <Typography className="text-center font-normal">
                             Are You Sure You Want To Log Out!
                           </Typography>
