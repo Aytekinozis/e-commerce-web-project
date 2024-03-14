@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Header from "../layout/Header";
 import Footer from "../layout/Footer";
 import ProductCard from "../components/ProductCard";
@@ -10,9 +10,20 @@ import {
   faChevronRight,
   faListCheck,
 } from "@fortawesome/free-solid-svg-icons";
-import { Button, Option, Select } from "@material-tailwind/react";
+import { Button, Option, Select, Spinner } from "@material-tailwind/react";
+import { useSelector } from "react-redux";
+import { FETCH_STATES } from "../store/reducers/productReducer";
 
 const ProductListPage = () => {
+  const categories = useSelector((store) => store.global.categories);
+  const catFetchState = useSelector((store) => store.global.catFetchState);
+  const sortedCategories = [...categories].sort((a, b) => b.rating - a.rating);
+  const topCategories = sortedCategories.slice(0, 5);
+  useEffect(() => {
+    console.log(sortedCategories);
+    console.log(topCategories);
+  }, []);
+
   const tempArr = [
     1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
   ];
@@ -41,7 +52,24 @@ const ProductListPage = () => {
         </div>
       </div>
       <div className="flex sm:flex-col sm:items-center gap-4 justify-center bg-[#FAFAFA] font-montserrat text-white py-10 sm:flex-wrap">
-        <a href="#" className="relative">
+        {catFetchState == FETCH_STATES.FETCHING ? (
+          <Spinner className="h-12 w-12" />
+        ) : (
+          topCategories.map((cat) => (
+            <a
+              href={`/shopping/${cat.gender}/${cat.title}`}
+              className="relative"
+            >
+              <img className="w-[210px] h-[210px] object-cover" src={cat.img} />
+              <p className="absolute inset-20">{cat.title}</p>
+              <p className="absolute top-28 left-20 w-24">
+                {cat.gender == "k" ? "Kadin" : "Erkek"}
+              </p>
+            </a>
+          ))
+        )}
+
+        {/* <a href="#" className="relative">
           <img className="" src="/assets/shopcover/card-cover-1.png" />
           <p className="absolute inset-20">CLOTHS</p>
           <p className="absolute top-28 left-20 w-24">5 items</p>
@@ -65,7 +93,7 @@ const ProductListPage = () => {
           <img className="" src="/assets/shopcover/card-cover-5.png" />
           <p className="absolute inset-20">CLOTHS</p>
           <p className="absolute top-28 left-20 w-24">5 items</p>
-        </a>
+        </a> */}
       </div>
       <div className="flex sm:flex-col sm:gap-6 justify-around items-center self-center font-montserrat py-10 sm:flex-wrap">
         <p className="text-[#737373]">Showing all 20 results</p>
