@@ -16,11 +16,13 @@ import { setUser, verify } from "./store/actions/userActions";
 import { FETCH_STATES } from "./store/reducers/productReducer";
 import { API } from "./api/api";
 import { useEffect } from "react";
+import { getCategories } from "./store/actions/globalActions";
 
 function App() {
   const dispatch = useDispatch();
 
   useEffect(() => {
+    dispatch(getCategories());
     const token = localStorage.getItem("token");
     if (token) {
       dispatch(verify());
@@ -34,7 +36,7 @@ function App() {
         <Route path="/" exact>
           <Home />
         </Route>
-        <Route path="/ProductListPage" exact>
+        <Route path="/shopping/:gender?/:category?" exact>
           <ProductListPage />
         </Route>
         <Route path="/About" exact>
