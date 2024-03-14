@@ -8,6 +8,7 @@ import { faHeart, faUser } from "@fortawesome/free-regular-svg-icons";
 import {
   faBars,
   faCartShopping,
+  faChevronDown,
   faMagnifyingGlass,
   faRightFromBracket,
   faXmark,
@@ -24,6 +25,10 @@ import {
   DialogBody,
   DialogFooter,
   DialogHeader,
+  Menu,
+  MenuHandler,
+  MenuItem,
+  MenuList,
   Typography,
 } from "@material-tailwind/react";
 
@@ -34,6 +39,9 @@ const Header = () => {
   const userData = useSelector((store) => store.userData.user);
   const categories = useSelector((store) => store.global.categories);
   const [open, setOpen] = useState(false);
+  const [openMenu, setOpenMenu] = useState(false);
+  const [openErkekNestedMenu, setOpenErkekNestedMenu] = useState(false);
+  const [openKadinNestedMenu, setOpenKadinNestedMenu] = useState(false);
 
   const eCategories = categories.filter((cat) => {
     return cat.gender == "e";
@@ -110,7 +118,7 @@ const Header = () => {
               className={
                 menu
                   ? "flex sm:flex-col gap-[2rem] sm:text-[#737373] sm:text-2xl"
-                  : "sm:hidden flex sm:flex-col gap-[2rem] sm:text-[#737373] sm:text-2xl"
+                  : "sm:hidden flex sm:flex-col gap-[2rem] sm:text-[#737373] sm:text-2xl items-center"
               }
             >
               <Link to="/">
@@ -119,10 +127,63 @@ const Header = () => {
                 </a>
               </Link>
               <Link to="/shopping">
-                <a href="" className="font-[500] hover:underline">
+                <a href="" className="font-[500] hover:underline -mr-6">
                   Shop
                 </a>
               </Link>
+              <Menu open={openMenu} handler={setOpenMenu} allowHover>
+                <MenuHandler>
+                  <FontAwesomeIcon
+                    className={`h-3.5 w-3.5 hover:cursor-pointer transition-transform ${
+                      openMenu ? "rotate-180" : ""
+                    }`}
+                    icon={faChevronDown}
+                  />
+                </MenuHandler>
+                <MenuList className=" w-4 grid-cols-7 gap-3 overflow-visible">
+                  <Menu
+                    placement="right-start"
+                    open={openErkekNestedMenu}
+                    handler={setOpenErkekNestedMenu}
+                    allowHover
+                    offset={15}
+                  >
+                    <MenuHandler className="flex items-center justify-between">
+                      <MenuItem>Erkek</MenuItem>
+                    </MenuHandler>
+                    <MenuList>
+                      {eCategories.map((cat) => (
+                        <MenuItem>
+                          <a href={`/shopping/${cat.gender}/${cat.title}`}>
+                            {cat.title}
+                          </a>
+                        </MenuItem>
+                      ))}
+                    </MenuList>
+                  </Menu>
+                  <Menu
+                    placement="right-start"
+                    open={openKadinNestedMenu}
+                    handler={setOpenKadinNestedMenu}
+                    allowHover
+                    offset={15}
+                  >
+                    <MenuHandler className="flex items-center justify-between">
+                      <MenuItem>Kadin</MenuItem>
+                    </MenuHandler>
+                    <MenuList>
+                      {kCategories.map((cat) => (
+                        <MenuItem>
+                          <a href={`/shopping/${cat.gender}/${cat.title}`}>
+                            {cat.title}
+                          </a>
+                        </MenuItem>
+                      ))}
+                    </MenuList>
+                  </Menu>
+                </MenuList>
+              </Menu>
+
               <Link to="/About">
                 <a href="" className="font-[500] hover:underline">
                   About
