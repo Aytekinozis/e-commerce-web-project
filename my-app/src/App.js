@@ -17,12 +17,14 @@ import { FETCH_STATES } from "./store/reducers/productReducer";
 import { API } from "./api/api";
 import { useEffect } from "react";
 import { getCategories } from "./store/actions/globalActions";
+import { getProducts } from "./store/actions/productActions";
 
 function App() {
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(getCategories());
+    dispatch(getProducts());
     const token = localStorage.getItem("token");
     if (token) {
       dispatch(verify());
