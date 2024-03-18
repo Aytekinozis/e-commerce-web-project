@@ -16,11 +16,12 @@ import { FETCH_STATES } from "../store/reducers/productReducer";
 
 const ProductListPage = () => {
   const categories = useSelector((store) => store.global.categories);
+  const productData = useSelector((store) => store.product);
   const catFetchState = useSelector((store) => store.global.catFetchState);
   const sortedCategories = [...categories].sort((a, b) => b.rating - a.rating);
   const topCategories = sortedCategories.slice(0, 5);
   useEffect(() => {
-    console.log(sortedCategories);
+    console.log(productData);
     console.log(topCategories);
   }, []);
 
@@ -96,7 +97,7 @@ const ProductListPage = () => {
         </a> */}
       </div>
       <div className="flex sm:flex-col sm:gap-6 justify-around items-center self-center font-montserrat py-10 sm:flex-wrap">
-        <p className="text-[#737373]">Showing all 20 results</p>
+        <p className="text-[#737373]">{`Showing all ${productData.pcount} results`}</p>
         <div className="flex gap-4 justify-center text-center items-center">
           <p className="text-[#737373]">Vievs:</p>
           <div className="border-2 rounded flex justify-center items-center h-10 w-10 hover:cursor-pointer">
