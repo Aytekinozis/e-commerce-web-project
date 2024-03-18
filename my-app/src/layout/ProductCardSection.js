@@ -1,6 +1,10 @@
+import { useSelector } from "react-redux";
 import ProductCard from "../components/ProductCard";
+import { Spinner } from "@material-tailwind/react";
+import { FETCH_STATES } from "../store/reducers/productReducer";
 
 const ProductCardSection = () => {
+  const productData = useSelector((store) => store.product);
   const tempArr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
   return (
     <div>
@@ -13,9 +17,13 @@ const ProductCardSection = () => {
       </div>
       <div className="max-w-9/12 flex justify-center items-center text-center py-[5rem] font-montserrat">
         <div className="w-9/12 justify-center flex gap-7 flex-wrap">
-          {tempArr.map(() => (
-            <ProductCard />
-          ))}
+          {productData.fetchState == FETCH_STATES.FETCHED ? (
+            productData.productList.map((product) => (
+              <ProductCard product={product} />
+            ))
+          ) : (
+            <Spinner className="h-12 w-12" />
+          )}
         </div>
       </div>
     </div>
