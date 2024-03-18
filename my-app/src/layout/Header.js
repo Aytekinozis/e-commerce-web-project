@@ -37,6 +37,7 @@ const Header = () => {
   const [menu, setMenu] = useState(false);
   const fetchState = useSelector((store) => store.userData.fetchState);
   const userData = useSelector((store) => store.userData.user);
+  const hash = useSelector((store) => store.userData.hashCode);
   const categories = useSelector((store) => store.global.categories);
   const [open, setOpen] = useState(false);
   const [openMenu, setOpenMenu] = useState(false);
@@ -202,11 +203,20 @@ const Header = () => {
               </Link>
             </div>
             <div className="text-sm pr-4">
-              <ul className="flex sm:hidden sm:flex-wrap gap-[2rem] text-[#23A6F0]">
+              <ul className="flex items-center sm:hidden sm:flex-wrap gap-[2rem] text-[#23A6F0]">
                 <li className="text-sm font-bold cursor-pointer flex gap-[1rem] items-center">
-                  <FontAwesomeIcon icon={faUser} />
+                  {fetchState == FETCH_STATES.NOT_FETCHED ? (
+                    <FontAwesomeIcon icon={faUser} />
+                  ) : (
+                    <></>
+                  )}
                   {fetchState == FETCH_STATES.FETCHED ? (
-                    <div>
+                    <div className="flex gap-2 justify-center items-center">
+                      <img
+                        key={hash}
+                        className="w-8"
+                        src={`https://gravatar.com/avatar/${hash}`}
+                      ></img>
                       <a>{userData.name}</a>
                       <button
                         onClick={handleOpen}

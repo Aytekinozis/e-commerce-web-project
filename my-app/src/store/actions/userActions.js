@@ -3,15 +3,18 @@ import { API } from "../../api/api";
 import { FETCH_STATES } from "../reducers/productReducer";
 import {
   LOG_OUT,
+  SET_HASH_CODE,
   SET_USER,
   SET_USER_FETCH_STATE,
 } from "../reducers/userReducer";
+import { sha256 } from "js-sha256";
 
 export const login = (data, history) => (dispatch) => {
   dispatch(setUserFetchState(FETCH_STATES.FETCHING));
   API.post("/login", data)
     .then((res) => {
       dispatch(setUser(res.data));
+      dispatch(setHashCode(sha256(res.data.email)));
       dispatch(setUserFetchState(FETCH_STATES.FETCHED));
       localStorage.setItem("token", res.data.token);
       toast.success("Login successful!");
@@ -29,6 +32,7 @@ export const verify = () => (dispatch) => {
     .then((res) => {
       //console.log(res);
       dispatch(setUser(res.data));
+      dispatch(setHashCode(sha256(res.data.email)));
       dispatch(setUserFetchState(FETCH_STATES.FETCHED));
       localStorage.setItem("token", res.data.token);
       toast.success("Welcome Back!");
@@ -56,6 +60,13 @@ export const setUserFetchState = (fetchState) => {
   return {
     type: SET_USER_FETCH_STATE,
     payload: fetchState,
+  };
+};
+
+export const setHashCode = (hashCode) => {
+  return {
+    type: SET_HASH_CODE,
+    payload: hashCode,
   };
 };
 
