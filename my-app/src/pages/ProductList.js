@@ -122,9 +122,13 @@ const ProductListPage = () => {
 
       <div className="max-w-9/12 flex justify-center items-center text-center py-[5rem] font-montserrat">
         <div className="w-9/12 justify-center items-center flex gap-7 flex-wrap">
-          {productData.productList.map((product) => (
-            <ProductCard product={product} />
-          ))}
+          {productData.fetchState == FETCH_STATES.FETCHED ? (
+            productData.productList.map((product) => (
+              <ProductCard product={product} />
+            ))
+          ) : (
+            <Spinner className="h-12 w-12" />
+          )}
         </div>
       </div>
       <Companies />
