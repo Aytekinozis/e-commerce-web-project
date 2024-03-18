@@ -122,8 +122,8 @@ const ProductListPage = () => {
 
       <div className="max-w-9/12 flex justify-center items-center text-center py-[5rem] font-montserrat">
         <div className="w-9/12 justify-center items-center flex gap-7 flex-wrap">
-          {tempArr.map(() => (
-            <ProductCard />
+          {productData.productList.map((product) => (
+            <ProductCard product={product} />
           ))}
         </div>
       </div>

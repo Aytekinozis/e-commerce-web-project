@@ -1,6 +1,6 @@
 import { useHistory } from "react-router";
 
-const ProductCard = () => {
+const ProductCard = ({ product }) => {
   const history = useHistory();
 
   const goProductDetail = () => {
@@ -17,11 +17,18 @@ const ProductCard = () => {
           className="object-fill cursor-pointer"
           src="/assets/product-cover.png"
         />
-        <h5 className="sm:text-center">Graphic Design</h5>
-        <a className="text-[#737373] sm:text-center">English Department</a>
+        <h5 className="sm:text-center">{product.name}</h5>
+
+        <a className="text-[#737373] truncate sm:text-center">
+          {product.description}
+        </a>
         <div className="flex gap-2 justify-center">
-          <h5 className="text-[#737373]">$16.48</h5>
-          <h5 className="text-[#23856D]">$6.48</h5>
+          <h5 className="text-[#737373]">
+            ${(Math.round(product.price * 100) / 100).toFixed(2)}
+          </h5>
+          <h5 className="text-[#23856D]">
+            ${(Math.round(product.price * 100) / 100).toFixed(2)}
+          </h5>
         </div>
         <div className="flex items-center gap-1 justify-center pb-3">
           <div class="w-4 h-4 hover:scale-110 bg-blue-500 rounded-full"></div>
