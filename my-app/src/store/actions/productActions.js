@@ -13,7 +13,9 @@ export const getProducts = () => (dispatch) => {
   API.get("/products")
     .then((res) => {
       //console.log(res.data);
-      dispatch(setProductList(res.data));
+      dispatch(setProductList(res.data.products));
+      dispatch(setTotalProductCount(res.data.total));
+      dispatch(setPageCount(Math.ceil(res.data.total / 25)));
       dispatch(setFetchState(FETCH_STATES.FETCHED));
     })
     .catch((err) => {
@@ -29,9 +31,10 @@ export const setProductList = (products) => {
   };
 };
 
-export const setTotalProductCount = () => {
+export const setTotalProductCount = (pcount) => {
   return {
     type: SET_PRODUCT_COUNT,
+    payload: pcount,
   };
 };
 
