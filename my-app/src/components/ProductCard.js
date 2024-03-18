@@ -15,7 +15,7 @@ const ProductCard = ({ product }) => {
       >
         <img
           className="object-fill cursor-pointer"
-          src="/assets/product-cover.png"
+          src={product.images[0].url}
         />
         <h5 className="sm:text-center">{product.name}</h5>
 
