@@ -28,7 +28,7 @@ export const filterProducts = (params) => (dispatch) => {
   dispatch(setFetchState(FETCH_STATES.FETCHING));
   API.get("/products", { params })
     .then((res) => {
-      console.log(params);
+      //console.log(params);
       dispatch(setProductList(res.data.products));
       dispatch(setTotalProductCount(res.data.total));
       dispatch(setPageCount(Math.ceil(res.data.total / 25)));

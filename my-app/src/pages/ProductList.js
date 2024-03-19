@@ -25,17 +25,24 @@ const ProductListPage = () => {
   const dispatch = useDispatch();
   const params = useParams();
   const [catId, setCatId] = useState();
-  const [filter, setFilter] = useState({});
+  const [filter, setFilter] = useState({ category: "", sort: "" });
+  const [value, setValue] = useState("");
   useEffect(() => {
     setCatId(params.catId);
     console.log(catId);
-    setFilter({ ...filter, category: parseInt(params.catId) });
-  }, [params]);
+    setFilter({
+      ...filter,
+      category: params.catId ? parseInt(params.catId) : "",
+      sort: value ? value : "",
+    });
+  }, [params, value]);
 
   useEffect(() => {
-    dispatch(filterProducts(filter));
-    console.log(filter);
-  }, [catId]);
+    setTimeout(() => {
+      dispatch(filterProducts(filter));
+      console.log(filter);
+    }, 1000);
+  }, [filter]);
 
   const tempArr = [
     1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
@@ -73,8 +80,6 @@ const ProductListPage = () => {
               to={`/shopping/${cat.gender}/${cat.title}/${cat.id}`}
               className="relative"
               key={cat.id}
-              //TODO catid bul param olarak yolla
-              //onClick={() => setCatId(cat.id)}
             >
               <img className="w-[210px] h-[210px] object-cover" src={cat.img} />
               <p className="absolute inset-20">{cat.title}</p>
@@ -124,11 +129,16 @@ const ProductListPage = () => {
         </div>
         <div className="flex gap-4">
           <div className="w-50">
-            <Select label="Popularity">
-              <Option>Low To High</Option>
-              <Option>High To Low</Option>
-              <Option>Price Low</Option>
-              <Option>Price High</Option>
+            <Select
+              value={value}
+              onChange={(val) => setValue(val)}
+              color="blue"
+              label="Sort By"
+            >
+              <Option value="rating:asc"> Rating: Low To High</Option>
+              <Option value="rating:desc"> Rating: High To Low</Option>
+              <Option value="price:asc">Price: Low To High</Option>
+              <Option value="price:desc">Price: High To Low</Option>
             </Select>
           </div>
           <Button color="blue">Filter</Button>
