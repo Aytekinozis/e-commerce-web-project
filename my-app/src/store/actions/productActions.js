@@ -24,6 +24,22 @@ export const getProducts = () => (dispatch) => {
     });
 };
 
+export const filterProducts = (params) => (dispatch) => {
+  dispatch(setFetchState(FETCH_STATES.FETCHING));
+  API.get("/products", { params })
+    .then((res) => {
+      console.log(params);
+      dispatch(setProductList(res.data.products));
+      dispatch(setTotalProductCount(res.data.total));
+      dispatch(setPageCount(Math.ceil(res.data.total / 25)));
+      dispatch(setFetchState(FETCH_STATES.FETCHED));
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch(setFetchState(FETCH_STATES.FETCH_FAILED));
+    });
+};
+
 export const setProductList = (products) => {
   return {
     type: SET_PRODUCT_LIST,
