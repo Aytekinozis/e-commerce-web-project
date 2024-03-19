@@ -155,9 +155,11 @@ const Header = () => {
                     <MenuList>
                       {eCategories.map((cat) => (
                         <MenuItem>
-                          <a href={`/shopping/${cat.gender}/${cat.title}`}>
+                          <Link
+                            to={`/shopping/${cat.gender}/${cat.title}/${cat.id}`}
+                          >
                             {cat.title}
-                          </a>
+                          </Link>
                         </MenuItem>
                       ))}
                     </MenuList>
@@ -175,9 +177,11 @@ const Header = () => {
                     <MenuList>
                       {kCategories.map((cat) => (
                         <MenuItem>
-                          <a href={`/shopping/${cat.gender}/${cat.title}`}>
+                          <Link
+                            to={`/shopping/${cat.gender}/${cat.title}/${cat.id}`}
+                          >
                             {cat.title}
-                          </a>
+                          </Link>
                         </MenuItem>
                       ))}
                     </MenuList>
