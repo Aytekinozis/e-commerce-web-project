@@ -10,7 +10,13 @@ import {
   faChevronRight,
   faListCheck,
 } from "@fortawesome/free-solid-svg-icons";
-import { Button, Option, Select, Spinner } from "@material-tailwind/react";
+import {
+  Button,
+  Input,
+  Option,
+  Select,
+  Spinner,
+} from "@material-tailwind/react";
 import { useDispatch, useSelector } from "react-redux";
 import { FETCH_STATES } from "../store/reducers/productReducer";
 import { filterProducts } from "../store/actions/productActions";
@@ -25,11 +31,11 @@ const ProductListPage = () => {
   const dispatch = useDispatch();
   const params = useParams();
   const [catId, setCatId] = useState();
-  const [filter, setFilter] = useState({ category: "", sort: "" });
+  const [filter, setFilter] = useState({ category: "", sort: "", filter: "" });
   const [value, setValue] = useState("");
   useEffect(() => {
     setCatId(params.catId);
-    console.log(catId);
+    //console.log(catId);
     setFilter({
       ...filter,
       category: params.catId ? parseInt(params.catId) : "",
@@ -38,15 +44,13 @@ const ProductListPage = () => {
   }, [params, value]);
 
   useEffect(() => {
-    setTimeout(() => {
-      dispatch(filterProducts(filter));
-      console.log(filter);
-    }, 1000);
-  }, [filter]);
+    dispatch(filterProducts(filter));
+  }, [catId]);
 
-  const tempArr = [
-    1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
-  ];
+  const filterHandler = () => {
+    dispatch(filterProducts(filter));
+  };
+
   return (
     <>
       <Header />
@@ -129,6 +133,15 @@ const ProductListPage = () => {
         </div>
         <div className="flex gap-4">
           <div className="w-50">
+            <Input
+              onChange={(e) => {
+                setFilter({ ...filter, filter: e.target.value });
+              }}
+              color="blue"
+              label="Filter By"
+            />
+          </div>
+          <div className="w-50">
             <Select
               value={value}
               onChange={(val) => setValue(val)}
@@ -141,7 +154,9 @@ const ProductListPage = () => {
               <Option value="price:desc">Price: High To Low</Option>
             </Select>
           </div>
-          <Button color="blue">Filter</Button>
+          <Button onClick={filterHandler} color="blue">
+            Filter
+          </Button>
         </div>
       </div>
 
