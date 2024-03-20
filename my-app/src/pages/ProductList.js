@@ -12,6 +12,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import {
   Button,
+  IconButton,
   Input,
   Option,
   Select,
@@ -21,6 +22,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { FETCH_STATES } from "../store/reducers/productReducer";
 import { filterProducts } from "../store/actions/productActions";
 import { useParams } from "react-router";
+import { ArrowRightIcon, ArrowLeftIcon } from "@heroicons/react/24/outline";
 
 const ProductListPage = () => {
   const categories = useSelector((store) => store.global.categories);
@@ -49,6 +51,78 @@ const ProductListPage = () => {
 
   const filterHandler = () => {
     dispatch(filterProducts(filter));
+  };
+
+  //-------Paginatiion--------
+  const [active, setActive] = useState(productData.activePage);
+
+  const getItemProps = (index) => ({
+    variant: active === index ? "filled" : "text",
+    color: "gray",
+    onClick: () => setActive(index),
+  });
+
+  const next = () => {
+    if (active === productData.pageCount) return;
+
+    setActive(active + 1);
+  };
+
+  const prev = () => {
+    if (active === 1) return;
+
+    setActive(active - 1);
+  };
+
+  const forthPagination = () => {
+    if (active == productData.pageCount - 1) {
+      return active;
+    }
+    if (active == productData.pageCount) {
+      return active - 1;
+    }
+    if (active >= 4) {
+      return active + 1;
+    } else {
+      return 4;
+    }
+  };
+
+  const thirdPagination = () => {
+    if (active == productData.pageCount - 2) {
+      return active;
+    }
+    if (active == productData.pageCount - 1) {
+      return active - 1;
+    }
+    if (active == productData.pageCount) {
+      return active - 2;
+    }
+    if (active >= 4) {
+      return active;
+    } else {
+      return 3;
+    }
+  };
+
+  const secondPagination = () => {
+    if (active == productData.pageCount - 3) {
+      return active - 1;
+    }
+    if (active == productData.pageCount - 2) {
+      return active - 1;
+    }
+    if (active == productData.pageCount - 1) {
+      return active - 2;
+    }
+    if (active == productData.pageCount) {
+      return active - 3;
+    }
+    if (active >= 4) {
+      return active - 1;
+    } else {
+      return 2;
+    }
   };
 
   return (
@@ -170,6 +244,40 @@ const ProductListPage = () => {
             <Spinner className="h-12 w-12" />
           )}
         </div>
+      </div>
+      <div className="flex justify-center items-center gap-4">
+        <Button
+          variant="text"
+          className="flex items-center gap-2"
+          onClick={prev}
+          disabled={active === 1}
+        >
+          <ArrowLeftIcon strokeWidth={2} className="h-4 w-4" /> Previous
+        </Button>
+        <div className="flex items-center gap-2">
+          <IconButton {...getItemProps(1)}>1</IconButton>
+          <IconButton {...getItemProps(secondPagination())}>
+            {secondPagination()}
+          </IconButton>
+          <IconButton {...getItemProps(thirdPagination())}>
+            {thirdPagination()}
+          </IconButton>
+          <IconButton {...getItemProps(forthPagination())}>
+            {forthPagination()}
+          </IconButton>
+          <IconButton {...getItemProps(productData.pageCount)}>
+            {productData.pageCount}
+          </IconButton>
+        </div>
+        <Button
+          variant="text"
+          className="flex items-center gap-2"
+          onClick={next}
+          disabled={active === productData.pageCount}
+        >
+          Next
+          <ArrowRightIcon strokeWidth={2} className="h-4 w-4" />
+        </Button>
       </div>
       <Companies />
       <Footer />
