@@ -4,7 +4,9 @@ const ProductCard = ({ product }) => {
   const history = useHistory();
 
   const goProductDetail = () => {
-    history.push(`/ProductPage`);
+    history.push(
+      `/ProductPage/${product.category_id}/${product.id}/${product.name}`
+    );
   };
 
   return (

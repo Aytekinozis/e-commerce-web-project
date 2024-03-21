@@ -50,7 +50,10 @@ function App() {
         <Route path="/Team" exact>
           <Team />
         </Route>
-        <Route path="/ProductPage" exact>
+        <Route
+          path="/ProductPage/:category?/:productId?/:productNameSlug?"
+          exact
+        >
           <ProductPage />
         </Route>
         <Route path="/signUp" exact>

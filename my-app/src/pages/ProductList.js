@@ -48,6 +48,8 @@ const ProductListPage = () => {
       category: params.catId ? parseInt(params.catId) : "",
       sort: value ? value : "",
     });
+
+    setActive(1);
   }, [params, value]);
 
   useEffect(() => {
@@ -304,10 +306,13 @@ const ProductListPage = () => {
           ) : (
             <></>
           )}
-
-          <IconButton {...getItemProps(productData.pageCount)}>
-            {productData.pageCount}
-          </IconButton>
+          {productData.pageCount > 2 ? (
+            <IconButton {...getItemProps(productData.pageCount)}>
+              {productData.pageCount}
+            </IconButton>
+          ) : (
+            <></>
+          )}
         </div>
         <Button
           variant="text"

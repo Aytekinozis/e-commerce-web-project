@@ -14,10 +14,21 @@ import {
   faStar,
   faStarHalfStroke,
 } from "@fortawesome/free-regular-svg-icons";
-import { Button, Carousel } from "@material-tailwind/react";
+import { Button, Carousel, Spinner } from "@material-tailwind/react";
+import { useParams } from "react-router";
+import { useSelector } from "react-redux";
+import { FETCH_STATES } from "../store/reducers/productReducer";
 
 const ProductPage = () => {
+  const productsData = useSelector((store) => store.product);
   const bestSellerArr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+  const productParams = useParams();
+
+  const product = productsData.productList.find((product) => {
+    return productParams.productId == product.id;
+  });
+
+  console.log(product);
   const starsArr = [
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -47,7 +58,7 @@ const ProductPage = () => {
         />
         <Link
           className="text-[1.6rem] font-[500] text-[#BDBDBD]"
-          to="/ProductListPage"
+          to="/shopping"
         >
           Shop
         </Link>
@@ -73,18 +84,18 @@ const ProductPage = () => {
               )}
             >
               <img
-                src="/assets/bigproduct.jpg"
+                src={product.images[0].url}
                 alt="image 1"
                 className="h-full w-full object-cover"
               />
             </Carousel>
             <img
               className="h-32 w-32 pb-5 hover:scale-110 hover:cursor-pointer"
-              src="/assets/bigproduct.jpg"
+              src={product.images[0].url}
             />
           </div>
           <div className="flex flex-col font-montserrat w-1/2 sm:w-11/12 justify-between pb-32">
-            <h3 className="text-xl">Floating Phone</h3>
+            <h3 className="text-xl">{product.name}</h3>
             <div className="flex gap-2">
               {starsArr[0]}
               {starsArr[0]}
@@ -93,17 +104,15 @@ const ProductPage = () => {
               {starsArr[2]}
               <p className="text-[#737373]">10 Reviews</p>
             </div>
-            <p className="text-2xl">$1,139.33</p>
+            <p className="text-2xl">
+              ${(Math.round(product.price * 100) / 100).toFixed(2)}
+            </p>
             <div>
               <p className="text-[#737373]">
                 Availability : <span className="text-[#23A6F0]">In Stock</span>
               </p>
             </div>
-            <p className="text-[#737373]">
-              Met minim Mollie non desert Alamo est sit cliquey dolor do met
-              sent. RELIT official consequent door ENIM RELIT Mollie. Excitation
-              venial consequent sent nostrum met.
-            </p>
+            <p className="text-[#737373]">{product.description}</p>
             <hr className="w-full border border-stone-300 my-5"></hr>
             <div className="flex items-center gap-2 pb-3">
               <div class="w-7 h-7 hover:scale-110 bg-blue-500 rounded-full"></div>
@@ -203,9 +212,13 @@ const ProductPage = () => {
             <h3 className="text-2xl">BESTSELLER PRODUCTS</h3>
           </div>
           <div className="flex flex-wrap gap-4 items-center justify-between py-8">
-            {bestSellerArr.map(() => (
-              <ProductCard />
-            ))}
+            {productsData.fetchState == FETCH_STATES.FETCHED ? (
+              productsData.productList.map((product) => (
+                <ProductCard product={product} />
+              ))
+            ) : (
+              <Spinner className="h-12 w-12" />
+            )}
           </div>
         </div>
       </div>
