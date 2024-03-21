@@ -20,7 +20,7 @@ import {
 } from "@material-tailwind/react";
 import { useDispatch, useSelector } from "react-redux";
 import { FETCH_STATES } from "../store/reducers/productReducer";
-import { filterProducts } from "../store/actions/productActions";
+import { filterProducts, setActivePage } from "../store/actions/productActions";
 import { useParams } from "react-router";
 import { ArrowRightIcon, ArrowLeftIcon } from "@heroicons/react/24/outline";
 
@@ -33,7 +33,12 @@ const ProductListPage = () => {
   const dispatch = useDispatch();
   const params = useParams();
   const [catId, setCatId] = useState();
-  const [filter, setFilter] = useState({ category: "", sort: "", filter: "" });
+  const [filter, setFilter] = useState({
+    category: "",
+    sort: "",
+    filter: "",
+    offset: 0,
+  });
   const [value, setValue] = useState("");
   useEffect(() => {
     setCatId(params.catId);
@@ -47,7 +52,7 @@ const ProductListPage = () => {
 
   useEffect(() => {
     dispatch(filterProducts(filter));
-  }, [catId]);
+  }, [catId, filter.offset]);
 
   const filterHandler = () => {
     dispatch(filterProducts(filter));
@@ -55,6 +60,18 @@ const ProductListPage = () => {
 
   //-------Paginatiion--------
   const [active, setActive] = useState(productData.activePage);
+  const [offset, setOffset] = useState(0);
+
+  useEffect(() => {
+    setOffset((active - 1) * 25);
+    dispatch(setActivePage(active));
+  }, [active]);
+
+  useEffect(() => {
+    setFilter({ ...filter, offset: offset });
+
+    console.log(offset);
+  }, [offset]);
 
   const getItemProps = (index) => ({
     variant: active === index ? "filled" : "text",
@@ -89,37 +106,45 @@ const ProductListPage = () => {
   };
 
   const thirdPagination = () => {
-    if (active == productData.pageCount - 2) {
-      return active;
-    }
-    if (active == productData.pageCount - 1) {
-      return active - 1;
-    }
-    if (active == productData.pageCount) {
-      return active - 2;
-    }
-    if (active >= 4) {
-      return active;
+    if (productData.pageCount > 4) {
+      if (active == productData.pageCount - 2) {
+        return active;
+      }
+      if (active == productData.pageCount - 1) {
+        return active - 1;
+      }
+      if (active == productData.pageCount) {
+        return active - 2;
+      }
+      if (active >= 4) {
+        return active;
+      } else {
+        return 3;
+      }
     } else {
       return 3;
     }
   };
 
   const secondPagination = () => {
-    if (active == productData.pageCount - 3) {
-      return active - 1;
-    }
-    if (active == productData.pageCount - 2) {
-      return active - 1;
-    }
-    if (active == productData.pageCount - 1) {
-      return active - 2;
-    }
-    if (active == productData.pageCount) {
-      return active - 3;
-    }
-    if (active >= 4) {
-      return active - 1;
+    if (productData.pageCount > 4) {
+      if (active == productData.pageCount - 3) {
+        return active - 1;
+      }
+      if (active == productData.pageCount - 2) {
+        return active - 1;
+      }
+      if (active == productData.pageCount - 1) {
+        return active - 2;
+      }
+      if (active == productData.pageCount) {
+        return active - 3;
+      }
+      if (active >= 4) {
+        return active - 1;
+      } else {
+        return 2;
+      }
     } else {
       return 2;
     }
@@ -256,15 +281,30 @@ const ProductListPage = () => {
         </Button>
         <div className="flex items-center gap-2">
           <IconButton {...getItemProps(1)}>1</IconButton>
-          <IconButton {...getItemProps(secondPagination())}>
-            {secondPagination()}
-          </IconButton>
-          <IconButton {...getItemProps(thirdPagination())}>
-            {thirdPagination()}
-          </IconButton>
-          <IconButton {...getItemProps(forthPagination())}>
-            {forthPagination()}
-          </IconButton>
+          {productData.pageCount > 2 ? (
+            <IconButton {...getItemProps(secondPagination())}>
+              {secondPagination()}
+            </IconButton>
+          ) : (
+            <></>
+          )}
+
+          {productData.pageCount > 3 ? (
+            <IconButton {...getItemProps(thirdPagination())}>
+              {thirdPagination()}
+            </IconButton>
+          ) : (
+            <></>
+          )}
+
+          {productData.pageCount > 4 ? (
+            <IconButton {...getItemProps(forthPagination())}>
+              {forthPagination()}
+            </IconButton>
+          ) : (
+            <></>
+          )}
+
           <IconButton {...getItemProps(productData.pageCount)}>
             {productData.pageCount}
           </IconButton>
