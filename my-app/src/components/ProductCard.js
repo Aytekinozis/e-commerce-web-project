@@ -1,8 +1,11 @@
 import { Button } from "@material-tailwind/react";
+import { useDispatch } from "react-redux";
 import { useHistory } from "react-router";
+import { setCart } from "../store/actions/shoppingCartActions";
 
 const ProductCard = ({ product }) => {
   const history = useHistory();
+  const dispatch = useDispatch();
 
   const goProductDetail = () => {
     history.push(
@@ -10,15 +13,15 @@ const ProductCard = ({ product }) => {
     );
   };
 
-  const addToCartHandler = () => {};
+  const addToCartHandler = () => {
+    dispatch(setCart(product));
+  };
 
   return (
     <>
-      <div
-        onClick={goProductDetail}
-        className="w-60 sm:w-11/12 gap-4 mb-20 flex flex-col shadow hover:scale-110 hover:shadow-2xl"
-      >
+      <div className="w-60 sm:w-11/12 gap-4 mb-20 flex flex-col shadow hover:scale-110 hover:shadow-2xl">
         <img
+          onClick={goProductDetail}
           className="object-fill cursor-pointer"
           src={product.images[0].url}
         />
