@@ -1,22 +1,28 @@
 import { faTrashCan } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useDispatch } from "react-redux";
+import { removeProduct } from "../store/actions/shoppingCartActions";
 
-const CartProductSm = ({ shoppingCart }) => {
+const CartProductSm = ({ product }) => {
+  const dispatch = useDispatch();
+
+  const removeHandler = () => {
+    dispatch(removeProduct(product.product.id));
+  };
+
   return (
     <>
       <div className="flex gap-4">
         <img className="w-20 rounded-md" src="/assets/product-cover.png"></img>
         <div className="flex flex-col gap-2">
-          <h5 className="font-bold">{shoppingCart[0].product.name}</h5>
-          <p> Count: {shoppingCart[0].count}</p>
+          <h5 className="font-bold">{product.product.name}</h5>
+          <p> Count: {product.count}</p>
           <p>
             Price:{" "}
-            <span className="text-[#23856D]">
-              ${shoppingCart[0].product.price}
-            </span>
+            <span className="text-[#23856D]">${product.product.price}</span>
           </p>
           <div className="flex">
-            <button className="hover:text-red-600">
+            <button onClick={removeHandler} className="hover:text-red-600">
               <FontAwesomeIcon size="lg" icon={faTrashCan} />
             </button>
           </div>
