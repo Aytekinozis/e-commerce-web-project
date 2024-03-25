@@ -42,8 +42,8 @@ const ProductCard = ({ product }) => {
           <div class="w-4 h-4 hover:scale-110 bg-black rounded-full"></div>
         </div>
         <Button
-          className="mb-4"
-          size="sm"
+          className="mb-4 w-36 place-self-center"
+          size=""
           onClick={addToCartHandler}
           color="blue"
         >
