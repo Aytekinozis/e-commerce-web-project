@@ -30,6 +30,7 @@ const initialState = {
 export const SET_CART = "SET_CART";
 export const SET_PAYMENT = "SET_PAYMENT";
 export const SET_ADDRESS = "SET_ADDRESS";
+export const REMOVE_PRODUCT = "REMOVE_PRODUCT";
 
 export const shoppingCartReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -54,6 +55,18 @@ export const shoppingCartReducer = (state = initialState, action) => {
           ],
         };
       }
+    case REMOVE_PRODUCT:
+      const removedProductIndex = state.cart.findIndex(
+        (product) => product.product.id === action.payload.id
+      );
+
+      const remainingCart = state.cart.filter(
+        (product) => product.product.id !== action.payload
+      );
+      return {
+        ...state,
+        cart: remainingCart,
+      };
 
     case SET_PAYMENT:
       return {
