@@ -47,6 +47,7 @@ const Header = () => {
   const userData = useSelector((store) => store.userData.user);
   const hash = useSelector((store) => store.userData.hashCode);
   const categories = useSelector((store) => store.global.categories);
+  const shoppingCart = useSelector((store) => store.shoppingCart.cart);
   const [open, setOpen] = useState(false);
   const [openMenu, setOpenMenu] = useState(false);
   const [openErkekNestedMenu, setOpenErkekNestedMenu] = useState(false);
@@ -307,7 +308,9 @@ const Header = () => {
                     </div>
                     <List className="p-0">
                       <ListItem>
-                        <CartProductSm></CartProductSm>
+                        <CartProductSm
+                          shoppingCart={shoppingCart}
+                        ></CartProductSm>
                       </ListItem>
 
                       <a
