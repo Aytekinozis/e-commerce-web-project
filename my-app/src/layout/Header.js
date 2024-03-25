@@ -306,33 +306,22 @@ const Header = () => {
                         </Typography>
                       </div>
                     </div>
-                    <List className="p-0">
-                      <ListItem>
-                        <CartProductSm
-                          shoppingCart={shoppingCart}
-                        ></CartProductSm>
-                      </ListItem>
-
-                      <a
-                        href="#"
-                        className="text-initial font-medium text-blue-gray-500"
-                      >
-                        <ListItem>Product 1</ListItem>
-                      </a>
-                      <a
-                        href="#"
-                        className="text-initial font-medium text-blue-gray-500"
-                      >
-                        <ListItem>Product 2</ListItem>
-                      </a>
-                      <a
-                        href="#"
-                        className="text-initial font-medium text-blue-gray-500"
-                      >
-                        <ListItem>Product 3</ListItem>
-                      </a>
-                    </List>
-                    <Button color="blue">Confirm Purchase</Button>
+                    {shoppingCart.length > 0 ? (
+                      <>
+                        <List className="p-0">
+                          {shoppingCart.map((product) => (
+                            <ListItem>
+                              <CartProductSm product={product}></CartProductSm>
+                            </ListItem>
+                          ))}
+                        </List>
+                        <Button className="mt-4 ml-12" color="blue">
+                          Confirm Purchase
+                        </Button>
+                      </>
+                    ) : (
+                      <p>Shopping Cart Is Empty</p>
+                    )}
                   </PopoverContent>
                 </Popover>
 
