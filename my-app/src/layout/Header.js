@@ -14,7 +14,7 @@ import {
   faXmark,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
 import { FETCH_STATES } from "../store/reducers/productReducer";
 import { useDispatch, useSelector } from "react-redux";
@@ -53,6 +53,10 @@ const Header = () => {
   const [openErkekNestedMenu, setOpenErkekNestedMenu] = useState(false);
   const [openKadinNestedMenu, setOpenKadinNestedMenu] = useState(false);
 
+  let total = shoppingCart.reduce((total, item) => {
+    return total + item.count * item.product.price;
+  }, 0);
+
   const eCategories = categories.filter((cat) => {
     return cat.gender == "e";
   });
@@ -69,6 +73,11 @@ const Header = () => {
     dispatch(logout());
     handleOpen();
   };
+
+  useEffect(() => {
+    console.log(total.toFixed(2));
+  }, [shoppingCart]);
+
   return (
     <>
       <div className="bg-[#252B42] font-montserrat">
