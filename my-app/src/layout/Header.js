@@ -296,7 +296,7 @@ const Header = () => {
                       <FontAwesomeIcon icon={faCartShopping} />
                     </li>
                   </PopoverHandler>
-                  <PopoverContent className="w-72">
+                  <PopoverContent className="w-80">
                     <div className="mb-4 flex items-center gap-4 border-b border-blue-gray-50 pb-4">
                       <div>
                         <Typography variant="h6" color="blue-gray">
