@@ -22,7 +22,9 @@ const CartProductSm = ({ product }) => {
           <p> Count: {product.count}</p>
           <p>
             Price:{" "}
-            <span className="text-[#23856D]">${product.product.price}</span>
+            <span className="text-[#23856D]">
+              ${product.product.price * product.count}
+            </span>
           </p>
           <div className="flex">
             <button onClick={removeHandler} className="hover:text-red-600">
