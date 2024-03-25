@@ -9,7 +9,6 @@ import {
 export const setCart = (cart) => {
   toast.success("Product Added To Cart", {
     position: "top-center",
-
     autoClose: 1000,
   });
   return {
@@ -19,7 +18,10 @@ export const setCart = (cart) => {
 };
 
 export const removeProduct = (productId) => {
-  toast.warn("Product Removed From Cart", { autoClose: 1000 });
+  toast.warn("Product Removed From Cart", {
+    position: "top-center",
+    autoClose: 1000,
+  });
   return {
     type: REMOVE_PRODUCT,
     payload: productId,
