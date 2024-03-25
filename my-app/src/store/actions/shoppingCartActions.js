@@ -1,4 +1,5 @@
 import {
+  REMOVE_PRODUCT,
   SET_ADDRESS,
   SET_CART,
   SET_PAYMENT,
@@ -8,6 +9,13 @@ export const setCart = (cart) => {
   return {
     type: SET_CART,
     payload: cart,
+  };
+};
+
+export const removeProduct = (productId) => {
+  return {
+    type: REMOVE_PRODUCT,
+    payload: productId,
   };
 };
 
