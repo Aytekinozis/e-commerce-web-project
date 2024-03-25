@@ -13,7 +13,10 @@ const CartProductSm = ({ product }) => {
   return (
     <>
       <div className="flex gap-4">
-        <img className="w-20 rounded-md" src="/assets/product-cover.png"></img>
+        <img
+          className="w-20 rounded-md"
+          src={product.product.images[0].url}
+        ></img>
         <div className="flex flex-col gap-2">
           <h5 className="font-bold">{product.product.name}</h5>
           <p> Count: {product.count}</p>

@@ -308,7 +308,7 @@ const Header = () => {
                     </div>
                     {shoppingCart.length > 0 ? (
                       <>
-                        <List className="p-0">
+                        <List className="p-0 border-b border-blue-gray-50">
                           {shoppingCart.map((product) => (
                             <ListItem>
                               <CartProductSm product={product}></CartProductSm>
