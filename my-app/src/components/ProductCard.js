@@ -1,3 +1,4 @@
+import { Button } from "@material-tailwind/react";
 import { useHistory } from "react-router";
 
 const ProductCard = ({ product }) => {
@@ -8,6 +9,8 @@ const ProductCard = ({ product }) => {
       `/ProductPage/${product.category_id}/${product.id}/${product.name}`
     );
   };
+
+  const addToCartHandler = () => {};
 
   return (
     <>
@@ -38,6 +41,14 @@ const ProductCard = ({ product }) => {
           <div class="w-4 h-4 hover:scale-110 bg-orange-400 rounded-full"></div>
           <div class="w-4 h-4 hover:scale-110 bg-black rounded-full"></div>
         </div>
+        <Button
+          className="mb-4"
+          size="sm"
+          onClick={addToCartHandler}
+          color="blue"
+        >
+          Add To Cart
+        </Button>
       </div>
     </>
   );
