@@ -38,6 +38,7 @@ import {
   PopoverHandler,
   Typography,
 } from "@material-tailwind/react";
+import CartProductSm from "../components/CartProductSm";
 
 const Header = () => {
   const dispatch = useDispatch();
@@ -305,6 +306,10 @@ const Header = () => {
                       </div>
                     </div>
                     <List className="p-0">
+                      <ListItem>
+                        <CartProductSm></CartProductSm>
+                      </ListItem>
+
                       <a
                         href="#"
                         className="text-initial font-medium text-blue-gray-500"

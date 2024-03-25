@@ -1,8 +1,8 @@
 const CartProductSm = () => {
   return (
     <>
-      <div>
-        <img src="/assets/product-cover.png"></img>
+      <div className="flex gap-4">
+        <img className="w-20 rounded-md" src="/assets/product-cover.png"></img>
         <div>
           <h5>product name</h5>
           <p>product count</p>
