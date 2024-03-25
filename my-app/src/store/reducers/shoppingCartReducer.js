@@ -1,28 +1,5 @@
 const initialState = {
-  cart: [
-    {
-      count: 1,
-      checked: true,
-      product: {
-        id: 3,
-        name: "Beyaz %100 Pamuk",
-        description:
-          "Beyaz %100 Pamuk Regular/Normal Kalıp Basic V Yaka Uzun Kollu Örme T-Shirt TWOAW21TS0099",
-        price: 140.99,
-        stock: 80,
-        store_id: 1,
-        category_id: 1,
-        rating: 1.39,
-        sell_count: 48,
-        images: [
-          {
-            url: "https://cdn.dsmcdn.com/ty155/product/media/images/20210806/13/116221695/81629339/1/1_org_zoom.jpg",
-            index: 0,
-          },
-        ],
-      },
-    },
-  ],
+  cart: [],
   payment: {},
   address: {},
 };
