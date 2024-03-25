@@ -1,3 +1,6 @@
+import { faTrashCan } from "@fortawesome/free-regular-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 const CartProductSm = ({ shoppingCart }) => {
   return (
     <>
@@ -12,6 +15,11 @@ const CartProductSm = ({ shoppingCart }) => {
               ${shoppingCart[0].product.price}
             </span>
           </p>
+          <div className="flex">
+            <button className="hover:text-red-600">
+              <FontAwesomeIcon size="lg" icon={faTrashCan} />
+            </button>
+          </div>
         </div>
       </div>
     </>
