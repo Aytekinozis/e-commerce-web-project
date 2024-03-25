@@ -34,10 +34,27 @@ export const SET_ADDRESS = "SET_ADDRESS";
 export const shoppingCartReducer = (state = initialState, action) => {
   switch (action.type) {
     case SET_CART:
-      return {
-        ...state,
-        cart: [...state.cart, action.payload],
-      };
+      const productIndex = state.cart.findIndex(
+        (product) => product.product.id === action.payload.id
+      );
+
+      if (productIndex >= 0) {
+        const updatedCart = [...state.cart];
+        updatedCart[productIndex].count++;
+        return {
+          ...state,
+          cart: updatedCart,
+        };
+      } else {
+        return {
+          ...state,
+          cart: [
+            ...state.cart,
+            { count: 1, checked: true, product: { ...action.payload } },
+          ],
+        };
+      }
+
     case SET_PAYMENT:
       return {
         ...state,
