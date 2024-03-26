@@ -313,7 +313,7 @@ const Header = () => {
                       <FontAwesomeIcon icon={faCartShopping} />
                     </li>
                   </PopoverHandler>
-                  <PopoverContent className="w-80">
+                  <PopoverContent className="w-96 flex flex-col">
                     <div className="mb-4 flex items-center gap-4 border-b border-blue-gray-50 pb-4">
                       <div>
                         <Typography variant="h6" color="blue-gray">
@@ -323,19 +323,19 @@ const Header = () => {
                     </div>
                     {shoppingCart.length > 0 ? (
                       <>
-                        <List className="p-0 border-b border-blue-gray-50">
+                        <List className=" overflow-auto  max-h-96 p-0 border-b border-blue-gray-50">
                           {shoppingCart.map((product) => (
-                            <ListItem>
+                            <ListItem ripple={false}>
                               <CartProductSm product={product}></CartProductSm>
                             </ListItem>
                           ))}
                         </List>
                         <Button
                           onClick={() => history.push("/cart")}
-                          className="mt-4 ml-12"
+                          className="max-w-32 mt-4 place-self-center"
                           color="blue"
                         >
-                          Confirm Purchase
+                          Go To Cart!
                         </Button>
                       </>
                     ) : (
