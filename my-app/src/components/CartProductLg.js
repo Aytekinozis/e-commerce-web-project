@@ -49,6 +49,7 @@ const CartProductLg = ({ product }) => {
           color="blue"
           onClick={countDown}
           size="sm"
+          disabled={product.count === 1}
         >
           -
         </Button>
