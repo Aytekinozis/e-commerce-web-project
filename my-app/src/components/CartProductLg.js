@@ -1,7 +1,10 @@
 import { faTrashCan } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useDispatch } from "react-redux";
-import { removeProduct } from "../store/actions/shoppingCartActions";
+import {
+  removeProduct,
+  setChecked,
+} from "../store/actions/shoppingCartActions";
 import { Checkbox } from "@material-tailwind/react";
 
 const CartProductLg = ({ product }) => {
@@ -14,7 +17,14 @@ const CartProductLg = ({ product }) => {
   return (
     <>
       <div className="flex gap-4">
-        <Checkbox color="blue" defaultChecked />
+        <Checkbox
+          onChange={() =>
+            dispatch(setChecked(product.product.id, !product.checked))
+          }
+          checked={product.checked}
+          color="blue"
+          defaultChecked
+        />
         <img
           className="w-20 rounded-md"
           src={product.product.images[0].url}
