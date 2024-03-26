@@ -19,7 +19,7 @@ const ProductCard = ({ product }) => {
 
   return (
     <>
-      <div className="w-60 sm:w-11/12 gap-4 mb-20 flex flex-col shadow hover:scale-110 hover:shadow-2xl">
+      <div className="w-60 sm:w-11/12 gap-4 mb-20 flex flex-col shadow hover:scale-105 hover:shadow-2xl">
         <img
           onClick={goProductDetail}
           className="object-fill cursor-pointer"
