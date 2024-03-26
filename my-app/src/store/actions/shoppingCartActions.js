@@ -3,6 +3,7 @@ import {
   REMOVE_PRODUCT,
   SET_ADDRESS,
   SET_CART,
+  SET_CHECKED,
   SET_PAYMENT,
 } from "../reducers/shoppingCartReducer";
 
@@ -25,6 +26,13 @@ export const removeProduct = (productId) => {
   return {
     type: REMOVE_PRODUCT,
     payload: productId,
+  };
+};
+
+export const setChecked = (id, check) => {
+  return {
+    type: SET_CHECKED,
+    payload: { id, check },
   };
 };
 
