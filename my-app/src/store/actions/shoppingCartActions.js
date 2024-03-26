@@ -4,6 +4,7 @@ import {
   SET_ADDRESS,
   SET_CART,
   SET_CHECKED,
+  SET_DOWN_COUNT,
   SET_PAYMENT,
 } from "../reducers/shoppingCartReducer";
 
@@ -25,6 +26,17 @@ export const removeProduct = (productId) => {
   });
   return {
     type: REMOVE_PRODUCT,
+    payload: productId,
+  };
+};
+
+export const countDownProduct = (productId) => {
+  toast.warn("Product Count Decreased By 1", {
+    position: "top-center",
+    autoClose: 1000,
+  });
+  return {
+    type: SET_DOWN_COUNT,
     payload: productId,
   };
 };
