@@ -18,6 +18,7 @@ import { API } from "./api/api";
 import { useEffect } from "react";
 import { getCategories } from "./store/actions/globalActions";
 import { getProducts } from "./store/actions/productActions";
+import Cart from "./pages/Cart";
 
 function App() {
   const dispatch = useDispatch();
@@ -61,6 +62,9 @@ function App() {
         </Route>
         <Route path="/signIn" exact>
           <SignIn />
+        </Route>
+        <Route path="/cart" exact>
+          <Cart />
         </Route>
       </Switch>
     </div>
