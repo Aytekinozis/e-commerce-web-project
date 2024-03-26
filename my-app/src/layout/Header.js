@@ -39,9 +39,11 @@ import {
   Typography,
 } from "@material-tailwind/react";
 import CartProductSm from "../components/CartProductSm";
+import { useHistory } from "react-router";
 
 const Header = () => {
   const dispatch = useDispatch();
+  const history = useHistory();
   const [menu, setMenu] = useState(false);
   const fetchState = useSelector((store) => store.userData.fetchState);
   const userData = useSelector((store) => store.userData.user);
@@ -55,6 +57,10 @@ const Header = () => {
 
   let total = shoppingCart.reduce((total, item) => {
     return total + item.count * item.product.price;
+  }, 0);
+
+  let totalCart = shoppingCart.reduce((total, item) => {
+    return total + item.count;
   }, 0);
 
   const eCategories = categories.filter((cat) => {
@@ -324,7 +330,11 @@ const Header = () => {
                             </ListItem>
                           ))}
                         </List>
-                        <Button className="mt-4 ml-12" color="blue">
+                        <Button
+                          onClick={() => history.push("/cart")}
+                          className="mt-4 ml-12"
+                          color="blue"
+                        >
                           Confirm Purchase
                         </Button>
                       </>
@@ -334,13 +344,13 @@ const Header = () => {
                   </PopoverContent>
                 </Popover>
 
-                <li>
-                  <p>1</p>
+                <li className="-ml-4">
+                  <p>{totalCart}</p>
                 </li>
                 <li className="text-sm font-bold cursor-pointer">
                   <FontAwesomeIcon icon={faHeart} />
                 </li>
-                <li>
+                <li className="-ml-4">
                   <p>1</p>
                 </li>
               </ul>
