@@ -26,7 +26,7 @@ const Cart = () => {
             <>
               <List className="p-0 border-b border-blue-gray-50">
                 {shoppingCart.map((product) => (
-                  <ListItem>
+                  <ListItem className="shadow" ripple={false}>
                     <CartProductLg product={product}></CartProductLg>
                   </ListItem>
                 ))}
