@@ -53,7 +53,7 @@ const CartProductLg = ({ product }) => {
         >
           -
         </Button>
-        <p> Count: {product.count}</p>
+        <p className="w-20"> Count: {product.count}</p>
         <Button
           className="h-11 text-xl self-center rounded-full"
           variant="gradient"
