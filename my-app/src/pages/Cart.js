@@ -4,6 +4,7 @@ import { useHistory } from "react-router";
 import { useSelector } from "react-redux";
 import { Button, List, ListItem } from "@material-tailwind/react";
 import CartProductLg from "../components/CartProductLg";
+import { Link } from "react-router-dom/cjs/react-router-dom.min";
 
 const Cart = () => {
   const history = useHistory();
@@ -65,7 +66,9 @@ const Cart = () => {
               <p>Total: </p>
               <p>${(total + totalDeliveryFee).toFixed(2)}</p>
             </div>
-            <Button color="blue">Create Order</Button>
+            <Link to="/order">
+              <Button color="blue">Create Order</Button>
+            </Link>
           </div>
         </div>
       </div>
