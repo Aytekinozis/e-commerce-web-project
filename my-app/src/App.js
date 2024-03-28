@@ -19,6 +19,8 @@ import { useEffect } from "react";
 import { getCategories } from "./store/actions/globalActions";
 import { getProducts } from "./store/actions/productActions";
 import Cart from "./pages/Cart";
+import { ProtectedPage } from "./components/ProtectedPage";
+import Order from "./pages/Order";
 
 function App() {
   const dispatch = useDispatch();
@@ -65,6 +67,11 @@ function App() {
         </Route>
         <Route path="/cart" exact>
           <Cart />
+        </Route>
+        <Route path="/order">
+          <ProtectedPage>
+            <Order />
+          </ProtectedPage>
         </Route>
       </Switch>
     </div>
