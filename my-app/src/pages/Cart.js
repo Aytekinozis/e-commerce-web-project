@@ -2,13 +2,15 @@ import Header from "../layout/Header";
 import Footer from "../layout/Footer";
 import { useHistory } from "react-router";
 import { useSelector } from "react-redux";
-import { Button, List, ListItem } from "@material-tailwind/react";
+import { Button, Input, List, ListItem } from "@material-tailwind/react";
 import CartProductLg from "../components/CartProductLg";
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
+import { useEffect, useState } from "react";
 
 const Cart = () => {
   const history = useHistory();
   const shoppingCart = useSelector((store) => store.shoppingCart.cart);
+  const [discount, setDiscount] = useState("");
 
   const total = shoppingCart.reduce((total, item) => {
     if (item.checked) {
@@ -29,6 +31,10 @@ const Cart = () => {
   let totalCart = shoppingCart.reduce((total, item) => {
     return total + item.count;
   }, 0);
+
+  useEffect(() => {
+    console.log(discount);
+  }, [discount]);
 
   const deliveryFee = totalDeliveryFee === 0 ? "Free" : "$" + totalDeliveryFee;
   return (
@@ -52,7 +58,7 @@ const Cart = () => {
               <p>Shopping Cart Is Empty</p>
             )}
           </div>
-          <div className="flex flex-col items-center mt-4 gap-4 w-3/12 max-w-96 max-h-80 rounded-lg shadow p-4">
+          <div className="flex flex-col items-center mt-4 gap-4 w-3/12 max-w-96 max-h-96 rounded-lg shadow p-4">
             <p className="text-lg font-bold">Order Summary</p>
             <div className="flex w-full justify-between px-4">
               <p>Subtotal:</p>
@@ -62,9 +68,34 @@ const Cart = () => {
               <p>Delivery Fee: </p>
               <p>{deliveryFee}</p>
             </div>
+            <div className="w-full px-4">
+              <p className="mb-2">Discount Code:</p>
+              <Input
+                value={discount}
+                onChange={(e) => {
+                  setDiscount(e.target.value);
+                }}
+                label="Discount"
+                placeholder="discount10"
+              />
+            </div>
+            {discount === "discount10" ? (
+              <div className="flex w-full pb-4 justify-between px-4">
+                <p>10% Discount Applied: </p>
+                <p>${((total + totalDeliveryFee) * 0.1).toFixed(2)}</p>
+              </div>
+            ) : (
+              <></>
+            )}
+
             <div className="flex w-full pb-4 justify-between px-4">
               <p>Total: </p>
-              <p>${(total + totalDeliveryFee).toFixed(2)}</p>
+              <p>
+                $
+                {discount === "discount10"
+                  ? ((total + totalDeliveryFee) * 0.9).toFixed(2)
+                  : (total + totalDeliveryFee).toFixed(2)}
+              </p>
             </div>
             <Link to="/order">
               <Button color="blue">Create Order</Button>
