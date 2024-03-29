@@ -25,7 +25,12 @@ const CartProductLg = ({ product }) => {
   };
 
   return (
-    <>
+    <div className="flex items-center flex-col">
+      <div className="bg-light-blue-600 w-1/2 rounded-full mb-2">
+        <p className="bg-sky-700 text-white text-center">
+          Free shipping for purchases over $300
+        </p>
+      </div>
       <div className="flex gap-8 items-center">
         <Checkbox
           onChange={() =>
@@ -75,7 +80,7 @@ const CartProductLg = ({ product }) => {
           </button>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 
