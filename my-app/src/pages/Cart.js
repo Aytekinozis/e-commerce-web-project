@@ -82,7 +82,9 @@ const Cart = () => {
             {discount === "discount10" ? (
               <div className="flex w-full pb-4 justify-between px-4">
                 <p>10% Discount Applied: </p>
-                <p>${((total + totalDeliveryFee) * 0.1).toFixed(2)}</p>
+                <p className="text-[#23856D]">
+                  ${((total + totalDeliveryFee) * 0.1).toFixed(2)}
+                </p>
               </div>
             ) : (
               <></>
