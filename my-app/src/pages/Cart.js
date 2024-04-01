@@ -68,9 +68,10 @@ const Cart = () => {
               <p>Delivery Fee: </p>
               <p>{deliveryFee}</p>
             </div>
-            <div className="w-full px-4">
+            {/*  <div className="w-full px-4">
               <p className="mb-2">Discount Code:</p>
               <Input
+                color="blue"
                 value={discount}
                 onChange={(e) => {
                   setDiscount(e.target.value);
@@ -88,7 +89,7 @@ const Cart = () => {
               </div>
             ) : (
               <></>
-            )}
+            )} */}
 
             <div className="flex w-full pb-4 justify-between px-4">
               <p>Total: </p>
