@@ -8,9 +8,12 @@ import {
 } from "@material-tailwind/react";
 import Footer from "../layout/Footer";
 import Header from "../layout/Header";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { getAddress } from "../store/actions/shoppingCartActions";
+import { useEffect } from "react";
 
 const Order = () => {
+  const dispatch = useDispatch();
   const shoppingCart = useSelector((store) => store.shoppingCart.cart);
 
   const total = shoppingCart.reduce((total, item) => {
@@ -35,17 +38,24 @@ const Order = () => {
     {
       label: "Address Information",
       value: "Address Information",
-      desc: `It really matters and then like it really doesn't matter.
-      What matters is the people who are sparked by it. And the people 
-      who are like offended by it, it doesn't matter.`,
+      desc: <div></div>,
     },
     {
       label: "Payment Options",
       value: "Payment Options",
-      desc: `Because it's about motivating the doers. Because I'm here
-      to follow my dreams and inspire other people to follow their dreams, too.`,
+      desc: (
+        <div>
+          <p>burasi 1. yazi</p>
+          <p>burasi 2. yazi</p>
+        </div>
+      ),
     },
   ];
+
+  useEffect(() => {
+    dispatch(getAddress());
+  }, []);
+
   return (
     <>
       <Header />
