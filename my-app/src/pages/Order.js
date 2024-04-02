@@ -15,6 +15,7 @@ import { useEffect } from "react";
 const Order = () => {
   const dispatch = useDispatch();
   const shoppingCart = useSelector((store) => store.shoppingCart.cart);
+  const address = useSelector((store) => store.shoppingCart.address);
 
   const total = shoppingCart.reduce((total, item) => {
     if (item.checked) {
@@ -38,7 +39,13 @@ const Order = () => {
     {
       label: "Address Information",
       value: "Address Information",
-      desc: <div></div>,
+      desc: (
+        <div>
+          <div>
+            <p>{address[0].title}</p>
+          </div>
+        </div>
+      ),
     },
     {
       label: "Payment Options",
