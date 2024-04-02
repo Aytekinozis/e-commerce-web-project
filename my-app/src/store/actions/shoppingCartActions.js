@@ -7,6 +7,7 @@ import {
   SET_DOWN_COUNT,
   SET_PAYMENT,
 } from "../reducers/shoppingCartReducer";
+import { API } from "../../api/api";
 
 export const setCart = (cart) => {
   toast.success("Product Added To Cart", {
@@ -39,6 +40,22 @@ export const countDownProduct = (productId) => {
     type: SET_DOWN_COUNT,
     payload: productId,
   };
+};
+
+export const getAddress = () => (dispatch) => {
+  API.get("/user/address")
+    .then((res) => {
+      console.log(res);
+      dispatch(setAdress(res.data));
+      //dispatch(setHashCode(sha256(res.data.email)));
+      //dispatch(setUserFetchState(FETCH_STATES.FETCHED));
+      //localStorage.setItem("token", res.data.token);
+      //toast.success("Welcome Back!");
+    })
+    .catch((err) => {
+      toast.error(err.response.data.message);
+      //localStorage.removeItem("token");
+    });
 };
 
 export const setChecked = (id, check) => {
