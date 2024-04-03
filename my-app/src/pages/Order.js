@@ -43,7 +43,7 @@ const Order = () => {
       value: "Address Information",
       desc: (
         <div>
-          <div>
+          <div className="flex gap-4">
             <Radio
               value={address[0]?.id}
               onChange={(e) => {
@@ -52,14 +52,14 @@ const Order = () => {
               color="blue"
               name="address"
               label={
-                <div className="flex flex-col gap-3 border border-black rounded p-3">
+                <div className="flex flex-col gap-3 border border-blue-gray-200 hover:shadow-md rounded p-3 ">
                   <div className="flex justify-between gap-32 border-b border-blue-gray-200">
-                    <p>title: {address[0]?.title}</p>{" "}
-                    <p>phone: {address[0]?.phone}</p>
+                    <p className="font-bold">Title: {address[0]?.title}</p>{" "}
+                    <p>Phone: {address[0]?.phone}</p>
                   </div>
                   <div>
-                    <p>address: {address[0]?.address}</p>
-                    <p>city: {address[0]?.city}</p>
+                    <p>Address: {address[0]?.address}</p>
+                    <p>City: {address[0]?.city}</p>
                   </div>
                 </div>
               }
@@ -110,7 +110,7 @@ const Order = () => {
     <>
       <Header />
 
-      <div className="flex gap-4 justify-center">
+      <div className="flex gap-8 justify-center min-h-[500px]">
         <div className="w-1/2">
           <Tabs value="Address Information">
             <TabsHeader>
