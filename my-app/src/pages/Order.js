@@ -92,13 +92,7 @@ const Order = () => {
                       <Typography variant="h4" color="blue-gray">
                         Add Adress
                       </Typography>
-                      <Typography
-                        className="mb-3 font-normal"
-                        variant="paragraph"
-                        color="gray"
-                      >
-                        Enter Your New Address Information.
-                      </Typography>
+
                       <Typography className="-mb-2" variant="h6">
                         Address Title:
                       </Typography>
@@ -113,17 +107,52 @@ const Order = () => {
                         label="Address"
                         size="lg"
                       />
-                      {errors.name && (
-                        <p className="text-red-500">{errors.name?.message}</p>
+                      {errors.title && (
+                        <p className="text-red-500">{errors.title?.message}</p>
                       )}
                       <Typography className="-mb-2" variant="h6">
-                        Name & Surname:
+                        Name:
                       </Typography>
-                      <Input label="Name" size="lg" />
+                      <Input
+                        {...register("name", {
+                          required: "You Must Enter Your Name!",
+                          minLength: {
+                            value: 3,
+                            message: "Minimum 3 Characters!",
+                          },
+                        })}
+                        label="Name"
+                        size="lg"
+                      />
+                      <Typography className="-mb-2" variant="h6">
+                        Surname:
+                      </Typography>
+                      <Input
+                        {...register("surname", {
+                          required: "You Must Enter Your Surname!",
+                          minLength: {
+                            value: 3,
+                            message: "Minimum 3 Characters!",
+                          },
+                        })}
+                        label="Surname"
+                        size="lg"
+                      />
                       <Typography className="-mb-2" variant="h6">
                         Phone:
                       </Typography>
-                      <Input label="Phone" size="lg" />
+                      <Input
+                        {...register("phone", {
+                          required: "You Must Enter Your Phone!",
+                          pattern: {
+                            value:
+                              /^(\+90|0)?\s*(\(\d{3}\)[\s-]*\d{3}[\s-]*\d{2}[\s-]*\d{2}|\(\d{3}\)[\s-]*\d{3}[\s-]*\d{4}|\(\d{3}\)[\s-]*\d{7}|\d{3}[\s-]*\d{3}[\s-]*\d{4}|\d{3}[\s-]*\d{3}[\s-]*\d{2}[\s-]*\d{2})$/,
+                            message: "Please Enter A Valid Phone Number!",
+                          },
+                        })}
+                        label="Phone"
+                        size="lg"
+                      />
                       <Typography className="-mb-2" variant="h6">
                         dropdown gelecek
                       </Typography>
@@ -131,15 +160,45 @@ const Order = () => {
                       <Typography className="-mb-2" variant="h6">
                         District:
                       </Typography>
-                      <Input label="District" size="lg" />
+                      <Input
+                        {...register("district", {
+                          required: "You Must Enter Your District!",
+                          minLength: {
+                            value: 3,
+                            message: "Minimum 3 Characters!",
+                          },
+                        })}
+                        label="District"
+                        size="lg"
+                      />
                       <Typography className="-mb-2" variant="h6">
                         Neighborhood:
                       </Typography>
-                      <Input label="Neighborhood" size="lg" />
+                      <Input
+                        {...register("neighborhood", {
+                          required: "You Must Enter Your Surname!",
+                          minLength: {
+                            value: 3,
+                            message: "Minimum 3 Characters!",
+                          },
+                        })}
+                        label="Neighborhood"
+                        size="lg"
+                      />
                       <Typography className="-mb-2" variant="h6">
                         Address:
                       </Typography>
-                      <Input label="Address" size="lg" />
+                      <Input
+                        {...register("address", {
+                          required: "You Must Enter Your Surname!",
+                          minLength: {
+                            value: 3,
+                            message: "Minimum 3 Characters!",
+                          },
+                        })}
+                        label="Address"
+                        size="lg"
+                      />
                       <div className="-ml-2.5 -mt-3">
                         <Checkbox label="Remember Me" />
                       </div>
