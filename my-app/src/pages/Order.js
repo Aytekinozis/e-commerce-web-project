@@ -1,11 +1,18 @@
 import {
   Button,
+  Card,
+  CardBody,
+  CardFooter,
+  Checkbox,
+  Dialog,
+  Input,
   Radio,
   Tab,
   TabPanel,
   Tabs,
   TabsBody,
   TabsHeader,
+  Typography,
 } from "@material-tailwind/react";
 import Footer from "../layout/Footer";
 import Header from "../layout/Header";
@@ -18,6 +25,9 @@ const Order = () => {
   const shoppingCart = useSelector((store) => store.shoppingCart.cart);
   const address = useSelector((store) => store.shoppingCart.address);
   const [addressId, setAdressId] = useState();
+  const [open, setOpen] = useState(false);
+
+  const handleOpen = () => setOpen(!open);
 
   const total = shoppingCart.reduce((total, item) => {
     if (item.checked) {
@@ -45,9 +55,85 @@ const Order = () => {
         <div>
           {address.length > 0 ? (
             <div className="flex gap-4 flex-wrap justify-around items-center">
-              <button className="w-2/5 h-1/2 bg-light-blue-600 font-bold text-white border border-blue-gray-200 hover:shadow-md  rounded-md p-3">
+              <button
+                onClick={handleOpen}
+                className="w-2/5 h-1/2 bg-light-blue-600 font-bold text-white border border-blue-gray-200 hover:shadow-md  rounded-md p-3"
+              >
                 Add Adress
               </button>
+              <Dialog
+                size="xs"
+                open={open}
+                handler={handleOpen}
+                className="bg-transparent shadow-none"
+              >
+                <Card className="mx-auto w-full max-w-[24rem]">
+                  <CardBody className="flex flex-col gap-4">
+                    <Typography variant="h4" color="blue-gray">
+                      Add Adress
+                    </Typography>
+                    <Typography
+                      className="mb-3 font-normal"
+                      variant="paragraph"
+                      color="gray"
+                    >
+                      Enter Your New Address Information.
+                    </Typography>
+                    <Typography className="-mb-2" variant="h6">
+                      Address Title:
+                    </Typography>
+                    <Input label="Address" size="lg" />
+                    <Typography className="-mb-2" variant="h6">
+                      Name & Surname:
+                    </Typography>
+                    <Input label="Name" size="lg" />
+                    <Typography className="-mb-2" variant="h6">
+                      Phone:
+                    </Typography>
+                    <Input label="Phone" size="lg" />
+                    <Typography className="-mb-2" variant="h6">
+                      dropdown gelecek
+                    </Typography>
+                    <Input label="Phone" size="lg" />
+                    <Typography className="-mb-2" variant="h6">
+                      District:
+                    </Typography>
+                    <Input label="Phone" size="lg" />
+                    <Typography className="-mb-2" variant="h6">
+                      Neighborhood:
+                    </Typography>
+                    <Input label="Phone" size="lg" />
+                    <Typography className="-mb-2" variant="h6">
+                      Address:
+                    </Typography>
+                    <Input label="Phone" size="lg" />
+                    <div className="-ml-2.5 -mt-3">
+                      <Checkbox label="Remember Me" />
+                    </div>
+                  </CardBody>
+                  <CardFooter className="pt-0">
+                    <Button variant="gradient" onClick={handleOpen} fullWidth>
+                      Sign In
+                    </Button>
+                    <Typography
+                      variant="small"
+                      className="mt-4 flex justify-center"
+                    >
+                      Don&apos;t have an account?
+                      <Typography
+                        as="a"
+                        href="#signup"
+                        variant="small"
+                        color="blue-gray"
+                        className="ml-1 font-bold"
+                        onClick={handleOpen}
+                      >
+                        Sign up
+                      </Typography>
+                    </Typography>
+                  </CardFooter>
+                </Card>
+              </Dialog>
               <Radio
                 value={address[0]?.id}
                 onChange={(e) => {
