@@ -43,46 +43,53 @@ const Order = () => {
       value: "Address Information",
       desc: (
         <div>
-          <div className="flex gap-4">
-            <Radio
-              value={address[0]?.id}
-              onChange={(e) => {
-                setAdressId(e.target.value);
-              }}
-              color="blue"
-              name="address"
-              label={
-                <div className="flex flex-col gap-3 border border-blue-gray-200 hover:shadow-md rounded p-3 ">
-                  <div className="flex justify-between gap-32 border-b border-blue-gray-200">
-                    <p className="font-bold">Title: {address[0]?.title}</p>{" "}
-                    <p>Phone: {address[0]?.phone}</p>
+          {address.length > 0 ? (
+            <div className="flex gap-4 flex-wrap justify-around items-center">
+              <button className="w-2/5 h-1/2 bg-light-blue-600 font-bold text-white border border-blue-gray-200 hover:shadow-md  rounded-md p-3">
+                Add Adress
+              </button>
+              <Radio
+                value={address[0]?.id}
+                onChange={(e) => {
+                  setAdressId(e.target.value);
+                }}
+                color="blue"
+                name="address"
+                label={
+                  <div className="flex flex-col gap-3 border border-blue-gray-200 hover:shadow-md rounded p-3 ">
+                    <div className="flex justify-between gap-32 border-b border-blue-gray-200">
+                      <p className="font-bold">Title: {address[0]?.title}</p>{" "}
+                      <p>Phone: {address[0]?.phone}</p>
+                    </div>
+                    <div>
+                      <p>Address: {address[0]?.address}</p>
+                      <p>City: {address[0]?.city}</p>
+                    </div>
                   </div>
-                  <div>
-                    <p>Address: {address[0]?.address}</p>
-                    <p>City: {address[0]?.city}</p>
-                  </div>
-                </div>
-              }
-            />
-            <Radio
-              value={1}
-              onChange={(e) => {
-                setAdressId(e.target.value);
-              }}
-              color="blue"
-              name="address"
-              label={<p>1.address</p>}
-            />
-            <Radio
-              value={2}
-              onChange={(e) => {
-                setAdressId(e.target.value);
-              }}
-              color="blue"
-              name="address"
-              label={<p>2.address</p>}
-            />
-          </div>
+                }
+              />
+              <Radio
+                value={1}
+                onChange={(e) => {
+                  setAdressId(e.target.value);
+                }}
+                color="blue"
+                name="address"
+                label={<p>1.address</p>}
+              />
+              <Radio
+                value={2}
+                onChange={(e) => {
+                  setAdressId(e.target.value);
+                }}
+                color="blue"
+                name="address"
+                label={<p>2.address</p>}
+              />
+            </div>
+          ) : (
+            <></>
+          )}
         </div>
       ),
     },
