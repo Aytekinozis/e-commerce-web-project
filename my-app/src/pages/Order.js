@@ -19,8 +19,21 @@ import Header from "../layout/Header";
 import { useDispatch, useSelector } from "react-redux";
 import { getAddress } from "../store/actions/shoppingCartActions";
 import { useEffect, useState } from "react";
+import { useForm } from "react-hook-form";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCircleNotch } from "@fortawesome/free-solid-svg-icons";
 
 const Order = () => {
+  const {
+    register,
+    handleSubmit,
+    getValues,
+    watch,
+    formState: { errors, isValid, isSubmitting },
+  } = useForm({
+    mode: "all",
+    defaultValues: {},
+  });
   const dispatch = useDispatch();
   const shoppingCart = useSelector((store) => store.shoppingCart.cart);
   const address = useSelector((store) => store.shoppingCart.address);
@@ -47,6 +60,12 @@ const Order = () => {
 
   const deliveryFee = totalDeliveryFee === 0 ? "Free" : "$" + totalDeliveryFee;
 
+  const onSubmit = (data) => {
+    //const { passconfirm, ...postdata } = data;
+
+    console.log(data);
+  };
+
   const data = [
     {
       label: "Address Information",
@@ -68,70 +87,83 @@ const Order = () => {
                 className="bg-transparent shadow-none"
               >
                 <Card className="mx-auto w-full max-w-[24rem]">
-                  <CardBody className="flex flex-col gap-4">
-                    <Typography variant="h4" color="blue-gray">
-                      Add Adress
-                    </Typography>
-                    <Typography
-                      className="mb-3 font-normal"
-                      variant="paragraph"
-                      color="gray"
-                    >
-                      Enter Your New Address Information.
-                    </Typography>
-                    <Typography className="-mb-2" variant="h6">
-                      Address Title:
-                    </Typography>
-                    <Input label="Address" size="lg" />
-                    <Typography className="-mb-2" variant="h6">
-                      Name & Surname:
-                    </Typography>
-                    <Input label="Name" size="lg" />
-                    <Typography className="-mb-2" variant="h6">
-                      Phone:
-                    </Typography>
-                    <Input label="Phone" size="lg" />
-                    <Typography className="-mb-2" variant="h6">
-                      dropdown gelecek
-                    </Typography>
-                    <Input label="Phone" size="lg" />
-                    <Typography className="-mb-2" variant="h6">
-                      District:
-                    </Typography>
-                    <Input label="Phone" size="lg" />
-                    <Typography className="-mb-2" variant="h6">
-                      Neighborhood:
-                    </Typography>
-                    <Input label="Phone" size="lg" />
-                    <Typography className="-mb-2" variant="h6">
-                      Address:
-                    </Typography>
-                    <Input label="Phone" size="lg" />
-                    <div className="-ml-2.5 -mt-3">
-                      <Checkbox label="Remember Me" />
-                    </div>
-                  </CardBody>
-                  <CardFooter className="pt-0">
-                    <Button variant="gradient" onClick={handleOpen} fullWidth>
-                      Sign In
-                    </Button>
-                    <Typography
-                      variant="small"
-                      className="mt-4 flex justify-center"
-                    >
-                      Don&apos;t have an account?
-                      <Typography
-                        as="a"
-                        href="#signup"
-                        variant="small"
-                        color="blue-gray"
-                        className="ml-1 font-bold"
-                        onClick={handleOpen}
-                      >
-                        Sign up
+                  <form onSubmit={handleSubmit(onSubmit)}>
+                    <CardBody className="flex flex-col gap-4">
+                      <Typography variant="h4" color="blue-gray">
+                        Add Adress
                       </Typography>
-                    </Typography>
-                  </CardFooter>
+                      <Typography
+                        className="mb-3 font-normal"
+                        variant="paragraph"
+                        color="gray"
+                      >
+                        Enter Your New Address Information.
+                      </Typography>
+                      <Typography className="-mb-2" variant="h6">
+                        Address Title:
+                      </Typography>
+                      <Input
+                        {...register("title", {
+                          required: "You Must Enter Your Address Title!",
+                          minLength: {
+                            value: 3,
+                            message: "Minimum 3 Characters!",
+                          },
+                        })}
+                        label="Address"
+                        size="lg"
+                      />
+                      {errors.name && (
+                        <p className="text-red-500">{errors.name?.message}</p>
+                      )}
+                      <Typography className="-mb-2" variant="h6">
+                        Name & Surname:
+                      </Typography>
+                      <Input label="Name" size="lg" />
+                      <Typography className="-mb-2" variant="h6">
+                        Phone:
+                      </Typography>
+                      <Input label="Phone" size="lg" />
+                      <Typography className="-mb-2" variant="h6">
+                        dropdown gelecek
+                      </Typography>
+                      <Input label="Phone" size="lg" />
+                      <Typography className="-mb-2" variant="h6">
+                        District:
+                      </Typography>
+                      <Input label="District" size="lg" />
+                      <Typography className="-mb-2" variant="h6">
+                        Neighborhood:
+                      </Typography>
+                      <Input label="Neighborhood" size="lg" />
+                      <Typography className="-mb-2" variant="h6">
+                        Address:
+                      </Typography>
+                      <Input label="Address" size="lg" />
+                      <div className="-ml-2.5 -mt-3">
+                        <Checkbox label="Remember Me" />
+                      </div>
+                    </CardBody>
+                    <CardFooter className="pt-0">
+                      <Button
+                        disabled={!isValid || isSubmitting}
+                        type="submit"
+                        color="blue"
+                        variant="gradient"
+                        onClick={handleOpen}
+                        fullWidth
+                      >
+                        {isSubmitting && (
+                          <FontAwesomeIcon
+                            className="mr-2"
+                            icon={faCircleNotch}
+                            spin
+                          />
+                        )}
+                        Add New Address
+                      </Button>
+                    </CardFooter>
+                  </form>
                 </Card>
               </Dialog>
               <Radio
