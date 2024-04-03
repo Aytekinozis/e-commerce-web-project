@@ -1,5 +1,6 @@
 import {
   Button,
+  Radio,
   Tab,
   TabPanel,
   Tabs,
@@ -10,12 +11,13 @@ import Footer from "../layout/Footer";
 import Header from "../layout/Header";
 import { useDispatch, useSelector } from "react-redux";
 import { getAddress } from "../store/actions/shoppingCartActions";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 const Order = () => {
   const dispatch = useDispatch();
   const shoppingCart = useSelector((store) => store.shoppingCart.cart);
   const address = useSelector((store) => store.shoppingCart.address);
+  const [addressId, setAdressId] = useState();
 
   const total = shoppingCart.reduce((total, item) => {
     if (item.checked) {
@@ -42,7 +44,44 @@ const Order = () => {
       desc: (
         <div>
           <div>
-            <p>{address[0].title}</p>
+            <Radio
+              value={address[0]?.id}
+              onChange={(e) => {
+                setAdressId(e.target.value);
+              }}
+              color="blue"
+              name="address"
+              label={
+                <div className="flex flex-col gap-3 border border-black rounded p-3">
+                  <div className="flex justify-between gap-32 border-b border-blue-gray-200">
+                    <p>title: {address[0]?.title}</p>{" "}
+                    <p>phone: {address[0]?.phone}</p>
+                  </div>
+                  <div>
+                    <p>address: {address[0]?.address}</p>
+                    <p>city: {address[0]?.city}</p>
+                  </div>
+                </div>
+              }
+            />
+            <Radio
+              value={1}
+              onChange={(e) => {
+                setAdressId(e.target.value);
+              }}
+              color="blue"
+              name="address"
+              label={<p>1.address</p>}
+            />
+            <Radio
+              value={2}
+              onChange={(e) => {
+                setAdressId(e.target.value);
+              }}
+              color="blue"
+              name="address"
+              label={<p>2.address</p>}
+            />
           </div>
         </div>
       ),
@@ -62,6 +101,10 @@ const Order = () => {
   useEffect(() => {
     dispatch(getAddress());
   }, []);
+
+  useEffect(() => {
+    console.log(addressId);
+  }, [addressId]);
 
   return (
     <>
