@@ -22,13 +22,14 @@ import Header from "../layout/Header";
 import { useDispatch, useSelector } from "react-redux";
 import { getAddress } from "../store/actions/shoppingCartActions";
 import { useEffect, useState } from "react";
-import { useForm } from "react-hook-form";
+import { Controller, useForm } from "react-hook-form";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleNotch } from "@fortawesome/free-solid-svg-icons";
 
 const Order = () => {
   const {
     register,
+    control,
     handleSubmit,
     getValues,
     watch,
@@ -159,19 +160,30 @@ const Order = () => {
                       <Typography className="-mb-2" variant="h6">
                         City:
                       </Typography>
-                      <Select
-                        label="City"
-                        placeholder="Adana"
-                        menuProps={{ className: "h-48" }}
-                      >
-                        {cities.map((city) => (
-                          <Option key={city} value={city}>
-                            <div className="flex items-center gap-x-2">
-                              {city}
-                            </div>
-                          </Option>
-                        ))}
-                      </Select>
+                      <Controller
+                        name="city"
+                        control={control}
+                        rules={{ required: true }}
+                        defaultValue=""
+                        render={({ field: { onChange, value } }) => (
+                          <Select
+                            label="city"
+                            placeholder="Adana"
+                            menuProps={{ className: "h-48" }}
+                            value={value}
+                            onChange={onChange}
+                          >
+                            {cities.map((city) => (
+                              <Option key={city} value={city}>
+                                <div className="flex items-center gap-x-2">
+                                  {city}
+                                </div>
+                              </Option>
+                            ))}
+                          </Select>
+                        )}
+                      ></Controller>
+
                       <Typography className="-mb-2" variant="h6">
                         District:
                       </Typography>
