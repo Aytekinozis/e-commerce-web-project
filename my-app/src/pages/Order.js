@@ -85,14 +85,13 @@ const Order = () => {
                 Add Adress
               </button>
               <Dialog
-                size="xs"
                 open={open}
                 handler={handleOpen}
                 className="bg-transparent shadow-none"
               >
-                <Card className="mx-auto w-full max-w-[24rem]">
+                <Card className="mx-auto max-w-[48rem]">
                   <form onSubmit={handleSubmit(onSubmit)}>
-                    <CardBody className="flex flex-col gap-4">
+                    <CardBody className="flex flex-wrap flex-col gap-4 ">
                       <Typography variant="h4" color="blue-gray">
                         Add Adress
                       </Typography>
@@ -109,10 +108,18 @@ const Order = () => {
                           },
                         })}
                         label="Address"
-                        size="lg"
+                        size="sm"
+                        className=""
+                        error={errors.title}
                       />
                       {errors.title && (
-                        <p className="text-red-500">{errors.title?.message}</p>
+                        <Typography
+                          variant="small"
+                          color="red"
+                          className=" -mt-3 flex items-center  font-normal"
+                        >
+                          {errors.title?.message}
+                        </Typography>
                       )}
                       <Typography className="-mb-2" variant="h6">
                         Name:
@@ -126,7 +133,6 @@ const Order = () => {
                           },
                         })}
                         label="Name"
-                        size="lg"
                       />
                       <Typography className="-mb-2" variant="h6">
                         Surname:
@@ -140,7 +146,6 @@ const Order = () => {
                           },
                         })}
                         label="Surname"
-                        size="lg"
                       />
                       <Typography className="-mb-2" variant="h6">
                         Phone:
@@ -155,7 +160,6 @@ const Order = () => {
                           },
                         })}
                         label="Phone"
-                        size="lg"
                       />
                       <Typography className="-mb-2" variant="h6">
                         City:
@@ -196,7 +200,6 @@ const Order = () => {
                           },
                         })}
                         label="District"
-                        size="lg"
                       />
                       <Typography className="-mb-2" variant="h6">
                         Neighborhood:
@@ -210,7 +213,6 @@ const Order = () => {
                           },
                         })}
                         label="Neighborhood"
-                        size="lg"
                       />
                       <Typography className="-mb-2" variant="h6">
                         Address:
@@ -224,11 +226,7 @@ const Order = () => {
                           },
                         })}
                         label="Address"
-                        size="lg"
                       />
-                      <div className="-ml-2.5 -mt-3">
-                        <Checkbox label="Remember Me" />
-                      </div>
                     </CardBody>
                     <CardFooter className="pt-0">
                       <Button

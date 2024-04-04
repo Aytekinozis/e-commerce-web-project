@@ -47,14 +47,9 @@ export const getAddress = () => (dispatch) => {
     .then((res) => {
       console.log(res);
       dispatch(setAdress(res.data));
-      //dispatch(setHashCode(sha256(res.data.email)));
-      //dispatch(setUserFetchState(FETCH_STATES.FETCHED));
-      //localStorage.setItem("token", res.data.token);
-      //toast.success("Welcome Back!");
     })
     .catch((err) => {
       toast.error(err.response.data.message);
-      //localStorage.removeItem("token");
     });
 };
 
