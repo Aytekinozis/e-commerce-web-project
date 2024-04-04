@@ -6,7 +6,9 @@ import {
   Checkbox,
   Dialog,
   Input,
+  Option,
   Radio,
+  Select,
   Tab,
   TabPanel,
   Tabs,
@@ -14,6 +16,7 @@ import {
   TabsHeader,
   Typography,
 } from "@material-tailwind/react";
+import cities from "../components/cities";
 import Footer from "../layout/Footer";
 import Header from "../layout/Header";
 import { useDispatch, useSelector } from "react-redux";
@@ -62,7 +65,7 @@ const Order = () => {
 
   const onSubmit = (data) => {
     //const { passconfirm, ...postdata } = data;
-
+    console.log(cities[0]);
     console.log(data);
   };
 
@@ -154,9 +157,21 @@ const Order = () => {
                         size="lg"
                       />
                       <Typography className="-mb-2" variant="h6">
-                        dropdown gelecek
+                        City:
                       </Typography>
-                      <Input label="Phone" size="lg" />
+                      <Select
+                        label="City"
+                        placeholder="Adana"
+                        menuProps={{ className: "h-48" }}
+                      >
+                        {cities.map((city) => (
+                          <Option key={city} value={city}>
+                            <div className="flex items-center gap-x-2">
+                              {city}
+                            </div>
+                          </Option>
+                        ))}
+                      </Select>
                       <Typography className="-mb-2" variant="h6">
                         District:
                       </Typography>
