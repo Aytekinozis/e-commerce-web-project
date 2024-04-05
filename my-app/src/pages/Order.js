@@ -26,6 +26,7 @@ import { Controller, useForm } from "react-hook-form";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleNotch } from "@fortawesome/free-solid-svg-icons";
 import { faTrashCan } from "@fortawesome/free-regular-svg-icons";
+import { API } from "../api/api";
 
 const Order = () => {
   const {
@@ -72,7 +73,7 @@ const Order = () => {
   };
 
   const removeHandler = () => {
-    //dispatch(removeProduct(product.product.id));
+    API.delete(`/user/address/:${addressId}`);
   };
 
   const data = [
@@ -255,6 +256,38 @@ const Order = () => {
                   </form>
                 </Card>
               </Dialog>
+              {address.map((item) => (
+                <Radio
+                  value={address?.id}
+                  onChange={(e) => {
+                    setAdressId(e.target.value);
+                  }}
+                  color="blue"
+                  name="address"
+                  label={
+                    <div className="flex flex-col max-w-[20rem] gap-3 border border-blue-gray-200 hover:shadow-md rounded p-3 ">
+                      <div className="flex justify-between gap-32 border-b border-blue-gray-200">
+                        <p className="font-bold">Title: {item?.title}</p>{" "}
+                        <p>Phone: {item?.phone}</p>
+                      </div>
+                      <div className="flex justify-between">
+                        <div>
+                          <p>Address: {item?.address}</p>
+                          <p>City: {item?.city}</p>
+                        </div>
+                        <div>
+                          <button
+                            onClick={removeHandler}
+                            className="hover:text-red-600"
+                          >
+                            <FontAwesomeIcon size="lg" icon={faTrashCan} />
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  }
+                />
+              ))}
               <Radio
                 value={address[0]?.id}
                 onChange={(e) => {
@@ -285,7 +318,7 @@ const Order = () => {
                   </div>
                 }
               />
-              <Radio
+              {/* <Radio
                 value={1}
                 onChange={(e) => {
                   setAdressId(e.target.value);
@@ -302,7 +335,7 @@ const Order = () => {
                 color="blue"
                 name="address"
                 label={<p>2.address</p>}
-              />
+              /> */}
             </div>
           ) : (
             <></>
@@ -335,7 +368,7 @@ const Order = () => {
       <Header />
 
       <div className="flex gap-8 justify-center min-h-[500px]">
-        <div className="w-1/2">
+        <div className="w-3/5">
           <Tabs value="Address Information">
             <TabsHeader>
               {data.map(({ label, value }) => (
@@ -354,7 +387,7 @@ const Order = () => {
           </Tabs>
         </div>
 
-        <div className="flex flex-col items-center gap-4 w-3/12 max-w-96 max-h-80 rounded-lg shadow p-4">
+        <div className="flex flex-col items-center gap-4 w-3/12 max-w-80 max-h-80 rounded-lg shadow p-4">
           <p className="text-lg font-bold">Order Summary</p>
           <div className="flex w-full justify-between px-4">
             <p>Subtotal:</p>
