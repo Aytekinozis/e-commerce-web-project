@@ -27,6 +27,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleNotch } from "@fortawesome/free-solid-svg-icons";
 import { faTrashCan } from "@fortawesome/free-regular-svg-icons";
 import { API } from "../api/api";
+import { toast } from "react-toastify";
 
 const Order = () => {
   const {
@@ -67,13 +68,30 @@ const Order = () => {
   const deliveryFee = totalDeliveryFee === 0 ? "Free" : "$" + totalDeliveryFee;
 
   const onSubmit = (data) => {
+    API.post("/user/address", data)
+      .then((res) => {
+        console.log(res);
+        dispatch(getAddress());
+        toast.success("New address added!");
+      })
+      .catch((err) => {
+        toast.error(err.response.data.error);
+      });
     //const { passconfirm, ...postdata } = data;
     console.log(cities[0]);
     console.log(data);
   };
 
-  const removeHandler = () => {
-    API.delete(`/user/address/:${addressId}`);
+  const removeHandler = (id) => {
+    API.delete(`/user/address/${id}`)
+      .then((res) => {
+        console.log(res);
+        dispatch(getAddress());
+      })
+      .catch((err) => {
+        console.log(err);
+        toast.error(err.response.data.error);
+      });
   };
 
   const data = [
@@ -258,7 +276,7 @@ const Order = () => {
               </Dialog>
               {address.map((item) => (
                 <Radio
-                  value={address?.id}
+                  value={item?.id}
                   onChange={(e) => {
                     setAdressId(e.target.value);
                   }}
@@ -277,7 +295,7 @@ const Order = () => {
                         </div>
                         <div>
                           <button
-                            onClick={removeHandler}
+                            onClick={() => removeHandler(item.id)}
                             className="hover:text-red-600"
                           >
                             <FontAwesomeIcon size="lg" icon={faTrashCan} />
