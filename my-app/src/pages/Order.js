@@ -268,7 +268,7 @@ const Order = () => {
                       <p className="font-bold">Title: {address[0]?.title}</p>{" "}
                       <p>Phone: {address[0]?.phone}</p>
                     </div>
-                    <div>
+                    <div className="flex justify-between">
                       <div>
                         <p>Address: {address[0]?.address}</p>
                         <p>City: {address[0]?.city}</p>
