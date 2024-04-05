@@ -25,6 +25,7 @@ import { useEffect, useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleNotch } from "@fortawesome/free-solid-svg-icons";
+import { faTrashCan } from "@fortawesome/free-regular-svg-icons";
 
 const Order = () => {
   const {
@@ -70,6 +71,10 @@ const Order = () => {
     console.log(data);
   };
 
+  const removeHandler = () => {
+    //dispatch(removeProduct(product.product.id));
+  };
+
   const data = [
     {
       label: "Address Information",
@@ -80,7 +85,7 @@ const Order = () => {
             <div className="flex gap-4 flex-wrap justify-around items-center">
               <button
                 onClick={handleOpen}
-                className="w-2/5 h-1/2 bg-light-blue-600 font-bold text-white border border-blue-gray-200 hover:shadow-md  rounded-md p-3"
+                className="w-2/5 h-1/2 bg-[#2196f3] font-bold text-white border border-blue-gray-200 hover:shadow-md  rounded-md p-3"
               >
                 Add Adress
               </button>
@@ -264,8 +269,18 @@ const Order = () => {
                       <p>Phone: {address[0]?.phone}</p>
                     </div>
                     <div>
-                      <p>Address: {address[0]?.address}</p>
-                      <p>City: {address[0]?.city}</p>
+                      <div>
+                        <p>Address: {address[0]?.address}</p>
+                        <p>City: {address[0]?.city}</p>
+                      </div>
+                      <div>
+                        <button
+                          onClick={removeHandler}
+                          className="hover:text-red-600"
+                        >
+                          <FontAwesomeIcon size="lg" icon={faTrashCan} />
+                        </button>
+                      </div>
                     </div>
                   </div>
                 }
@@ -299,7 +314,7 @@ const Order = () => {
       label: "Payment Options",
       value: "Payment Options",
       desc: (
-        <div>
+        <div className="min-h-48">
           <p>burasi 1. yazi</p>
           <p>burasi 2. yazi</p>
         </div>
