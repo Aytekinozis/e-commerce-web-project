@@ -385,7 +385,7 @@ const Order = () => {
     <>
       <Header />
 
-      <div className="flex gap-8 justify-center min-h-[500px]">
+      <div className="flex gap-8 justify-center min-h-[500px] my-4">
         <div className="w-3/5">
           <Tabs value="Address Information">
             <TabsHeader>
