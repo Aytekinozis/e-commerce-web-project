@@ -356,7 +356,14 @@ const Order = () => {
               /> */}
             </div>
           ) : (
-            <></>
+            <>
+              <button
+                onClick={handleOpen}
+                className="w-2/5 h-1/2 bg-[#2196f3] font-bold text-white border border-blue-gray-200 hover:shadow-md  rounded-md p-3"
+              >
+                Add Adress
+              </button>
+            </>
           )}
         </div>
       ),
