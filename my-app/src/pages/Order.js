@@ -25,7 +25,7 @@ import { useEffect, useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleNotch } from "@fortawesome/free-solid-svg-icons";
-import { faTrashCan } from "@fortawesome/free-regular-svg-icons";
+import { faPenToSquare, faTrashCan } from "@fortawesome/free-regular-svg-icons";
 import { API } from "../api/api";
 import { toast } from "react-toastify";
 
@@ -36,18 +36,32 @@ const Order = () => {
     handleSubmit,
     getValues,
     watch,
+
     formState: { errors, isValid, isSubmitting },
   } = useForm({
     mode: "all",
-    defaultValues: {},
+    defaultValues: {
+      id: "",
+      title: "",
+      name: "",
+      surname: "",
+      phone: "",
+      city: "",
+      district: "",
+      neighborhood: "",
+      address: "",
+    },
   });
   const dispatch = useDispatch();
   const shoppingCart = useSelector((store) => store.shoppingCart.cart);
   const address = useSelector((store) => store.shoppingCart.address);
   const [addressId, setAdressId] = useState();
-  const [open, setOpen] = useState(false);
 
+  const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(!open);
+
+  const [openEdit, setOpenEdit] = useState(false);
+  const handleOpenEdit = () => setOpenEdit(!openEdit);
 
   const total = shoppingCart.reduce((total, item) => {
     if (item.checked) {
@@ -68,7 +82,9 @@ const Order = () => {
   const deliveryFee = totalDeliveryFee === 0 ? "Free" : "$" + totalDeliveryFee;
 
   const onSubmit = (data) => {
-    API.post("/user/address", data)
+    const { id, ...postData } = data;
+
+    API.post("/user/address", postData)
       .then((res) => {
         console.log(res);
         dispatch(getAddress());
@@ -79,6 +95,10 @@ const Order = () => {
       });
     //const { passconfirm, ...postdata } = data;
     console.log(cities[0]);
+    console.log(data);
+  };
+
+  const onEditSubmit = (data) => {
     console.log(data);
   };
 
@@ -331,6 +351,187 @@ const Order = () => {
                         >
                           <FontAwesomeIcon size="lg" icon={faTrashCan} />
                         </button>
+                        <button
+                          onClick={setOpenEdit}
+                          className="hover:text-red-600"
+                        >
+                          <FontAwesomeIcon icon={faPenToSquare} />
+                        </button>
+                        <Dialog
+                          open={openEdit}
+                          handler={handleOpenEdit}
+                          className="bg-transparent shadow-none"
+                        >
+                          <Card className="mx-auto max-w-[48rem]">
+                            <form onSubmit={handleSubmit(onEditSubmit)}>
+                              <CardBody className="flex flex-wrap flex-col gap-4 ">
+                                <input
+                                  {...register("deneme")}
+                                  className="border border-black"
+                                  defaultValue={address[0].title}
+                                />
+                                <Typography variant="h4" color="blue-gray">
+                                  Add Adress
+                                </Typography>
+
+                                <Typography className="-mb-2" variant="h6">
+                                  Address Title:
+                                </Typography>
+                                <Input
+                                  {...register("title", {
+                                    required:
+                                      "You Must Enter Your Address Title!",
+                                    minLength: {
+                                      value: 3,
+                                      message: "Minimum 3 Characters!",
+                                    },
+                                  })}
+                                  label="Address"
+                                  defaultValue={address[0].title}
+                                  size="sm"
+                                  className=""
+                                  error={errors.title}
+                                />
+                                {errors.title && (
+                                  <Typography
+                                    variant="small"
+                                    color="red"
+                                    className=" -mt-3 flex items-center  font-normal"
+                                  >
+                                    {errors.title?.message}
+                                  </Typography>
+                                )}
+                                <Typography className="-mb-2" variant="h6">
+                                  Name:
+                                </Typography>
+                                <Input
+                                  {...register("name", {
+                                    required: "You Must Enter Your Name!",
+                                    minLength: {
+                                      value: 3,
+                                      message: "Minimum 3 Characters!",
+                                    },
+                                  })}
+                                  label="Name"
+                                />
+                                <Typography className="-mb-2" variant="h6">
+                                  Surname:
+                                </Typography>
+                                <Input
+                                  {...register("surname", {
+                                    required: "You Must Enter Your Surname!",
+                                    minLength: {
+                                      value: 3,
+                                      message: "Minimum 3 Characters!",
+                                    },
+                                  })}
+                                  label="Surname"
+                                />
+                                <Typography className="-mb-2" variant="h6">
+                                  Phone:
+                                </Typography>
+                                <Input
+                                  {...register("phone", {
+                                    required: "You Must Enter Your Phone!",
+                                    pattern: {
+                                      value:
+                                        /^(\+90|0)?\s*(\(\d{3}\)[\s-]*\d{3}[\s-]*\d{2}[\s-]*\d{2}|\(\d{3}\)[\s-]*\d{3}[\s-]*\d{4}|\(\d{3}\)[\s-]*\d{7}|\d{3}[\s-]*\d{3}[\s-]*\d{4}|\d{3}[\s-]*\d{3}[\s-]*\d{2}[\s-]*\d{2})$/,
+                                      message:
+                                        "Please Enter A Valid Phone Number!",
+                                    },
+                                  })}
+                                  label="Phone"
+                                />
+                                <Typography className="-mb-2" variant="h6">
+                                  City:
+                                </Typography>
+                                <Controller
+                                  name="city"
+                                  control={control}
+                                  rules={{ required: true }}
+                                  //value={address[0]?.city}
+                                  render={({ field: { onChange, value } }) => (
+                                    <Select
+                                      label="city"
+                                      placeholder="Adana"
+                                      menuProps={{ className: "h-48" }}
+                                      value={value}
+                                      defaultValue={address[0].city}
+                                      onChange={onChange}
+                                    >
+                                      {cities.map((city) => (
+                                        <Option key={city} value={city}>
+                                          <div className="flex items-center gap-x-2">
+                                            {city}
+                                          </div>
+                                        </Option>
+                                      ))}
+                                    </Select>
+                                  )}
+                                ></Controller>
+
+                                <Typography className="-mb-2" variant="h6">
+                                  District:
+                                </Typography>
+                                <Input
+                                  {...register("district", {
+                                    required: "You Must Enter Your District!",
+                                    minLength: {
+                                      value: 3,
+                                      message: "Minimum 3 Characters!",
+                                    },
+                                  })}
+                                  label="District"
+                                />
+                                <Typography className="-mb-2" variant="h6">
+                                  Neighborhood:
+                                </Typography>
+                                <Input
+                                  {...register("neighborhood", {
+                                    required: "You Must Enter Your Surname!",
+                                    minLength: {
+                                      value: 3,
+                                      message: "Minimum 3 Characters!",
+                                    },
+                                  })}
+                                  label="Neighborhood"
+                                />
+                                <Typography className="-mb-2" variant="h6">
+                                  Address:
+                                </Typography>
+                                <Input
+                                  {...register("address", {
+                                    required: "You Must Enter Your Surname!",
+                                    minLength: {
+                                      value: 3,
+                                      message: "Minimum 3 Characters!",
+                                    },
+                                  })}
+                                  label="Address"
+                                />
+                              </CardBody>
+                              <CardFooter className="pt-0">
+                                <Button
+                                  disabled={!isValid || isSubmitting}
+                                  type="submit"
+                                  color="blue"
+                                  variant="gradient"
+                                  onClick={handleOpen}
+                                  fullWidth
+                                >
+                                  {isSubmitting && (
+                                    <FontAwesomeIcon
+                                      className="mr-2"
+                                      icon={faCircleNotch}
+                                      spin
+                                    />
+                                  )}
+                                  Add New Address
+                                </Button>
+                              </CardFooter>
+                            </form>
+                          </Card>
+                        </Dialog>
                       </div>
                     </div>
                   </div>
