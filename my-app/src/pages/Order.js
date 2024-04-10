@@ -34,6 +34,7 @@ const Order = () => {
     register,
     control,
     handleSubmit,
+    reset,
     getValues,
     watch,
 
@@ -58,10 +59,26 @@ const Order = () => {
   const [addressId, setAdressId] = useState();
 
   const [open, setOpen] = useState(false);
-  const handleOpen = () => setOpen(!open);
+  const handleOpen = () => {
+    reset();
+    setOpen(!open);
+  };
 
   const [openEdit, setOpenEdit] = useState(false);
-  const handleOpenEdit = () => setOpenEdit(!openEdit);
+  const handleOpenEdit = (address) => {
+    reset({
+      id: address.id,
+      title: address.title,
+      name: address.name,
+      surname: address.surname,
+      phone: address.phone,
+      city: address.city,
+      district: address.district,
+      neighborhood: address.neighborhood,
+      address: address.address,
+    });
+    setOpenEdit(!openEdit);
+  };
 
   const total = shoppingCart.reduce((total, item) => {
     if (item.checked) {
@@ -352,7 +369,7 @@ const Order = () => {
                           <FontAwesomeIcon size="lg" icon={faTrashCan} />
                         </button>
                         <button
-                          onClick={setOpenEdit}
+                          onClick={() => handleOpenEdit(address[0])}
                           className="hover:text-red-600"
                         >
                           <FontAwesomeIcon icon={faPenToSquare} />
@@ -365,11 +382,11 @@ const Order = () => {
                           <Card className="mx-auto max-w-[48rem]">
                             <form onSubmit={handleSubmit(onEditSubmit)}>
                               <CardBody className="flex flex-wrap flex-col gap-4 ">
-                                <input
+                                {/* <input
                                   {...register("deneme")}
                                   className="border border-black"
                                   defaultValue={address[0].title}
-                                />
+                                /> */}
                                 <Typography variant="h4" color="blue-gray">
                                   Add Adress
                                 </Typography>
@@ -413,7 +430,17 @@ const Order = () => {
                                     },
                                   })}
                                   label="Name"
+                                  error={errors.name}
                                 />
+                                {errors.title && (
+                                  <Typography
+                                    variant="small"
+                                    color="red"
+                                    className=" -mt-3 flex items-center  font-normal"
+                                  >
+                                    {errors.name?.message}
+                                  </Typography>
+                                )}
                                 <Typography className="-mb-2" variant="h6">
                                   Surname:
                                 </Typography>
@@ -426,6 +453,7 @@ const Order = () => {
                                     },
                                   })}
                                   label="Surname"
+                                  error={errors.surname}
                                 />
                                 <Typography className="-mb-2" variant="h6">
                                   Phone:
@@ -441,6 +469,7 @@ const Order = () => {
                                     },
                                   })}
                                   label="Phone"
+                                  error={errors.phone}
                                 />
                                 <Typography className="-mb-2" variant="h6">
                                   City:
@@ -449,15 +478,15 @@ const Order = () => {
                                   name="city"
                                   control={control}
                                   rules={{ required: true }}
-                                  //value={address[0]?.city}
                                   render={({ field: { onChange, value } }) => (
                                     <Select
                                       label="city"
                                       placeholder="Adana"
                                       menuProps={{ className: "h-48" }}
                                       value={value}
-                                      defaultValue={address[0].city}
+                                      //defaultValue={address[0].city}
                                       onChange={onChange}
+                                      error={errors.city}
                                     >
                                       {cities.map((city) => (
                                         <Option key={city} value={city}>
@@ -516,7 +545,7 @@ const Order = () => {
                                   type="submit"
                                   color="blue"
                                   variant="gradient"
-                                  onClick={handleOpen}
+                                  onClick={() => setOpenEdit(!openEdit)}
                                   fullWidth
                                 >
                                   {isSubmitting && (
@@ -526,7 +555,7 @@ const Order = () => {
                                       spin
                                     />
                                   )}
-                                  Add New Address
+                                  Change Address Info!
                                 </Button>
                               </CardFooter>
                             </form>
