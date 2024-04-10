@@ -361,7 +361,7 @@ const Order = () => {
                         <p>Address: {address[0]?.address}</p>
                         <p>City: {address[0]?.city}</p>
                       </div>
-                      <div>
+                      <div className="flex flex-col gap-1">
                         <button
                           onClick={removeHandler}
                           className="hover:text-red-600"
@@ -511,6 +511,7 @@ const Order = () => {
                                     },
                                   })}
                                   label="District"
+                                  error={errors.district}
                                 />
                                 <Typography className="-mb-2" variant="h6">
                                   Neighborhood:
@@ -524,6 +525,7 @@ const Order = () => {
                                     },
                                   })}
                                   label="Neighborhood"
+                                  error={errors.neighborhood}
                                 />
                                 <Typography className="-mb-2" variant="h6">
                                   Address:
@@ -537,6 +539,7 @@ const Order = () => {
                                     },
                                   })}
                                   label="Address"
+                                  error={errors.address}
                                 />
                               </CardBody>
                               <CardFooter className="pt-0">
