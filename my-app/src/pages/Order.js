@@ -330,12 +330,18 @@ const Order = () => {
                           <p>Address: {item?.address}</p>
                           <p>City: {item?.city}</p>
                         </div>
-                        <div>
+                        <div className="flex flex-col gap-1">
                           <button
                             onClick={() => removeHandler(item.id)}
                             className="hover:text-red-600"
                           >
                             <FontAwesomeIcon size="lg" icon={faTrashCan} />
+                          </button>
+                          <button
+                            onClick={() => handleOpenEdit(item)}
+                            className="hover:text-red-600"
+                          >
+                            <FontAwesomeIcon icon={faPenToSquare} />
                           </button>
                         </div>
                       </div>
@@ -363,7 +369,7 @@ const Order = () => {
                       </div>
                       <div className="flex flex-col gap-1">
                         <button
-                          onClick={removeHandler}
+                          //onClick={() => removeHandler(item?.id)}
                           className="hover:text-red-600"
                         >
                           <FontAwesomeIcon size="lg" icon={faTrashCan} />
