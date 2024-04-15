@@ -53,6 +53,17 @@ export const getAddress = () => (dispatch) => {
     });
 };
 
+export const getPayment = () => (dispatch) => {
+  API.get("/user/card")
+    .then((res) => {
+      console.log(res);
+      dispatch(setPayment(res.data));
+    })
+    .catch((err) => {
+      toast.error(err.response.data.message);
+    });
+};
+
 export const setChecked = (id, check) => {
   return {
     type: SET_CHECKED,
