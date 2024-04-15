@@ -100,7 +100,7 @@ const Order = () => {
 
   const onSubmit = (data) => {
     const { id, ...postData } = data;
-
+    console.log(postData);
     API.post("/user/address", postData)
       .then((res) => {
         console.log(res);
@@ -169,7 +169,7 @@ const Order = () => {
                           },
                         })}
                         label="Address"
-                        size="sm"
+                        size="md"
                         className=""
                         error={errors.title}
                       />
@@ -295,7 +295,7 @@ const Order = () => {
                         type="submit"
                         color="blue"
                         variant="gradient"
-                        onClick={handleOpen}
+                        onClick={() => setOpen(!open)}
                         fullWidth
                       >
                         {isSubmitting && (
@@ -380,6 +380,7 @@ const Order = () => {
                         >
                           <FontAwesomeIcon icon={faPenToSquare} />
                         </button>
+
                         <Dialog
                           open={openEdit}
                           handler={handleOpenEdit}
@@ -388,11 +389,6 @@ const Order = () => {
                           <Card className="mx-auto max-w-[48rem]">
                             <form onSubmit={handleSubmit(onEditSubmit)}>
                               <CardBody className="flex flex-wrap flex-col gap-4 ">
-                                {/* <input
-                                  {...register("deneme")}
-                                  className="border border-black"
-                                  defaultValue={address[0].title}
-                                /> */}
                                 <Typography variant="h4" color="blue-gray">
                                   Add Adress
                                 </Typography>
@@ -410,7 +406,7 @@ const Order = () => {
                                     },
                                   })}
                                   label="Address"
-                                  defaultValue={address[0].title}
+                                  //defaultValue={address[0].title}
                                   size="sm"
                                   className=""
                                   error={errors.title}
@@ -575,24 +571,6 @@ const Order = () => {
                   </div>
                 }
               />
-              {/* <Radio
-                value={1}
-                onChange={(e) => {
-                  setAdressId(e.target.value);
-                }}
-                color="blue"
-                name="address"
-                label={<p>1.address</p>}
-              />
-              <Radio
-                value={2}
-                onChange={(e) => {
-                  setAdressId(e.target.value);
-                }}
-                color="blue"
-                name="address"
-                label={<p>2.address</p>}
-              /> */}
             </div>
           ) : (
             <>
