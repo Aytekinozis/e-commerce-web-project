@@ -1,9 +1,16 @@
 import { faCircleNotch } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { CardFooter, Input } from "@material-tailwind/react";
+import {
+  Button,
+  Card,
+  CardBody,
+  CardFooter,
+  Input,
+  Typography,
+} from "@material-tailwind/react";
 import { Controller, useForm } from "react-hook-form";
 
-const CardForm = () => {
+const CardForm = ({ setOpenCard, openCard }) => {
   const {
     register,
     control,
@@ -23,6 +30,23 @@ const CardForm = () => {
       name_on_card: "",
     },
   });
+
+  const onSubmit = (data) => {
+    const { id, ...postData } = data;
+    console.log(postData);
+    /* API.post("/user/address", postData)
+      .then((res) => {
+        console.log(res);
+        dispatch(getAddress());
+        toast.success("New address added!");
+      })
+      .catch((err) => {
+        toast.error(err.response.data.error);
+      }); */
+    //const { passconfirm, ...postdata } = data;
+
+    console.log(data);
+  };
   return (
     <Card className="mx-auto max-w-[48rem]">
       <form onSubmit={handleSubmit(onSubmit)}>
@@ -96,30 +120,6 @@ const CardForm = () => {
             })}
             label="Phone"
           />
-          <Typography className="-mb-2" variant="h6">
-            City:
-          </Typography>
-          <Controller
-            name="city"
-            control={control}
-            rules={{ required: true }}
-            defaultValue=""
-            render={({ field: { onChange, value } }) => (
-              <Select
-                label="city"
-                placeholder="Adana"
-                menuProps={{ className: "h-48" }}
-                value={value}
-                onChange={onChange}
-              >
-                {cities.map((city) => (
-                  <Option key={city} value={city}>
-                    <div className="flex items-center gap-x-2">{city}</div>
-                  </Option>
-                ))}
-              </Select>
-            )}
-          ></Controller>
 
           <Typography className="-mb-2" variant="h6">
             District:
@@ -167,7 +167,7 @@ const CardForm = () => {
             type="submit"
             color="blue"
             variant="gradient"
-            onClick={() => setOpen(!open)}
+            onClick={() => setOpenCard(!openCard)}
             fullWidth
           >
             {isSubmitting && (
