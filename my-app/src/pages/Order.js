@@ -602,21 +602,23 @@ const Order = () => {
       value: "Payment Options",
       desc: (
         <div className="min-h-48">
-          <button
-            onClick={handleOpenCard}
-            className="w-2/5 h-1/2 bg-[#2196f3] font-bold text-white border border-blue-gray-200 hover:shadow-md  rounded-md p-3"
-          >
-            Add Card
-          </button>
-          <Dialog
-            open={openCard}
-            handler={handleOpenCard}
-            className="bg-transparent shadow-none"
-          >
-            <CardForm openCard={openCard} setOpenCard={setOpenCard} />
-          </Dialog>
-          <p>burasi 1. yazi</p>
-          <p>burasi 2. yazi</p>
+          <div className="flex gap-4 flex-wrap justify-around items-center">
+            <button
+              onClick={handleOpenCard}
+              className="w-2/5 h-1/2 bg-[#2196f3] font-bold text-white border border-blue-gray-200 hover:shadow-md  rounded-md p-3"
+            >
+              Add Card
+            </button>
+            <Dialog
+              open={openCard}
+              handler={handleOpenCard}
+              className="bg-transparent shadow-none"
+            >
+              <CardForm openCard={openCard} setOpenCard={setOpenCard} />
+            </Dialog>
+            <p>burasi 1. yazi</p>
+            <p>burasi 2. yazi</p>
+          </div>
         </div>
       ),
     },
