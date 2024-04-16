@@ -56,109 +56,72 @@ const CardForm = ({ setOpenCard, openCard }) => {
           </Typography>
 
           <Typography className="-mb-2" variant="h6">
-            Address Title:
+            Card No:
           </Typography>
           <Input
-            {...register("title", {
-              required: "You Must Enter Your Address Title!",
+            {...register("card_no", {
+              required: "You Must Enter Your Card No!",
               minLength: {
                 value: 3,
                 message: "Minimum 3 Characters!",
               },
             })}
-            label="Address"
+            label="Card No"
+            placeholder="0000 0000 0000 0000"
             size="md"
             className=""
-            error={errors.title}
+            error={errors.card_no}
           />
-          {errors.title && (
+          {errors.card_no && (
             <Typography
               variant="small"
               color="red"
               className=" -mt-3 flex items-center  font-normal"
             >
-              {errors.title?.message}
+              {errors.card_no?.message}
             </Typography>
           )}
           <Typography className="-mb-2" variant="h6">
-            Name:
+            Expire Month:
           </Typography>
           <Input
-            {...register("name", {
+            {...register("expire_month", {
+              required: "You Must Enter Expire Month!",
+              minLength: {
+                value: 2,
+                message: "Minimum 2 Characters!",
+              },
+            })}
+            label="Expire Month"
+            error={errors.expire_month}
+          />
+          <Typography className="-mb-2" variant="h6">
+            Expire Year:
+          </Typography>
+          <Input
+            {...register("expire_year", {
+              required: "You Must Enter Expire Year!",
+              minLength: {
+                value: 2,
+                message: "Minimum 2 Characters!",
+              },
+            })}
+            label="Expire Year"
+            error={errors.expire_year}
+          />
+          <Typography className="-mb-2" variant="h6">
+            Name On Card:
+          </Typography>
+          <Input
+            {...register("name_on_card", {
               required: "You Must Enter Your Name!",
               minLength: {
                 value: 3,
                 message: "Minimum 3 Characters!",
               },
             })}
-            label="Name"
-          />
-          <Typography className="-mb-2" variant="h6">
-            Surname:
-          </Typography>
-          <Input
-            {...register("surname", {
-              required: "You Must Enter Your Surname!",
-              minLength: {
-                value: 3,
-                message: "Minimum 3 Characters!",
-              },
-            })}
-            label="Surname"
-          />
-          <Typography className="-mb-2" variant="h6">
-            Phone:
-          </Typography>
-          <Input
-            {...register("phone", {
-              required: "You Must Enter Your Phone!",
-              pattern: {
-                value:
-                  /^(\+90|0)?\s*(\(\d{3}\)[\s-]*\d{3}[\s-]*\d{2}[\s-]*\d{2}|\(\d{3}\)[\s-]*\d{3}[\s-]*\d{4}|\(\d{3}\)[\s-]*\d{7}|\d{3}[\s-]*\d{3}[\s-]*\d{4}|\d{3}[\s-]*\d{3}[\s-]*\d{2}[\s-]*\d{2})$/,
-                message: "Please Enter A Valid Phone Number!",
-              },
-            })}
-            label="Phone"
-          />
-
-          <Typography className="-mb-2" variant="h6">
-            District:
-          </Typography>
-          <Input
-            {...register("district", {
-              required: "You Must Enter Your District!",
-              minLength: {
-                value: 3,
-                message: "Minimum 3 Characters!",
-              },
-            })}
-            label="District"
-          />
-          <Typography className="-mb-2" variant="h6">
-            Neighborhood:
-          </Typography>
-          <Input
-            {...register("neighborhood", {
-              required: "You Must Enter Your Surname!",
-              minLength: {
-                value: 3,
-                message: "Minimum 3 Characters!",
-              },
-            })}
-            label="Neighborhood"
-          />
-          <Typography className="-mb-2" variant="h6">
-            Address:
-          </Typography>
-          <Input
-            {...register("address", {
-              required: "You Must Enter Your Surname!",
-              minLength: {
-                value: 3,
-                message: "Minimum 3 Characters!",
-              },
-            })}
-            label="Address"
+            label="Name On Card"
+            error={errors.name_on_card}
           />
         </CardBody>
         <CardFooter className="pt-0">
