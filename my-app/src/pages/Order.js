@@ -28,6 +28,7 @@ import { faCircleNotch } from "@fortawesome/free-solid-svg-icons";
 import { faPenToSquare, faTrashCan } from "@fortawesome/free-regular-svg-icons";
 import { API } from "../api/api";
 import { toast } from "react-toastify";
+import CardForm from "../components/CardForm";
 
 const Order = () => {
   const {
@@ -57,7 +58,7 @@ const Order = () => {
   const shoppingCart = useSelector((store) => store.shoppingCart.cart);
   const address = useSelector((store) => store.shoppingCart.address);
   const [addressId, setAdressId] = useState();
-
+  const [cardId, setCardId] = useState();
   const [open, setOpen] = useState(false);
   const handleOpen = () => {
     reset();
@@ -78,6 +79,11 @@ const Order = () => {
       address: address.address,
     });
     setOpenEdit(!openEdit);
+  };
+
+  const [openCard, setOpenCard] = useState(false);
+  const handleOpenCard = () => {
+    setOpenCard(!openCard);
   };
 
   const total = shoppingCart.reduce((total, item) => {
@@ -541,7 +547,7 @@ const Order = () => {
                   </form>
                 </Card>
               </Dialog>
-              <Radio
+              {/* <Radio
                 value={address[0]?.id}
                 onChange={(e) => {
                   setAdressId(e.target.value);
@@ -576,7 +582,7 @@ const Order = () => {
                     </div>
                   </div>
                 }
-              />
+              /> */}
             </div>
           ) : (
             <>
@@ -596,6 +602,19 @@ const Order = () => {
       value: "Payment Options",
       desc: (
         <div className="min-h-48">
+          <button
+            onClick={handleOpenCard}
+            className="w-2/5 h-1/2 bg-[#2196f3] font-bold text-white border border-blue-gray-200 hover:shadow-md  rounded-md p-3"
+          >
+            Add Card
+          </button>
+          <Dialog
+            open={openCard}
+            handler={handleOpenCard}
+            className="bg-transparent shadow-none"
+          >
+            <CardForm openCard={openCard} setOpenCard={setOpenCard} />
+          </Dialog>
           <p>burasi 1. yazi</p>
           <p>burasi 2. yazi</p>
         </div>
