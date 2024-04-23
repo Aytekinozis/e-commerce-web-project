@@ -45,7 +45,7 @@ const CardForm = ({ setOpenCard, openCard }) => {
       }); */
     //const { passconfirm, ...postdata } = data;
 
-    console.log(data);
+    //console.log(data);
   };
   return (
     <Card className="mx-auto max-w-[48rem]">
@@ -61,9 +61,14 @@ const CardForm = ({ setOpenCard, openCard }) => {
           <Input
             {...register("card_no", {
               required: "You Must Enter Your Card No!",
+              pattern: {
+                value:
+                  /(?<!\d)\d{16}(?!\d)|(?<!\d[ _-])(?<!\d)\d{4}(?:[_ -]\d{4}){3}(?![_ -]?\d)/,
+                message: "Invalid Card Number",
+              },
               minLength: {
-                value: 3,
-                message: "Minimum 3 Characters!",
+                value: 16,
+                message: "Minimum 16 Characters!",
               },
             })}
             label="Card No"
