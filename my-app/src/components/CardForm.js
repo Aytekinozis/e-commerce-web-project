@@ -76,6 +76,7 @@ const CardForm = ({ setOpenCard, openCard }) => {
             size="md"
             className=""
             error={errors.card_no}
+            maxLength={16}
           />
           {errors.card_no && (
             <Typography
@@ -92,6 +93,11 @@ const CardForm = ({ setOpenCard, openCard }) => {
           <Input
             {...register("expire_month", {
               required: "You Must Enter Expire Month!",
+              pattern: {
+                value: /^[0-1][0-9]$/,
+                message: "Invalid month",
+              },
+              max: { value: 12, message: "Enter A Valid Month" },
               minLength: {
                 value: 2,
                 message: "Minimum 2 Characters!",
@@ -99,7 +105,17 @@ const CardForm = ({ setOpenCard, openCard }) => {
             })}
             label="Expire Month"
             error={errors.expire_month}
+            maxLength={2}
           />
+          {errors.expire_month && (
+            <Typography
+              variant="small"
+              color="red"
+              className=" -mt-3 flex items-center  font-normal"
+            >
+              {errors.expire_month?.message}
+            </Typography>
+          )}
           <Typography className="-mb-2" variant="h6">
             Expire Year:
           </Typography>
@@ -113,7 +129,17 @@ const CardForm = ({ setOpenCard, openCard }) => {
             })}
             label="Expire Year"
             error={errors.expire_year}
+            maxLength={4}
           />
+          {errors.expire_year && (
+            <Typography
+              variant="small"
+              color="red"
+              className=" -mt-3 flex items-center  font-normal"
+            >
+              {errors.expire_year?.message}
+            </Typography>
+          )}
           <Typography className="-mb-2" variant="h6">
             Name On Card:
           </Typography>
@@ -128,6 +154,15 @@ const CardForm = ({ setOpenCard, openCard }) => {
             label="Name On Card"
             error={errors.name_on_card}
           />
+          {errors.name_on_card && (
+            <Typography
+              variant="small"
+              color="red"
+              className=" -mt-3 flex items-center  font-normal"
+            >
+              {errors.name_on_card?.message}
+            </Typography>
+          )}
         </CardBody>
         <CardFooter className="pt-0">
           <Button
