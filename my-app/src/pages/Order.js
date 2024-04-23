@@ -57,6 +57,7 @@ const Order = () => {
   const dispatch = useDispatch();
   const shoppingCart = useSelector((store) => store.shoppingCart.cart);
   const address = useSelector((store) => store.shoppingCart.address);
+  const payment = useSelector((store) => store.shoppingCart.payment);
   const [addressId, setAdressId] = useState();
   const [cardId, setCardId] = useState();
   const [open, setOpen] = useState(false);
@@ -610,6 +611,94 @@ const Order = () => {
             >
               Add Card
             </button>
+            {payment.length > 0 ? (
+              payment.map((item) => (
+                <>
+                  <Radio
+                    value={item?.id}
+                    onChange={(e) => {
+                      setCardId(e.target.value);
+                    }}
+                    color="blue"
+                    name="payment"
+                    label={
+                      <div className="flex flex-col max-w-[20rem] gap-3 border border-blue-gray-200 hover:shadow-md rounded p-3 ">
+                        <div className="flex justify-between gap-32 border-b border-blue-gray-200">
+                          <p className="font-bold">Card No: {item?.card_no}</p>{" "}
+                        </div>
+                        <div className="flex justify-between">
+                          <div>
+                            <p>Name: {item?.name_on_card}</p>
+                            <p>Month: {item?.expire_month}</p>
+                            <p>Year: {item?.expire_year}</p>
+                          </div>
+                          <div className="flex flex-col gap-1">
+                            <button
+                              onClick={() => removeHandler(item.id)}
+                              className="hover:text-red-600"
+                            >
+                              <FontAwesomeIcon size="lg" icon={faTrashCan} />
+                            </button>
+                            <button
+                              onClick={() => handleOpenEdit(item)}
+                              className="hover:text-red-600"
+                            >
+                              <FontAwesomeIcon icon={faPenToSquare} />
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    }
+                  />
+                  <div class="w-80 h-48 m-auto bg-red-100 rounded-xl relative text-white shadow-2xl transition-transform transform hover:scale-110">
+                    <img
+                      class="relative object-cover w-full h-full rounded-xl"
+                      src="https://i.imgur.com/kGkSg1v.png"
+                    />
+
+                    <div class="w-full px-6 absolute top-4">
+                      <div class="flex justify-between">
+                        <div class="">
+                          <p class="font-light">Name</p>
+                          <p class="font-medium tracking-widest">
+                            {item?.name_on_card}
+                          </p>
+                        </div>
+                        <img
+                          class="w-14 h-14"
+                          src="https://i.imgur.com/bbPHJVe.png"
+                        />
+                      </div>
+                      <div class="pt-1">
+                        <p class="font-light">Card Number</p>
+                        <p class="font-medium tracking-more-wider">
+                          {item?.card_no}
+                        </p>
+                      </div>
+                      <div class="pt-6 pr-6">
+                        <div class="flex justify-between">
+                          <div class="">
+                            <p class="font-light text-xs">Expiry Date</p>
+                            <p class="font-medium tracking-wider text-sm">
+                              {item?.expire_month}/{item?.expire_year}
+                            </p>
+                          </div>
+
+                          <div class="">
+                            <p class="font-light text-xs">CVV</p>
+                            <p class="font-bold tracking-more-wider text-sm">
+                              ···
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </>
+              ))
+            ) : (
+              <></>
+            )}
             <Dialog
               open={openCard}
               handler={handleOpenCard}
@@ -617,8 +706,6 @@ const Order = () => {
             >
               <CardForm openCard={openCard} setOpenCard={setOpenCard} />
             </Dialog>
-            <p>burasi 1. yazi</p>
-            <p>burasi 2. yazi</p>
           </div>
         </div>
       ),
