@@ -122,9 +122,14 @@ const CardForm = ({ setOpenCard, openCard }) => {
           <Input
             {...register("expire_year", {
               required: "You Must Enter Expire Year!",
+              pattern: {
+                value: /^[2][0-9][0-9][0-9]$/,
+                message: "Invalid month",
+              },
+              //max: { value: 12, message: "Enter A Valid Month" },
               minLength: {
-                value: 2,
-                message: "Minimum 2 Characters!",
+                value: 4,
+                message: "Minimum 4 Characters!",
               },
             })}
             label="Expire Year"
