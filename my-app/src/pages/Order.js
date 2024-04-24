@@ -29,6 +29,7 @@ import { faPenToSquare, faTrashCan } from "@fortawesome/free-regular-svg-icons";
 import { API } from "../api/api";
 import { toast } from "react-toastify";
 import CardForm from "../components/CardForm";
+import CardEditForm from "../components/CardEditForm";
 
 const Order = () => {
   const {
@@ -85,6 +86,13 @@ const Order = () => {
   const [openCard, setOpenCard] = useState(false);
   const handleOpenCard = () => {
     setOpenCard(!openCard);
+  };
+
+  const [openEditCard, setOpenEditCard] = useState(false);
+  const [editingCard, setEditingCard] = useState();
+  const handleOpenEditCard = (card) => {
+    setOpenEditCard(!openEditCard);
+    setEditingCard(card);
   };
 
   const total = shoppingCart.reduce((total, item) => {
@@ -157,6 +165,19 @@ const Order = () => {
         toast.error(err.response.data.error);
       });
   };
+
+  useEffect(() => {
+    dispatch(getAddress());
+    dispatch(getPayment());
+  }, []);
+
+  useEffect(() => {
+    console.log(addressId);
+  }, [addressId]);
+
+  useEffect(() => {
+    console.log(cardId);
+  }, [cardId]);
 
   const data = [
     {
@@ -678,7 +699,7 @@ const Order = () => {
                                   />
                                 </button>
                                 <button
-                                  // onClick={() => handleOpenEdit(item)}
+                                  onClick={() => handleOpenEditCard(item)}
                                   className="hover:text-red-600"
                                 >
                                   <FontAwesomeIcon icon={faPenToSquare} />
@@ -702,20 +723,22 @@ const Order = () => {
             >
               <CardForm openCard={openCard} setOpenCard={setOpenCard} />
             </Dialog>
+            <Dialog
+              open={openEditCard}
+              handler={handleOpenEditCard}
+              className="bg-transparent shadow-none"
+            >
+              <CardEditForm
+                editingCard={editingCard}
+                openEditCard={openEditCard}
+                setOpenEditCard={setOpenEditCard}
+              />
+            </Dialog>
           </div>
         </div>
       ),
     },
   ];
-
-  useEffect(() => {
-    dispatch(getAddress());
-    dispatch(getPayment());
-  }, []);
-
-  useEffect(() => {
-    console.log(addressId);
-  }, [addressId]);
 
   return (
     <>
