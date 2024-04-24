@@ -659,7 +659,7 @@ const Order = () => {
                     <div class="w-full px-6 absolute top-4">
                       <div class="flex justify-between">
                         <div class="">
-                          <p class="font-light">Name</p>
+                          <p class="font-bold">Name</p>
                           <p class="font-medium tracking-widest">
                             {item?.name_on_card}
                           </p>
@@ -670,7 +670,7 @@ const Order = () => {
                         />
                       </div>
                       <div class="pt-1">
-                        <p class="font-light">Card Number</p>
+                        <p class="font-bold">Card Number</p>
                         <p class="font-medium tracking-more-wider">
                           {item?.card_no}
                         </p>
@@ -678,17 +678,25 @@ const Order = () => {
                       <div class="pt-6 pr-6">
                         <div class="flex justify-between">
                           <div class="">
-                            <p class="font-light text-xs">Expiry Date</p>
+                            <p class="font-bold text-xs">Expiry Date</p>
                             <p class="font-medium tracking-wider text-sm">
                               {item?.expire_month}/{item?.expire_year}
                             </p>
                           </div>
 
-                          <div class="">
-                            <p class="font-light text-xs">CVV</p>
-                            <p class="font-bold tracking-more-wider text-sm">
-                              ···
-                            </p>
+                          <div class="flex gap-2 -mr-4">
+                            <button
+                              //onClick={() => removeHandler(item.id)}
+                              className="hover:text-red-600"
+                            >
+                              <FontAwesomeIcon size="lg" icon={faTrashCan} />
+                            </button>
+                            <button
+                              // onClick={() => handleOpenEdit(item)}
+                              className="hover:text-red-600"
+                            >
+                              <FontAwesomeIcon icon={faPenToSquare} />
+                            </button>
                           </div>
                         </div>
                       </div>
