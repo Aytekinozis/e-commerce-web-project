@@ -59,8 +59,8 @@ const Order = () => {
   const shoppingCart = useSelector((store) => store.shoppingCart.cart);
   const address = useSelector((store) => store.shoppingCart.address);
   const payment = useSelector((store) => store.shoppingCart.payment);
-  const [addressId, setAdressId] = useState();
-  const [cardId, setCardId] = useState();
+  const [addressId, setAdressId] = useState(false);
+  const [cardId, setCardId] = useState(false);
   const [open, setOpen] = useState(false);
   const handleOpen = () => {
     reset();
@@ -95,8 +95,11 @@ const Order = () => {
     setEditingCard(card);
   };
 
+  const checkedProducts = [];
+
   const total = shoppingCart.reduce((total, item) => {
     if (item.checked) {
+      checkedProducts.push(item);
       return total + item.count * item.product.price;
     } else {
       return total + 0;
@@ -165,6 +168,26 @@ const Order = () => {
         toast.error(err.response.data.error);
       });
   };
+  const [selectedCard, setSelectedCard] = useState();
+  const order = {
+    address_id: addressId,
+    order_date: new Date().toJSON(),
+    card_no: selectedCard?.card_no,
+    card_name: selectedCard?.name_on_card,
+    card_expire_month: selectedCard?.expire_month,
+    card_expire_year: selectedCard?.expire_year,
+    card_ccv: 321,
+    price: total + totalDeliveryFee,
+    products: checkedProducts,
+  };
+
+  const createOrderHandler = () => {
+    console.log(order);
+
+    if (addressId != false && cardId != false && checkedProducts.length > 0) {
+      console.log("Valid order:" + order);
+    }
+  };
 
   useEffect(() => {
     dispatch(getAddress());
@@ -177,6 +200,9 @@ const Order = () => {
 
   useEffect(() => {
     console.log(cardId);
+    console.log(payment);
+    setSelectedCard(payment.find((item) => item.id == cardId));
+    console.log(payment.find((item) => item.id == cardId));
   }, [cardId]);
 
   const data = [
@@ -778,7 +804,9 @@ const Order = () => {
             <p>Total: </p>
             <p>${(total + totalDeliveryFee).toFixed(2)}</p>
           </div>
-          <Button color="blue">Create Order</Button>
+          <Button onClick={createOrderHandler} color="blue">
+            Create Order
+          </Button>
         </div>
       </div>
       <Footer />
