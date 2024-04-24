@@ -129,7 +129,7 @@ const CardForm = ({ setOpenCard, openCard }) => {
               required: "You Must Enter Expire Year!",
               pattern: {
                 value: /^[2][0-9][0-9][0-9]$/,
-                message: "Invalid month",
+                message: "Invalid Year",
               },
               //max: { value: 12, message: "Enter A Valid Month" },
               minLength: {
@@ -186,7 +186,7 @@ const CardForm = ({ setOpenCard, openCard }) => {
             {isSubmitting && (
               <FontAwesomeIcon className="mr-2" icon={faCircleNotch} spin />
             )}
-            Add New Address
+            Add New Card
           </Button>
         </CardFooter>
       </form>
