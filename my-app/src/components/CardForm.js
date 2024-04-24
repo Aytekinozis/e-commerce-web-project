@@ -9,6 +9,10 @@ import {
   Typography,
 } from "@material-tailwind/react";
 import { Controller, useForm } from "react-hook-form";
+import { getPayment } from "../store/actions/shoppingCartActions";
+import { API } from "../api/api";
+import { toast } from "react-toastify";
+import { useDispatch } from "react-redux";
 
 const CardForm = ({ setOpenCard, openCard }) => {
   const {
@@ -31,19 +35,20 @@ const CardForm = ({ setOpenCard, openCard }) => {
     },
   });
 
+  const dispatch = useDispatch();
+
   const onSubmit = (data) => {
     const { id, ...postData } = data;
     console.log(postData);
-    /* API.post("/user/address", postData)
+    API.post("/user/card", postData)
       .then((res) => {
         console.log(res);
-        dispatch(getAddress());
-        toast.success("New address added!");
+        dispatch(getPayment());
+        toast.success("New Payment Card added!");
       })
       .catch((err) => {
         toast.error(err.response.data.error);
-      }); */
-    //const { passconfirm, ...postdata } = data;
+      });
 
     //console.log(data);
   };
