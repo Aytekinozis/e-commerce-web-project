@@ -685,7 +685,7 @@ const Order = () => {
                     color="blue"
                     name="payment"
                     label={
-                      <div class="w-80 h-48 m-auto bg-red-100 rounded-xl relative text-white shadow-xl transition-transform transform hover:scale-105">
+                      <div class="w-80 h-48 m-auto bg-red-100 rounded-xl relative text-white shadow-md transition-transform transform hover:scale-105">
                         <img
                           class="relative object-cover w-full h-full rounded-xl"
                           src="https://i.imgur.com/kGkSg1v.png"
