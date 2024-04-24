@@ -181,12 +181,17 @@ const Order = () => {
     products: checkedProducts,
   };
 
+  const [orderCreating, setOrderCreating] = useState(false);
+  let orderValid =
+    addressId != false && cardId != false && checkedProducts.length > 0;
   const createOrderHandler = () => {
+    setOrderCreating(true);
     console.log(order);
 
-    if (addressId != false && cardId != false && checkedProducts.length > 0) {
+    if (orderValid) {
       console.log("Valid order:" + order);
     }
+    setOrderCreating(false);
   };
 
   useEffect(() => {
@@ -804,7 +809,11 @@ const Order = () => {
             <p>Total: </p>
             <p>${(total + totalDeliveryFee).toFixed(2)}</p>
           </div>
-          <Button onClick={createOrderHandler} color="blue">
+          <Button
+            disabled={!orderValid || orderCreating}
+            onClick={createOrderHandler}
+            color="blue"
+          >
             Create Order
           </Button>
         </div>
