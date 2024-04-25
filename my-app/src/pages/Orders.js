@@ -50,7 +50,7 @@ const Orders = () => {
                           </div>
                         ))}
                         <div></div>
-                        <p>Toplam: {item.price}</p>
+                        <p>Total: {item.price}</p>
                       </>
                     ) : (
                       <></>
