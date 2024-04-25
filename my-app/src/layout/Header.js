@@ -52,6 +52,7 @@ const Header = () => {
   const shoppingCart = useSelector((store) => store.shoppingCart.cart);
   const [open, setOpen] = useState(false);
   const [openMenu, setOpenMenu] = useState(false);
+  const [openUserMenu, setOpenUserMenu] = useState(false);
   const [openErkekNestedMenu, setOpenErkekNestedMenu] = useState(false);
   const [openKadinNestedMenu, setOpenKadinNestedMenu] = useState(false);
 
@@ -246,12 +247,35 @@ const Header = () => {
                         src={`https://gravatar.com/avatar/${hash}`}
                       ></img>
                       <a>{userData.name}</a>
-                      <button
-                        onClick={handleOpen}
-                        className="ml-2 hover:text-red-600"
+                      <Menu
+                        open={openUserMenu}
+                        handler={setOpenUserMenu}
+                        allowHover
                       >
-                        <FontAwesomeIcon icon={faRightFromBracket} />
-                      </button>
+                        <MenuHandler>
+                          <FontAwesomeIcon
+                            className={`h-3.5 w-3.5 hover:cursor-pointer transition-transform ${
+                              openUserMenu ? "rotate-180" : ""
+                            }`}
+                            icon={faChevronDown}
+                          />
+                        </MenuHandler>
+                        <MenuList>
+                          <MenuItem>
+                            <Link to="/orders">Previous Orders</Link>
+                          </MenuItem>
+                          <MenuItem>
+                            <button
+                              onClick={handleOpen}
+                              className="flex gap-3 hover:text-red-600"
+                            >
+                              Log Out
+                              <FontAwesomeIcon icon={faRightFromBracket} />
+                            </button>
+                          </MenuItem>
+                        </MenuList>
+                      </Menu>
+
                       <Dialog
                         open={open}
                         className="w-sm"
