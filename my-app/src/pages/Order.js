@@ -180,7 +180,14 @@ const Order = () => {
     card_expire_year: selectedCard?.expire_year,
     card_ccv: 321,
     price: total + totalDeliveryFee,
-    products: checkedProducts,
+    products: checkedProducts.map((product) => {
+      const productObj = {
+        product_id: Number(product.product.id),
+        count: Number(product.count),
+        detail: product.product.description,
+      };
+      return productObj;
+    }),
   };
 
   const [orderCreating, setOrderCreating] = useState(false);
@@ -192,7 +199,7 @@ const Order = () => {
     if (orderValid) {
       setOrderCreating(true);
       console.log("Valid order:" + order);
-      API.post("/order")
+      API.post("/order", order)
         .then((res) => {
           console.log(res);
           toast.success("Your order has been received!");
