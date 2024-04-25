@@ -10,8 +10,8 @@ const Orders = () => {
   useEffect(() => {
     API.get("/order")
       .then((res) => {
-        console.log(res);
-        setOrders(res);
+        console.log(res.data);
+        setOrders(res.data);
       })
       .catch((err) => {
         console.log(err);
@@ -21,7 +21,20 @@ const Orders = () => {
   return (
     <>
       <Header />
-      <div></div>
+
+      {orders.length > 0 ? (
+        <>
+          {orders.map((item) => {
+            "urun";
+          })}
+        </>
+      ) : (
+        <>
+          <h3 className="text-center text-4xl font-bold my-32">
+            You Have No Previous Orders
+          </h3>
+        </>
+      )}
       <Footer />
     </>
   );
