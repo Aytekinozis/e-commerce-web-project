@@ -1,6 +1,6 @@
 const initialState = {
   cart: [],
-  payment: {},
+  payment: [],
   address: {},
 };
 
