@@ -30,6 +30,7 @@ import { API } from "../api/api";
 import { toast } from "react-toastify";
 import CardForm from "../components/CardForm";
 import CardEditForm from "../components/CardEditForm";
+import { useHistory } from "react-router";
 
 const Order = () => {
   const {
@@ -55,6 +56,7 @@ const Order = () => {
       address: "",
     },
   });
+  const history = useHistory();
   const dispatch = useDispatch();
   const shoppingCart = useSelector((store) => store.shoppingCart.cart);
   const address = useSelector((store) => store.shoppingCart.address);
@@ -185,13 +187,24 @@ const Order = () => {
   let orderValid =
     addressId != false && cardId != false && checkedProducts.length > 0;
   const createOrderHandler = () => {
-    setOrderCreating(true);
     console.log(order);
 
     if (orderValid) {
+      setOrderCreating(true);
       console.log("Valid order:" + order);
+      API.post("/order")
+        .then((res) => {
+          console.log(res);
+          toast.success("Your order has been received!");
+          setOrderCreating(false);
+          history.push("/orders");
+        })
+        .catch((err) => {
+          console.log(err);
+          toast.error(err.message);
+          setOrderCreating(false);
+        });
     }
-    setOrderCreating(false);
   };
 
   useEffect(() => {
@@ -395,7 +408,7 @@ const Order = () => {
                 <Radio
                   value={item?.id}
                   onChange={(e) => {
-                    setAdressId(e.target.value);
+                    setAdressId(Number.parseInt(e.target.value));
                   }}
                   color="blue"
                   name="address"
