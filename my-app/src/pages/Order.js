@@ -20,7 +20,11 @@ import cities from "../components/cities";
 import Footer from "../layout/Footer";
 import Header from "../layout/Header";
 import { useDispatch, useSelector } from "react-redux";
-import { getAddress, getPayment } from "../store/actions/shoppingCartActions";
+import {
+  cartReset,
+  getAddress,
+  getPayment,
+} from "../store/actions/shoppingCartActions";
 import { useEffect, useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -204,6 +208,7 @@ const Order = () => {
           console.log(res);
           toast.success("Your order has been received!");
           setOrderCreating(false);
+          dispatch(cartReset());
           history.push("/orders");
         })
         .catch((err) => {
