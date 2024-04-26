@@ -1,6 +1,7 @@
 import { toast } from "react-toastify";
 import {
   REMOVE_PRODUCT,
+  RESET_CART,
   SET_ADDRESS,
   SET_CART,
   SET_CHECKED,
@@ -39,6 +40,12 @@ export const countDownProduct = (productId) => {
   return {
     type: SET_DOWN_COUNT,
     payload: productId,
+  };
+};
+
+export const cartReset = () => {
+  return {
+    type: RESET_CART,
   };
 };
 
