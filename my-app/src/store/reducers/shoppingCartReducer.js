@@ -10,6 +10,7 @@ export const SET_ADDRESS = "SET_ADDRESS";
 export const REMOVE_PRODUCT = "REMOVE_PRODUCT";
 export const SET_CHECKED = "SET_CHECKED";
 export const SET_DOWN_COUNT = "SET_DOWN_COUNT";
+export const RESET_CART = "RESET_CART";
 
 export const shoppingCartReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -64,6 +65,11 @@ export const shoppingCartReducer = (state = initialState, action) => {
       return {
         ...state,
         cart: newCart,
+      };
+    case RESET_CART:
+      return {
+        ...state,
+        cart: [],
       };
 
     case SET_PAYMENT:
