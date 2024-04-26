@@ -36,7 +36,7 @@ const Orders = () => {
           {orders.length > 0 ? (
             <>
               {orders.map((item) => (
-                <Accordion open={open === item.id}>
+                <Accordion className="my-5" open={open === item.id}>
                   <AccordionHeader onClick={() => handleOpen(item.id)}>
                     Order ID:{item.id}
                   </AccordionHeader>
@@ -53,7 +53,9 @@ const Orders = () => {
                         <p>Total: {item.price}</p>
                       </>
                     ) : (
-                      <></>
+                      <>
+                        <p>You Dont Have Any Previous Orders</p>
+                      </>
                     )}
                   </AccordionBody>
                 </Accordion>
