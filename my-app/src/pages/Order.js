@@ -197,6 +197,7 @@ const Order = () => {
   const [orderCreating, setOrderCreating] = useState(false);
   let orderValid =
     addressId != false && cardId != false && checkedProducts.length > 0;
+
   const createOrderHandler = () => {
     console.log(order);
 
@@ -209,7 +210,7 @@ const Order = () => {
           toast.success("Your order has been received!");
           setOrderCreating(false);
           dispatch(cartReset());
-          history.push("/orders");
+          history.push("/success");
         })
         .catch((err) => {
           console.log(err);
