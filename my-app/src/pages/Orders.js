@@ -7,6 +7,10 @@ import {
   Accordion,
   AccordionBody,
   AccordionHeader,
+  Card,
+  CardBody,
+  CardHeader,
+  Typography,
 } from "@material-tailwind/react";
 
 const Orders = () => {
@@ -19,6 +23,7 @@ const Orders = () => {
       .then((res) => {
         console.log(res.data);
         setOrders(res.data);
+        setOpen(res.data[0].id);
       })
       .catch((err) => {
         console.log(err);
@@ -35,22 +40,68 @@ const Orders = () => {
         <div className=" w-3/5">
           {orders.length > 0 ? (
             <>
-              {orders.map((item) => (
-                <Accordion className="my-5" open={open === item.id}>
-                  <AccordionHeader onClick={() => handleOpen(item.id)}>
-                    Order ID:{item.id}
+              {orders.map((order) => (
+                <Accordion className="my-5" open={open === order.id}>
+                  <AccordionHeader onClick={() => handleOpen(order.id)}>
+                    Order ID:{order.id}
                   </AccordionHeader>
                   <AccordionBody>
-                    {item.products.length > 0 ? (
+                    <p className="text-center text-2xl font-bold">
+                      Total Price: $
+                      <span className="underline">
+                        {order.price.toFixed(2)}
+                      </span>
+                    </p>
+                    {order.products.length > 0 ? (
                       <>
-                        {item.products.map((product) => (
-                          <div>
-                            <p>{product.name}</p>
-                            <p>{product.price}</p>
+                        {order.products.map((product) => (
+                          <div className="flex flex-col items-center my-4 gap-8">
+                            <Card className="w-full max-h-48 max-w-[48rem] flex-row">
+                              <CardHeader
+                                shadow={false}
+                                floated={false}
+                                className="m-0 w-2/5 shrink-0 rounded-r-none"
+                              >
+                                <img
+                                  src={product.images[0].url}
+                                  alt="card-image"
+                                  className="h-full w-full object-cover"
+                                />
+                              </CardHeader>
+                              <CardBody>
+                                <Typography
+                                  variant="h6"
+                                  color="gray"
+                                  className="mb-4"
+                                >
+                                  Count: {product.count}
+                                </Typography>
+                                <Typography
+                                  variant="h4"
+                                  color="blue-gray"
+                                  className="mb-2"
+                                >
+                                  {product.name}
+                                </Typography>
+                                <Typography
+                                  color="gray"
+                                  className="mb-2 font-normal"
+                                >
+                                  {product.description}
+                                </Typography>
+                                <Typography
+                                  color="gray"
+                                  className="font-normal"
+                                >
+                                  Price: $
+                                  <span className="underline">
+                                    {product.price.toFixed(2)}
+                                  </span>
+                                </Typography>
+                              </CardBody>
+                            </Card>
                           </div>
                         ))}
-                        <div></div>
-                        <p>Total: {item.price}</p>
                       </>
                     ) : (
                       <>
