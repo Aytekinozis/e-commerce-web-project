@@ -22,6 +22,7 @@ import Cart from "./pages/Cart";
 import { ProtectedPage } from "./components/ProtectedPage";
 import Order from "./pages/Order";
 import Orders from "./pages/Orders";
+import Success from "./pages/Success";
 
 function App() {
   const dispatch = useDispatch();
@@ -77,6 +78,11 @@ function App() {
         <Route path="/orders">
           <ProtectedPage>
             <Orders />
+          </ProtectedPage>
+        </Route>
+        <Route path="/success">
+          <ProtectedPage>
+            <Success />
           </ProtectedPage>
         </Route>
       </Switch>
