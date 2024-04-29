@@ -409,10 +409,10 @@ const Order = () => {
             </Card>
           </Dialog>
           {address.length > 0 ? (
-            <div className="flex gap-4 flex-wrap justify-around items-center">
+            <div className="flex mx-4 gap-4 flex-wrap justify-between items-center">
               <button
                 onClick={handleOpen}
-                className="w-2/5 h-1/2 bg-[#2196f3] font-bold text-white border border-blue-gray-200 hover:shadow-md  rounded-md p-3"
+                className="w-2/5 h-1/2 ml-10 bg-[#2196f3] font-bold text-white border border-blue-gray-200 hover:shadow-md  rounded-md p-3"
               >
                 Add Adress
               </button>
@@ -840,6 +840,9 @@ const Order = () => {
             onClick={createOrderHandler}
             color="blue"
           >
+            {orderCreating && (
+              <FontAwesomeIcon className="mr-2" icon={faCircleNotch} spin />
+            )}
             Create Order
           </Button>
         </div>
