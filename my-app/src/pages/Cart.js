@@ -58,7 +58,7 @@ const Cart = () => {
               <p>Shopping Cart Is Empty</p>
             )}
           </div>
-          <div className="flex flex-col items-center mt-4 gap-4 w-3/12 max-w-96 max-h-96 rounded-lg shadow p-4">
+          <div className="flex flex-col items-center justify-center mt-4 gap-4 w-3/12 max-w-96 max-h-96 rounded-lg shadow p-4">
             <p className="text-lg font-bold">Order Summary</p>
             <div className="flex w-full justify-between px-4">
               <p>Subtotal:</p>
