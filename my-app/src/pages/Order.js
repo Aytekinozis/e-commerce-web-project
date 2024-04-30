@@ -693,10 +693,10 @@ const Order = () => {
       value: "Payment Options",
       desc: (
         <div className="min-h-48">
-          <div className="flex gap-4 flex-wrap justify-around items-center">
+          <div className="flex gap-4 mx-4 flex-wrap justify-between items-center">
             <button
               onClick={handleOpenCard}
-              className="w-2/5 h-1/2 bg-[#2196f3] font-bold text-white border border-blue-gray-200 hover:shadow-md  rounded-md p-3"
+              className="w-2/5 h-1/2 ml-10 bg-[#2196f3] font-bold text-white border border-blue-gray-200 hover:shadow-md  rounded-md p-3"
             >
               Add Card
             </button>
