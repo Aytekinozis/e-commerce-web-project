@@ -821,7 +821,7 @@ const Order = () => {
           </Tabs>
         </div>
 
-        <div className="flex flex-col items-center gap-4 w-3/12 max-w-80 max-h-80 rounded-lg shadow p-4">
+        <div className="flex flex-col items-center justify-center gap-4 w-3/12 max-w-80 max-h-80 rounded-lg shadow p-4">
           <p className="text-lg font-bold">Order Summary</p>
           <div className="flex w-full justify-between px-4">
             <p>Subtotal:</p>
@@ -845,6 +845,11 @@ const Order = () => {
             )}
             Create Order
           </Button>
+          {!orderValid && (
+            <p className="text-red-700 pb-4 px-4 text-center">
+              At least one address and credit card should be selected!
+            </p>
+          )}
         </div>
       </div>
       <Footer />
