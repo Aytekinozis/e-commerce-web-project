@@ -753,7 +753,7 @@ const Order = () => {
                               <div class="flex gap-2 -mr-4">
                                 <button
                                   onClick={() => removeCardHandler(item.id)}
-                                  className="hover:text-red-600"
+                                  className="px-2 border-blue-gray-200 hover:bg-blue-700 hover:text-red-600 bg-[#60a5fa] border rounded"
                                 >
                                   <FontAwesomeIcon
                                     size="lg"
@@ -762,7 +762,7 @@ const Order = () => {
                                 </button>
                                 <button
                                   onClick={() => handleOpenEditCard(item)}
-                                  className="hover:text-red-600"
+                                  className="px-2 border-blue-gray-200 bg-[#60a5fa] border rounded hover:bg-blue-700 hover:text-red-600"
                                 >
                                   <FontAwesomeIcon icon={faPenToSquare} />
                                 </button>
