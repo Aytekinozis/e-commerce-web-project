@@ -805,16 +805,14 @@ const Order = () => {
   return (
     <>
       <Header />
-      <div className="flex font-montserrat gap-[1rem] pl-48 sm:pl-0 sm:justify-center py-[2rem] items-center bg-[#FAFAFA]">
-        <Link className="font-[500] text-[1.6rem]" to="/cart">
-          Cart
-        </Link>
-        <FontAwesomeIcon
-          className="text-[#BDBDBD] text-[1.6rem] font-[500]"
-          icon={faChevronLeft}
-        />
-        <Link className="text-[1.6rem] font-[500] text-[#BDBDBD]" to="/order">
-          Complete Order
+      <div className="flex font-montserrat gap-[1rem] pl-36 sm:pl-0 sm:justify-center py-[2rem] items-center ">
+        <Link className="text-[1.6rem] font-[500] text-[#BDBDBD]" to="/cart">
+          <FontAwesomeIcon
+            className="text-[#BDBDBD] text-[1.6rem] font-[500]"
+            icon={faChevronLeft}
+          />
+          {"  "}
+          Back To Cart
         </Link>
       </div>
 
