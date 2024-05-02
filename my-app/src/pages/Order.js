@@ -414,10 +414,10 @@ const Order = () => {
             </Card>
           </Dialog>
           {address.length > 0 ? (
-            <div className="flex mx-4 gap-4 flex-wrap justify-between items-center">
+            <div className="flex sm:border-b-4 sm:pb-20 mx-4 gap-4 flex-wrap justify-between sm:justify-center items-center">
               <button
                 onClick={handleOpen}
-                className="w-2/5 h-1/2 ml-10 bg-[#2196f3] font-bold text-white border border-blue-gray-200 hover:shadow-md  rounded-md p-3"
+                className="w-2/5 sm:w-3/5 h-1/2 ml-10 bg-[#2196f3] font-bold text-white border border-blue-gray-200 hover:shadow-md  rounded-md p-3"
               >
                 Add Adress
               </button>
@@ -698,7 +698,7 @@ const Order = () => {
       value: "Payment Options",
       desc: (
         <div className="min-h-48">
-          <div className="flex gap-4 mx-4 flex-wrap justify-between items-center">
+          <div className="flex gap-4 mx-4 sm:justify-center sm:mx-0 flex-wrap justify-between items-center">
             <button
               onClick={handleOpenCard}
               className="w-2/5 h-1/2 ml-10 bg-[#2196f3] font-bold text-white border border-blue-gray-200 hover:shadow-md  rounded-md p-3"
@@ -716,7 +716,7 @@ const Order = () => {
                     color="blue"
                     name="payment"
                     label={
-                      <div class="w-80 h-48 m-auto bg-red-100 rounded-xl relative text-white shadow-md transition-transform transform hover:scale-105">
+                      <div class="w-80 sm:w-72 h-48 m-auto bg-red-100 rounded-xl relative text-white shadow-md transition-transform transform hover:scale-105">
                         <img
                           class="relative object-cover w-full h-full rounded-xl"
                           src="https://i.imgur.com/kGkSg1v.png"
@@ -816,12 +816,16 @@ const Order = () => {
         </Link>
       </div>
 
-      <div className="flex gap-8 justify-center min-h-[500px] my-4">
-        <div className="w-3/5">
+      <div className="flex sm:flex-col sm:items-center gap-8 justify-center min-h-[500px] my-4">
+        <div className="w-3/5 sm:w-4/5">
           <Tabs value="Address Information">
             <TabsHeader>
               {data.map(({ label, value }) => (
-                <Tab key={value} value={value}>
+                <Tab
+                  className="sm: text-center sm:font-bold sm:text-lg"
+                  key={value}
+                  value={value}
+                >
                   {label}
                 </Tab>
               ))}
@@ -836,7 +840,7 @@ const Order = () => {
           </Tabs>
         </div>
 
-        <div className="flex flex-col items-center justify-center gap-4 w-3/12 max-w-80 max-h-80 rounded-lg shadow p-4">
+        <div className="flex flex-col items-center justify-center gap-4 w-3/12 sm:w-4/5 max-w-80 max-h-80 rounded-lg shadow p-4">
           <p className="text-lg font-bold">Order Summary</p>
           <div className="flex w-full justify-between px-4">
             <p>Subtotal:</p>
