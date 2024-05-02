@@ -28,13 +28,18 @@ import {
 import { useEffect, useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCircleNotch } from "@fortawesome/free-solid-svg-icons";
+import {
+  faChevronLeft,
+  faChevronRight,
+  faCircleNotch,
+} from "@fortawesome/free-solid-svg-icons";
 import { faPenToSquare, faTrashCan } from "@fortawesome/free-regular-svg-icons";
 import { API } from "../api/api";
 import { toast } from "react-toastify";
 import CardForm from "../components/CardForm";
 import CardEditForm from "../components/CardEditForm";
 import { useHistory } from "react-router";
+import { Link } from "react-router-dom/cjs/react-router-dom.min";
 
 const Order = () => {
   const {
@@ -800,6 +805,18 @@ const Order = () => {
   return (
     <>
       <Header />
+      <div className="flex font-montserrat gap-[1rem] pl-48 sm:pl-0 sm:justify-center py-[2rem] items-center bg-[#FAFAFA]">
+        <Link className="font-[500] text-[1.6rem]" to="/cart">
+          Cart
+        </Link>
+        <FontAwesomeIcon
+          className="text-[#BDBDBD] text-[1.6rem] font-[500]"
+          icon={faChevronLeft}
+        />
+        <Link className="text-[1.6rem] font-[500] text-[#BDBDBD]" to="/order">
+          Complete Order
+        </Link>
+      </div>
 
       <div className="flex gap-8 justify-center min-h-[500px] my-4">
         <div className="w-3/5">
