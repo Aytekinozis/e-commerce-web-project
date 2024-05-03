@@ -5,6 +5,9 @@ import {
   CardFooter,
   Checkbox,
   Dialog,
+  DialogBody,
+  DialogFooter,
+  DialogHeader,
   Input,
   Option,
   Radio,
@@ -178,6 +181,7 @@ const Order = () => {
         console.log(err);
         toast.error(err.response.data.error);
       });
+    handleCardDelOpen();
   };
   const [selectedCard, setSelectedCard] = useState();
   const order = {
@@ -200,8 +204,8 @@ const Order = () => {
   };
   //------delete pop up section----------------
 
-  const [openCardDel, useOpenCardDel] = useState(false);
-  const handleCardDelOpen = () => useOpenCardDel(!openCardDel);
+  const [openCardDel, setOpenCardDel] = useState(false);
+  const handleCardDelOpen = () => setOpenCardDel(!openCardDel);
 
   const [orderCreating, setOrderCreating] = useState(false);
   let orderValid =
@@ -756,7 +760,7 @@ const Order = () => {
 
                               <div class="flex gap-2 -mr-4">
                                 <button
-                                  onClick={() => removeCardHandler(item.id)}
+                                  onClick={handleCardDelOpen}
                                   className="px-2 border-blue-gray-200 hover:bg-blue-700 hover:text-red-600 bg-[#60a5fa] border rounded"
                                 >
                                   <FontAwesomeIcon
