@@ -198,6 +198,10 @@ const Order = () => {
       return productObj;
     }),
   };
+  //------delete pop up section----------------
+
+  const [openCardDel, useOpenCardDel] = useState(false);
+  const handleCardDelOpen = () => useOpenCardDel(!openCardDel);
 
   const [orderCreating, setOrderCreating] = useState(false);
   let orderValid =
@@ -760,6 +764,42 @@ const Order = () => {
                                     icon={faTrashCan}
                                   />
                                 </button>
+                                <Dialog
+                                  open={openCardDel}
+                                  className="w-sm"
+                                  size="xs"
+                                  handler={handleCardDelOpen}
+                                >
+                                  <DialogHeader className="grid place-items-center">
+                                    <Typography
+                                      className="text-center"
+                                      variant="h5"
+                                      color="blue-gray"
+                                    >
+                                      You Are Deleting A Card!
+                                    </Typography>
+                                  </DialogHeader>
+                                  <DialogBody className="grid place-items-center gap-4">
+                                    <Typography className="text-center font-normal">
+                                      Are You Sure You Want To Remove The Card!
+                                    </Typography>
+                                  </DialogBody>
+                                  <DialogFooter className="space-x-2">
+                                    <Button
+                                      variant="text"
+                                      color="blue-gray"
+                                      onClick={handleCardDelOpen}
+                                    >
+                                      Close
+                                    </Button>
+                                    <Button
+                                      variant="gradient"
+                                      onClick={() => removeCardHandler(item.id)}
+                                    >
+                                      Yes, Delete Card!
+                                    </Button>
+                                  </DialogFooter>
+                                </Dialog>
                                 <button
                                   onClick={() => handleOpenEditCard(item)}
                                   className="px-2 border-blue-gray-200 bg-[#60a5fa] border rounded hover:bg-blue-700 hover:text-red-600"
