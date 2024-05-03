@@ -170,6 +170,7 @@ const Order = () => {
         console.log(err);
         toast.error(err.response.data.error);
       });
+    handleAddressDelOpen();
   };
   const removeCardHandler = (id) => {
     API.delete(`/user/card/${id}`)
@@ -206,6 +207,10 @@ const Order = () => {
 
   const [openCardDel, setOpenCardDel] = useState(false);
   const handleCardDelOpen = () => setOpenCardDel(!openCardDel);
+
+  const [openAddressDel, setOpenAddressDel] = useState(false);
+  const handleAddressDelOpen = () => setOpenAddressDel(!openAddressDel);
+  //------delete pop up section----------------
 
   const [orderCreating, setOrderCreating] = useState(false);
   let orderValid =
@@ -451,11 +456,47 @@ const Order = () => {
                         </div>
                         <div className="flex flex-col gap-1">
                           <button
-                            onClick={() => removeHandler(item.id)}
+                            onClick={handleAddressDelOpen}
                             className="hover:text-red-600"
                           >
                             <FontAwesomeIcon size="lg" icon={faTrashCan} />
                           </button>
+                          <Dialog
+                            open={openAddressDel}
+                            className="w-sm"
+                            size="xs"
+                            handler={handleAddressDelOpen}
+                          >
+                            <DialogHeader className="grid place-items-center">
+                              <Typography
+                                className="text-center"
+                                variant="h5"
+                                color="blue-gray"
+                              >
+                                You Are Deleting An Address!
+                              </Typography>
+                            </DialogHeader>
+                            <DialogBody className="grid place-items-center gap-4">
+                              <Typography className="text-center font-normal">
+                                Are You Sure You Want To Remove The Address!
+                              </Typography>
+                            </DialogBody>
+                            <DialogFooter className="space-x-2">
+                              <Button
+                                variant="text"
+                                color="blue-gray"
+                                onClick={handleAddressDelOpen}
+                              >
+                                Close
+                              </Button>
+                              <Button
+                                variant="gradient"
+                                onClick={() => removeHandler(item.id)}
+                              >
+                                Yes, Delete Address!
+                              </Button>
+                            </DialogFooter>
+                          </Dialog>
                           <button
                             onClick={() => handleOpenEdit(item)}
                             className="hover:text-red-600"
