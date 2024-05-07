@@ -127,9 +127,48 @@ const Header = () => {
             BrandName
           </a>
           <div className="md:hidden gap-4 flex">
-            <div>
-              <FontAwesomeIcon icon={faCartShopping} />
-            </div>
+            <Popover
+              animate={{
+                mount: { scale: 1, y: 10 },
+                unmount: { scale: 0, y: -25 },
+              }}
+              placement="bottom"
+            >
+              <PopoverHandler>
+                <div className="cursor-pointer">
+                  <FontAwesomeIcon icon={faCartShopping} />
+                </div>
+              </PopoverHandler>
+              <PopoverContent className="w-96 flex flex-col">
+                <div className="mb-4 flex items-center gap-4 border-b border-blue-gray-50 pb-4">
+                  <div>
+                    <Typography variant="h6" color="blue-gray">
+                      Shopping Cart
+                    </Typography>
+                  </div>
+                </div>
+                {shoppingCart.length > 0 ? (
+                  <>
+                    <List className=" overflow-auto  max-h-96 p-0 border-b border-blue-gray-50">
+                      {shoppingCart.map((product) => (
+                        <ListItem ripple={false}>
+                          <CartProductSm product={product}></CartProductSm>
+                        </ListItem>
+                      ))}
+                    </List>
+                    <Button
+                      onClick={() => history.push("/cart")}
+                      className="max-w-32 mt-4 place-self-center"
+                      color="blue"
+                    >
+                      Go To Cart!
+                    </Button>
+                  </>
+                ) : (
+                  <p>Shopping Cart Is Empty</p>
+                )}
+              </PopoverContent>
+            </Popover>
 
             <div className="cursor-pointer" onClick={menuToggle}>
               {menu ? (
@@ -152,67 +191,69 @@ const Header = () => {
                   Home
                 </a>
               </Link>
-              <Link to="/shopping">
-                <a href="" className="font-[500] hover:underline -mr-6">
-                  Shop
-                </a>
-              </Link>
-              <Menu open={openMenu} handler={setOpenMenu} allowHover>
-                <MenuHandler>
-                  <FontAwesomeIcon
-                    className={`h-3.5 w-3.5 hover:cursor-pointer transition-transform ${
-                      openMenu ? "rotate-180" : ""
-                    }`}
-                    icon={faChevronDown}
-                  />
-                </MenuHandler>
-                <MenuList className=" w-4 grid-cols-7 gap-3 overflow-visible">
-                  <Menu
-                    placement="right-start"
-                    open={openErkekNestedMenu}
-                    handler={setOpenErkekNestedMenu}
-                    allowHover
-                    offset={15}
-                  >
-                    <MenuHandler className="flex items-center justify-between">
-                      <MenuItem>Erkek</MenuItem>
-                    </MenuHandler>
-                    <MenuList>
-                      {eCategories.map((cat) => (
-                        <MenuItem>
-                          <Link
-                            to={`/shopping/${cat.gender}/${cat.title}/${cat.id}`}
-                          >
-                            {cat.title}
-                          </Link>
-                        </MenuItem>
-                      ))}
-                    </MenuList>
-                  </Menu>
-                  <Menu
-                    placement="right-start"
-                    open={openKadinNestedMenu}
-                    handler={setOpenKadinNestedMenu}
-                    allowHover
-                    offset={15}
-                  >
-                    <MenuHandler className="flex items-center justify-between">
-                      <MenuItem>Kadin</MenuItem>
-                    </MenuHandler>
-                    <MenuList>
-                      {kCategories.map((cat) => (
-                        <MenuItem>
-                          <Link
-                            to={`/shopping/${cat.gender}/${cat.title}/${cat.id}`}
-                          >
-                            {cat.title}
-                          </Link>
-                        </MenuItem>
-                      ))}
-                    </MenuList>
-                  </Menu>
-                </MenuList>
-              </Menu>
+              <div className="flex justify-between items-center">
+                <Link to="/shopping">
+                  <a href="" className="font-[500] hover:underline mr-1">
+                    Shop
+                  </a>
+                </Link>
+                <Menu open={openMenu} handler={setOpenMenu} allowHover>
+                  <MenuHandler>
+                    <FontAwesomeIcon
+                      className={`h-3.5 w-3.5 hover:cursor-pointer transition-transform ${
+                        openMenu ? "rotate-180" : ""
+                      }`}
+                      icon={faChevronDown}
+                    />
+                  </MenuHandler>
+                  <MenuList className=" w-4 grid-cols-7 gap-3 overflow-visible">
+                    <Menu
+                      placement="right-start"
+                      open={openErkekNestedMenu}
+                      handler={setOpenErkekNestedMenu}
+                      allowHover
+                      offset={15}
+                    >
+                      <MenuHandler className="flex items-center justify-between">
+                        <MenuItem>Erkek</MenuItem>
+                      </MenuHandler>
+                      <MenuList>
+                        {eCategories.map((cat) => (
+                          <MenuItem>
+                            <Link
+                              to={`/shopping/${cat.gender}/${cat.title}/${cat.id}`}
+                            >
+                              {cat.title}
+                            </Link>
+                          </MenuItem>
+                        ))}
+                      </MenuList>
+                    </Menu>
+                    <Menu
+                      placement="right-start"
+                      open={openKadinNestedMenu}
+                      handler={setOpenKadinNestedMenu}
+                      allowHover
+                      offset={15}
+                    >
+                      <MenuHandler className="flex items-center justify-between">
+                        <MenuItem>Kadin</MenuItem>
+                      </MenuHandler>
+                      <MenuList>
+                        {kCategories.map((cat) => (
+                          <MenuItem>
+                            <Link
+                              to={`/shopping/${cat.gender}/${cat.title}/${cat.id}`}
+                            >
+                              {cat.title}
+                            </Link>
+                          </MenuItem>
+                        ))}
+                      </MenuList>
+                    </Menu>
+                  </MenuList>
+                </Menu>
+              </div>
 
               <Link to="/About">
                 <a href="" className="font-[500] hover:underline">
@@ -230,10 +271,99 @@ const Header = () => {
                   Team
                 </a>
               </Link>
+              <li className="text-sm font-bold cursor-pointer flex gap-[1rem] items-center">
+                {fetchState == FETCH_STATES.NOT_FETCHED ? (
+                  <FontAwesomeIcon icon={faUser} />
+                ) : (
+                  <></>
+                )}
+                {fetchState == FETCH_STATES.FETCHED ? (
+                  <div className="flex gap-2 justify-center items-center">
+                    <img
+                      key={hash}
+                      className="w-8"
+                      src={`https://gravatar.com/avatar/${hash}`}
+                    ></img>
+                    <a>{userData.name}</a>
+                    <Menu
+                      open={openUserMenu}
+                      handler={setOpenUserMenu}
+                      allowHover
+                    >
+                      <MenuHandler>
+                        <FontAwesomeIcon
+                          className={`h-3.5 w-3.5 hover:cursor-pointer transition-transform ${
+                            openUserMenu ? "rotate-180" : ""
+                          }`}
+                          icon={faChevronDown}
+                        />
+                      </MenuHandler>
+                      <MenuList>
+                        <MenuItem>
+                          <Link to="/orders">Previous Orders</Link>
+                        </MenuItem>
+                        <MenuItem>
+                          <button
+                            onClick={handleOpen}
+                            className="flex gap-3 hover:text-red-600"
+                          >
+                            Log Out
+                            <FontAwesomeIcon icon={faRightFromBracket} />
+                          </button>
+                        </MenuItem>
+                      </MenuList>
+                    </Menu>
+
+                    <Dialog
+                      open={open}
+                      className="w-sm"
+                      size="xs"
+                      handler={handleOpen}
+                    >
+                      <DialogHeader className="grid place-items-center">
+                        <Typography
+                          className="text-center"
+                          variant="h5"
+                          color="blue-gray"
+                        >
+                          You Are Logging Out!
+                        </Typography>
+                      </DialogHeader>
+                      <DialogBody className="grid place-items-center gap-4">
+                        <Typography className="text-center font-normal">
+                          Are You Sure You Want To Log Out!
+                        </Typography>
+                      </DialogBody>
+                      <DialogFooter className="space-x-2">
+                        <Button
+                          variant="text"
+                          color="blue-gray"
+                          onClick={handleOpen}
+                        >
+                          Close
+                        </Button>
+                        <Button variant="gradient" onClick={logOutHandler}>
+                          Yes, Log Out!
+                        </Button>
+                      </DialogFooter>
+                    </Dialog>
+                  </div>
+                ) : (
+                  <div>
+                    <Link to="/signIn">
+                      <a className="hover:underline">Login</a>
+                    </Link>
+                    /{" "}
+                    <Link to="/signup">
+                      <a className="hover:underline">Register</a>
+                    </Link>
+                  </div>
+                )}
+              </li>
             </div>
             <div className="text-sm pr-4">
-              <ul className="flex items-center sm:hidden sm:flex-wrap gap-[2rem] text-[#23A6F0]">
-                <li className="text-sm font-bold cursor-pointer flex gap-[1rem] items-center">
+              <ul className="flex items-center sm:flex-col sm:flex-wrap gap-[2rem] text-[#23A6F0]">
+                <li className="sm:hidden text-sm font-bold cursor-pointer flex gap-[1rem] items-center">
                   {fetchState == FETCH_STATES.NOT_FETCHED ? (
                     <FontAwesomeIcon icon={faUser} />
                   ) : (
@@ -260,7 +390,7 @@ const Header = () => {
                             icon={faChevronDown}
                           />
                         </MenuHandler>
-                        <MenuList>
+                        <MenuList className="sm:hidden">
                           <MenuItem>
                             <Link to="/orders">Previous Orders</Link>
                           </MenuItem>
@@ -322,7 +452,7 @@ const Header = () => {
                     </div>
                   )}
                 </li>
-                <li className="text-sm font-bold cursor-pointer">
+                <li className="text-sm font-bold cursor-pointer sm:hidden">
                   <FontAwesomeIcon icon={faMagnifyingGlass} />
                 </li>
                 <Popover
@@ -333,7 +463,7 @@ const Header = () => {
                   placement="bottom"
                 >
                   <PopoverHandler>
-                    <li className="text-sm font-bold cursor-pointer">
+                    <li className="text-sm font-bold cursor-pointer sm:hidden">
                       <FontAwesomeIcon icon={faCartShopping} />
                     </li>
                   </PopoverHandler>
@@ -368,13 +498,13 @@ const Header = () => {
                   </PopoverContent>
                 </Popover>
 
-                <li className="-ml-4">
+                <li className="-ml-4 sm:hidden">
                   <p>{totalCart}</p>
                 </li>
-                <li className="text-sm font-bold cursor-pointer">
+                <li className="text-sm font-bold cursor-pointer sm:hidden">
                   <FontAwesomeIcon icon={faHeart} />
                 </li>
-                <li className="-ml-4">
+                <li className="-ml-4 sm:hidden">
                   <p>1</p>
                 </li>
               </ul>
