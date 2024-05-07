@@ -50,7 +50,7 @@ const Header = () => {
   const hash = useSelector((store) => store.userData.hashCode);
   const categories = useSelector((store) => store.global.categories);
   const shoppingCart = useSelector((store) => store.shoppingCart.cart);
-  const [open, setOpen] = useState(false);
+  //const [open, setOpen] = useState(false);
   const [openMenu, setOpenMenu] = useState(false);
   const [openUserMenu, setOpenUserMenu] = useState(false);
   const [openErkekNestedMenu, setOpenErkekNestedMenu] = useState(false);
@@ -71,7 +71,8 @@ const Header = () => {
     return cat.gender == "k";
   });
 
-  const handleOpen = () => setOpen(!open);
+  const [size, setSize] = useState(null);
+  const handleOpen = (size) => setSize(size);
   const menuToggle = () => {
     setMenu(!menu);
   };
@@ -271,7 +272,7 @@ const Header = () => {
                   Team
                 </a>
               </Link>
-              <li className="text-sm font-bold cursor-pointer flex gap-[1rem] items-center">
+              <li className="md:hidden text-sm font-bold cursor-pointer flex gap-[1rem] items-center">
                 {fetchState == FETCH_STATES.NOT_FETCHED ? (
                   <FontAwesomeIcon icon={faUser} />
                 ) : (
@@ -298,13 +299,13 @@ const Header = () => {
                           icon={faChevronDown}
                         />
                       </MenuHandler>
-                      <MenuList>
+                      <MenuList className="md:hidden">
                         <MenuItem>
                           <Link to="/orders">Previous Orders</Link>
                         </MenuItem>
                         <MenuItem>
                           <button
-                            onClick={handleOpen}
+                            onClick={() => handleOpen("xl")}
                             className="flex gap-3 hover:text-red-600"
                           >
                             Log Out
@@ -313,40 +314,6 @@ const Header = () => {
                         </MenuItem>
                       </MenuList>
                     </Menu>
-
-                    <Dialog
-                      open={open}
-                      className="w-sm"
-                      size="xs"
-                      handler={handleOpen}
-                    >
-                      <DialogHeader className="grid place-items-center">
-                        <Typography
-                          className="text-center"
-                          variant="h5"
-                          color="blue-gray"
-                        >
-                          You Are Logging Out!
-                        </Typography>
-                      </DialogHeader>
-                      <DialogBody className="grid place-items-center gap-4">
-                        <Typography className="text-center font-normal">
-                          Are You Sure You Want To Log Out!
-                        </Typography>
-                      </DialogBody>
-                      <DialogFooter className="space-x-2">
-                        <Button
-                          variant="text"
-                          color="blue-gray"
-                          onClick={handleOpen}
-                        >
-                          Close
-                        </Button>
-                        <Button variant="gradient" onClick={logOutHandler}>
-                          Yes, Log Out!
-                        </Button>
-                      </DialogFooter>
-                    </Dialog>
                   </div>
                 ) : (
                   <div>
@@ -396,7 +363,7 @@ const Header = () => {
                           </MenuItem>
                           <MenuItem>
                             <button
-                              onClick={handleOpen}
+                              onClick={() => handleOpen("xs")}
                               className="flex gap-3 hover:text-red-600"
                             >
                               Log Out
@@ -407,9 +374,9 @@ const Header = () => {
                       </Menu>
 
                       <Dialog
-                        open={open}
+                        open={size === "xs" || size === "xl"}
                         className="w-sm"
-                        size="xs"
+                        size={size}
                         handler={handleOpen}
                       >
                         <DialogHeader className="grid place-items-center">
@@ -430,7 +397,7 @@ const Header = () => {
                           <Button
                             variant="text"
                             color="blue-gray"
-                            onClick={handleOpen}
+                            onClick={() => handleOpen(null)}
                           >
                             Close
                           </Button>
