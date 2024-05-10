@@ -42,7 +42,7 @@ const Cart = () => {
       <Header />
       <div className="flex flex-col items-center">
         <h3 className="text-3xl font-bold my-4">My Cart</h3>
-        <div className="flex gap-8 min-h-[500px]">
+        <div className="flex gap-8 sm:flex-col sm:items-center min-h-[500px]">
           <div className="my-4">
             {shoppingCart.length > 0 ? (
               <>
@@ -58,7 +58,7 @@ const Cart = () => {
               <p>Shopping Cart Is Empty</p>
             )}
           </div>
-          <div className="flex flex-col items-center justify-center mt-4 gap-4 w-3/12 max-w-96 max-h-96 rounded-lg shadow p-4">
+          <div className="flex flex-col items-center justify-center mt-4 gap-4 w-3/12 sm:w-4/5 max-w-96 max-h-96 rounded-lg shadow p-4">
             <p className="text-lg font-bold">Order Summary</p>
             <div className="flex w-full justify-between px-4">
               <p>Subtotal:</p>
