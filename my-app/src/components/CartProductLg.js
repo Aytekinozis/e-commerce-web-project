@@ -31,7 +31,7 @@ const CartProductLg = ({ product }) => {
           Free shipping for purchases over $300
         </p>
       </div>
-      <div className="flex gap-8 items-center">
+      <div className="flex sm:flex-wrap sm:justify-center gap-8 items-center">
         <Checkbox
           onChange={() =>
             dispatch(setChecked(product.product.id, !product.checked))
@@ -48,26 +48,29 @@ const CartProductLg = ({ product }) => {
           <h5 className="font-bold">{product.product.name}</h5>
           <p className="max-w-60">{product.product.description}</p>
         </div>
-        <Button
-          className="h-11 w-11 text-xl self-center rounded-full"
-          variant="gradient"
-          color="blue"
-          onClick={countDown}
-          size="sm"
-          disabled={product.count === 1}
-        >
-          -
-        </Button>
-        <p className="w-20"> Count: {product.count}</p>
-        <Button
-          className="h-11 text-xl self-center rounded-full"
-          variant="gradient"
-          color="blue"
-          onClick={countUp}
-          size="sm"
-        >
-          +
-        </Button>
+        <div className="flex items-center justify-around">
+          <Button
+            className="h-11 w-11 text-xl self-center rounded-full"
+            variant="gradient"
+            color="blue"
+            onClick={countDown}
+            size="sm"
+            disabled={product.count === 1}
+          >
+            -
+          </Button>
+          <p className="w-20 text-center"> Count: {product.count}</p>
+          <Button
+            className="h-11 text-xl self-center rounded-full"
+            variant="gradient"
+            color="blue"
+            onClick={countUp}
+            size="sm"
+          >
+            +
+          </Button>
+        </div>
+
         <p>
           Price:{" "}
           <span className="text-[#23856D]">
