@@ -122,7 +122,7 @@ const Header = () => {
           </div>
         </div>
       </div>
-      <div className=" py-[1rem] flex justify-between items-center flex-wrap w-11/12">
+      <div className=" py-[1rem] flex justify-between self-center items-center flex-wrap w-11/12">
         <div className="flex sm:flex-wrap justify-between items-center gap-[3rem] w-full pl-10 sm:pl-4">
           <a href="#" className="text-[2.4rem] font-[700]">
             BrandName
