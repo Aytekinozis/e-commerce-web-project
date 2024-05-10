@@ -68,11 +68,11 @@ const Orders = () => {
                                   className="h-full w-full object-cover"
                                 />
                               </CardHeader>
-                              <CardBody>
+                              <CardBody className="overflow-auto">
                                 <Typography
                                   variant="h6"
                                   color="gray"
-                                  className="mb-4"
+                                  className="mb-4 sm:mb-1"
                                 >
                                   Count: {product.count}
                                 </Typography>
