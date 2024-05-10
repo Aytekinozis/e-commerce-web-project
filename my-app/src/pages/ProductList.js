@@ -186,7 +186,10 @@ const ProductListPage = () => {
               className="relative"
               key={cat.id}
             >
-              <img className="w-[210px] h-[210px] object-cover" src={cat.img} />
+              <img
+                className="w-[210px] h-[210px] object-cover hover:opacity-80"
+                src={cat.img}
+              />
               <p className="absolute inset-20">{cat.title}</p>
               <p className="absolute top-28 left-20 w-24">
                 {cat.gender == "k" ? "Kadin" : "Erkek"}
@@ -221,7 +224,7 @@ const ProductListPage = () => {
           <p className="absolute top-28 left-20 w-24">5 items</p>
         </a> */}
       </div>
-      <div className="flex sm:flex-col sm:gap-6 justify-around items-center self-center font-montserrat py-10 sm:flex-wrap">
+      <div className="flex mx-32 sm:flex-col sm:gap-6 justify-around items-center self-center font-montserrat py-10 sm:flex-wrap">
         <p className="text-[#737373]">{`Showing all ${productData.pcount} results`}</p>
         <div className="flex gap-4 justify-center text-center items-center">
           <p className="text-[#737373]">Vievs:</p>
