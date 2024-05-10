@@ -275,7 +275,7 @@ const ProductListPage = () => {
           )}
         </div>
       </div>
-      <div className="flex justify-center items-center gap-4">
+      <div className="flex justify-center items-center gap-4 sm:gap-1">
         <Button
           variant="text"
           className="flex items-center gap-2"
@@ -284,7 +284,7 @@ const ProductListPage = () => {
         >
           <ArrowLeftIcon strokeWidth={2} className="h-4 w-4" /> Previous
         </Button>
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-2 sm:gap-1">
           <IconButton {...getItemProps(1)}>1</IconButton>
           {productData.pageCount > 2 ? (
             <IconButton {...getItemProps(secondPagination())}>
