@@ -224,7 +224,7 @@ const ProductListPage = () => {
           <p className="absolute top-28 left-20 w-24">5 items</p>
         </a> */}
       </div>
-      <div className="flex mx-32 sm:flex-col sm:gap-6 justify-around items-center self-center font-montserrat py-10 sm:flex-wrap">
+      <div className="flex mx-32 sm:mx-0 sm:flex-col sm:gap-6 justify-around items-center self-center font-montserrat py-10 sm:flex-wrap">
         <p className="text-[#737373]">{`Showing all ${productData.pcount} results`}</p>
         <div className="flex gap-4 justify-center text-center items-center">
           <p className="text-[#737373]">Vievs:</p>
@@ -235,7 +235,7 @@ const ProductListPage = () => {
             <FontAwesomeIcon className="size-6" icon={faListCheck} />
           </div>
         </div>
-        <div className="flex gap-4">
+        <div className="flex gap-4 sm:flex-col">
           <div className="w-50">
             <Input
               onChange={(e) => {
