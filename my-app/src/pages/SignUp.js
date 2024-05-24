@@ -19,6 +19,7 @@ import { useHistory } from "react-router";
 import { getRoles } from "../store/actions/globalActions";
 import { useDispatch, useSelector } from "react-redux";
 import axios, { Axios } from "axios";
+import { Link } from "react-router-dom/cjs/react-router-dom.min";
 
 const SignUp = () => {
   const {
@@ -332,9 +333,11 @@ const SignUp = () => {
             </Button>
             <Typography color="gray" className="mt-4 text-center font-normal">
               Already have an account?{" "}
-              <a href="#" className="font-medium text-gray-900">
-                Sign In
-              </a>
+              <Link to="/signIn">
+                <a href="#" className="font-medium text-gray-900">
+                  Sign In
+                </a>
+              </Link>
             </Typography>
           </form>
         </Card>
