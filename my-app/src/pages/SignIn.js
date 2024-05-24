@@ -11,6 +11,7 @@ import { useHistory } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
 import axios, { Axios } from "axios";
 import { login } from "../store/actions/userActions";
+import { Link } from "react-router-dom/cjs/react-router-dom.min";
 
 const SignIn = () => {
   const {
@@ -108,9 +109,11 @@ const SignIn = () => {
             </Button>
             <Typography color="gray" className="mt-4 text-center font-normal">
               Create a new account?{" "}
-              <a href="#" className="font-medium text-gray-900">
-                Sign Up
-              </a>
+              <Link to="/signUp">
+                <a href="#" className="font-medium text-gray-900">
+                  Sign Up
+                </a>
+              </Link>
             </Typography>
           </form>
         </Card>
